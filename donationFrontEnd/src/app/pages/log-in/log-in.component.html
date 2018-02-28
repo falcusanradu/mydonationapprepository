@@ -1,0 +1,69 @@
+<div class="row">
+  <!--left-->
+  <div class="col-xs-12 col-sm-6">
+    <form *ngIf="!loading">
+      <div class="form-group">
+        <legend class="">Login</legend>
+        <label for="loginUsername">Username</label>
+        <input class="form-control" id="loginUsername" placeholder="Username" name="username" [(ngModel)]="loginUsername">
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password"
+               [(ngModel)]="LoginPassword">
+      </div>
+      <div *ngIf="errorMessageLogin" class="alert-danger alert">{{errorMessageLogin}}</div>
+      <div class="text-left">
+        <span type="submit" class="btn btn-primary" (click)="login()"><span
+          class="fa fa-user-circle-o"></span> Login</span>
+      </div>
+    </form>
+    <div class="loading" *ngIf="loading">
+      Loading ...
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+
+    <!--right-->
+    <form class="form-horizontal" action='' method="POST">
+      <fieldset>
+        <div id="legend">
+          <legend class="">Register</legend>
+        </div>
+        <div class="control-group">
+          <!-- Username -->
+          <label class="control-label"  for="registerUsername">Username</label>
+          <div class="controls">
+            <input type="text" id="registerUsername" name="username" placeholder="Username" class="form-control" [(ngModel)]="registerUsername">
+            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+          </div>
+        </div>
+        <div class="control-group">
+          <!-- Password-->
+          <label class="control-label" for="registerPassword">Password</label>
+          <div class="controls">
+            <input type="password" id="registerPassword" name="password" placeholder="Password" class="form-control" [(ngModel)]="registerPassword">
+            <p class="help-block">Password should be at least 4 characters</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password -->
+          <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+          <div class="controls">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password" class="form-control" [(ngModel)]="confirmPassword">
+            <p class="help-block">Please confirm password</p>
+          </div>
+        </div>
+
+        <div *ngIf="errorMessageRegister" class="alert-danger alert">{{errorMessageRegister}}</div>
+
+        <div class="text-left">
+        <span type="submit" class="btn btn-primary" (click)="register()"><span
+          class="fa fa-user-circle-o"></span> Register</span>
+        </div>
+      </fieldset>
+    </form>
+
+  </div>
+</div>
