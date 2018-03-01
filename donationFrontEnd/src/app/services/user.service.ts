@@ -25,10 +25,11 @@ export class UserService {
     return this.http.post('http://localhost:8080/login/', user);
   }
 
-  register(username, password): Observable<any> {
+  register(username, password, email): Observable<any> {
     const user: any = {
       'username': username,
-      'password': password
+      'password': password,
+      'email' : email,
     };
     return this.http.post('http://localhost:8080/register/', user);
   }

@@ -1,5 +1,6 @@
 package service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,11 +9,7 @@ import java.util.Properties;
 
 import java.security.Security;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -21,25 +18,31 @@ public class EmailService {
 
     private static final String SMTP_HOST_NAME = "smtp.gmail.com";
     private static final String SMTP_PORT = "465";
-    private static final String emailMsgTxt = "message!!!";
-    private static final String emailSubjectTxt = "subject!!";
-    private static final String emailFromAddress = "licenta.donation@gmail.com";
     private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-    private static String[] SEND_TO = {};
+    private static String emailMsgTxt = "";
+    private static String emailSubjectTxt = "";
+    private static String emailFromAddress = "licenta.donation@gmail.com";
+    private static String[] sendTo = {};
+
+    private static EmailService emailService = new EmailService();
 
 
-    public void sendMail(List<String> sendMailTo) throws Exception {
+    public void sendMail(List<String> sendMailTo, String emailFromAddress, String textMessage, String subject) throws Exception {
 
-        EmailService.SEND_TO = this.convertListIntoArray(sendMailTo);
+        EmailService.sendTo = this.convertListIntoArray(sendMailTo);
+        EmailService.emailFromAddress = emailFromAddress;
+        EmailService.emailMsgTxt = textMessage;
+        EmailService.emailSubjectTxt = subject;
+
         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
-        new EmailService().sendSSLMessage(SEND_TO, emailSubjectTxt,
-                emailMsgTxt, emailFromAddress);
-        System.out.println("Sucessfully Sent mail to All Users");
+            emailService.sendSSLMessage(sendTo, emailSubjectTxt,
+                    emailMsgTxt, emailFromAddress);
+            System.out.println("Sucessfully Sent mail to All Users");
     }
 
     private void sendSSLMessage(String recipients[], String subject,
-                               String message, String from) throws MessagingException {
+                                String message, String from) throws MessagingException {
         boolean debug = true;
 
         Properties props = new Properties();
@@ -74,7 +77,8 @@ public class EmailService {
         // Setting the Subject and Content Type
         msg.setSubject(subject);
         msg.setContent(message, "text/plain");
-        Transport.send(msg);
+            Transport.send(msg);
+
     }
 
     private String[] convertListIntoArray(List<String> list) {

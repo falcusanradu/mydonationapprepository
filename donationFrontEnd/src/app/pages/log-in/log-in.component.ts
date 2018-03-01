@@ -13,6 +13,8 @@ enum errorMsgEnum {
   INVALID_USERNAME_OR_PASSWORD = 'Invalid username or password',
   LOGIN_FAILED = 'login failed',
   USERNAME_OR_PASSWORD_CANNOT_BE_NULL = 'username or password can\'t be null',
+  EMAIL_NOT_NULL = 'enter email',
+  USER_EXISTS_WITH_THIS_EAMIL = 'user exists with this email',
 };
 
 @Component({
@@ -29,6 +31,7 @@ export class LogInComponent implements OnInit {
   registerUsername: string;
   registerPassword: string;
   confirmPassword: string;
+  registerEmail: string;
 
   loading = false;
 
@@ -47,16 +50,20 @@ export class LogInComponent implements OnInit {
       this.errorMessageRegister = errorMsgEnum.USERNAME_OR_PASSWORD_CANNOT_BE_NULL;
     } else if (this.registerPassword !== this.confirmPassword) {
       this.errorMessageRegister = errorMsgEnum.OCNFIRMATION_INCORRECT;
+    } else if (!this.registerEmail) {
+      this.errorMessageRegister = errorMsgEnum.EMAIL_NOT_NULL;
     } else {
-      this.userService.register(this.registerUsername, this.registerPassword).subscribe(response => this.registerSuccess(response));
+      this.userService.register(this.registerUsername, this.registerPassword, this.registerEmail).subscribe(response => this.registerSuccess(response));
     }
   }
 
   registerSuccess(data: User) {
-    if (data !== null) {
-      this.errorMessageRegister = errorMsgEnum.REGISTER_SUCCESS;
-    } else {
+    if (data === null) {
       this.errorMessageRegister = errorMsgEnum.USERNAME_EXISTS;
+    } else if (data.username === null) {
+      this.errorMessageRegister = errorMsgEnum.USER_EXISTS_WITH_THIS_EAMIL;
+    } else {
+      this.errorMessageRegister = errorMsgEnum.REGISTER_SUCCESS;
     }
   }
 

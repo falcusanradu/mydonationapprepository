@@ -10,6 +10,9 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
     @Query(value = "SELECT * FROM user_table u WHERE u.username= :username", nativeQuery = true)
     UserEntity findByUsername(@Param("username") String username);
+
+    @Query(value = "SELECT * FROM user_table u WHERE u.email= :email", nativeQuery = true)
+    UserEntity findByEmail(@Param("email") String email);
 }
 
 

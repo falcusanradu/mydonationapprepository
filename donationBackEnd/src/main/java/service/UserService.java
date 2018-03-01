@@ -15,11 +15,16 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public UserEntity save(String username, String password) {
+    public UserEntity getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public UserEntity save(String username, String password, String email) {
 
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(username);
         userEntity.setPassword(password);
+        userEntity.setEmail(email);
         return userRepository.save(userEntity);
     }
 }

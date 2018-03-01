@@ -21,6 +21,9 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(unique = true, name = "email")
+    private String email;
+
     public Integer getId() {
         return id;
     }
@@ -43,5 +46,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

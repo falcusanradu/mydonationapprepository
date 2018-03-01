@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+// TODO delete this==== only for test__________________________
 public class EmailController {
 
     @Autowired
@@ -19,7 +20,7 @@ public class EmailController {
     public String signUp() {
         return "Please sign up for our service.";
     }
-
+// TODO delet class --- is for test
     @RequestMapping("/signup-success")
     public String signUpSuccess() {
 
@@ -29,13 +30,13 @@ public class EmailController {
 //            sendTo.add("sads");
             sendTo.add("saddsadsadasdasdasdsa@yahoo.com");
             sendTo.add("licenta.donation@gmail.com");
-            emailService.sendMail(sendTo);
+//            emailService.sendMail(sendTo);
         } catch (MailException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Thanks for registration with us.";
+        return "if it's not working check that your antivirus is stopped.";
     }
 
 }

@@ -34,24 +34,34 @@
           <!-- Username -->
           <label class="control-label"  for="registerUsername">Username</label>
           <div class="controls">
-            <input type="text" id="registerUsername" name="username" placeholder="Username" class="form-control" [(ngModel)]="registerUsername">
+            <input type="text" id="registerUsername" name="username" placeholder="Username" class="form-control"
+                   [(ngModel)]="registerUsername">
             <p class="help-block">Username can contain any letters or numbers, without spaces</p>
           </div>
         </div>
         <div class="control-group">
-          <!-- Password-->
-          <label class="control-label" for="registerPassword">Password</label>
+          <!--email-->
+          <label class="control-label" for="registerPassword">Email</label>
           <div class="controls">
-            <input type="password" id="registerPassword" name="password" placeholder="Password" class="form-control" [(ngModel)]="registerPassword">
+            <input type="email" id="registerEmail" name="email" placeholder="email" class="form-control"
+                   [(ngModel)]="registerEmail">
             <p class="help-block">Password should be at least 4 characters</p>
           </div>
         </div>
+          <!-- Password-->
+          <label class="control-label" for="registerEmail">Password</label>
+          <div class="controls">
+            <input type="password" id="registerPassword" name="password" placeholder="Password" class="form-control"
+                   [(ngModel)]="registerPassword">
+            <p class="help-block">Password should be at least 4 characters</p>
+          </div>
 
         <div class="control-group">
           <!-- Password -->
           <label class="control-label"  for="password_confirm">Password (Confirm)</label>
           <div class="controls">
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password" class="form-control" [(ngModel)]="confirmPassword">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password" pattern="[^ @]*@[^ @]*"
+                   class="form-control" [(ngModel)]="confirmPassword">
             <p class="help-block">Please confirm password</p>
           </div>
         </div>
