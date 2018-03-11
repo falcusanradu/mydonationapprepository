@@ -5,8 +5,8 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class BackendService {
 
-  loggedUsername: string = null;
-  userRole: string = null;
+  loggedUsername: string;
+  userRole: string;
 
   constructor(private http: HttpClient) {
   }

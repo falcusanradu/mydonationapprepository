@@ -1,0 +1,8 @@
+import {Injectable} from '@angular/core';
+import {User} from '../models/user';
+
+@Injectable()
+export class StoredUser {
+  username: string = "";
+  user: User = null;
+}

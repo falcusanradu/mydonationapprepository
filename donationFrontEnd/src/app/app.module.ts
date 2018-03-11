@@ -14,8 +14,11 @@ import {FormsModule} from '@angular/forms';
 import {UserService} from './services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {BackendService} from './backend.service';
-import {AuthGuard} from './authentification.service';
-import { ManageDonationRequestsComponent } from './pages/manage-donation-requests/manage-donation-requests.component';
+import {ManageDonationRequestsComponent} from './pages/manage-donation-requests/manage-donation-requests.component';
+import {ResetPasswordComponent} from './pages/reset-password/reset-password.component';
+import {AuthGuard, CanNotActivate} from './user-page-access/authentification.service';
+import {StoredUser} from './user-page-access/stored-user';
+import {SessionValues} from './models/constants';
 
 
 @NgModule({
@@ -28,6 +31,7 @@ import { ManageDonationRequestsComponent } from './pages/manage-donation-request
     FooterComponent,
     LogInComponent,
     ManageDonationRequestsComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { ManageDonationRequestsComponent } from './pages/manage-donation-request
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UserService, BackendService, AuthGuard, LogInComponent],
+  providers: [UserService, BackendService, AuthGuard, LogInComponent, ResetPasswordComponent, CanNotActivate, StoredUser, SessionValues],
   bootstrap: [AppComponent]
 })
 export class AppModule {

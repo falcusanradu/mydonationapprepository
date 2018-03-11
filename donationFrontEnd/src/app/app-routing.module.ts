@@ -3,8 +3,9 @@ import {Routes, RouterModule} from '@angular/router';
 import {ContactComponent} from './pages/contact/contact.component';
 import {HomeComponent} from './pages/home/home.component';
 import {LogInComponent} from './pages/log-in/log-in.component';
-import {AuthGuard} from './authentification.service';
 import {ManageDonationRequestsComponent} from './pages/manage-donation-requests/manage-donation-requests.component';
+import {ResetPasswordComponent} from './pages/reset-password/reset-password.component';
+import {AuthGuard, CanNotActivate} from './user-page-access/authentification.service';
 
 const routes: Routes = [
   {
@@ -17,10 +18,13 @@ const routes: Routes = [
     path: 'contact', component: ContactComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'LogIn', component: LogInComponent
+    path: 'LogIn', component: LogInComponent, canActivate: [CanNotActivate]
   },
   {
     path: 'manageDonations', component: ManageDonationRequestsComponent
+  },
+  {
+    path: 'reset-password', component: ResetPasswordComponent
   },
 ];
 
