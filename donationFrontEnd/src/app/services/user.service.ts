@@ -29,7 +29,7 @@ export class UserService {
     const user: any = {
       'username': username,
       'password': password,
-      'email' : email,
+      'email': email,
     };
     return this.http.post('http://localhost:8080/register/', user);
   }

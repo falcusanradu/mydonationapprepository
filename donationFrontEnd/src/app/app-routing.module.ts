@@ -8,17 +8,18 @@ import {ResetPasswordComponent} from './pages/reset-password/reset-password.comp
 import {AuthGuard, CanNotActivate} from './user-page-access/authentification.service';
 
 const routes: Routes = [
+  //TODO: AuthGuard
   {
-    path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]
+    path: '', redirectTo: 'home', pathMatch: 'full'
   },
   {
-    path: 'home', component: HomeComponent, canActivate: [AuthGuard]
+    path: 'home', component: HomeComponent
   },
   {
-    path: 'contact', component: ContactComponent, canActivate: [AuthGuard]
+    path: 'contact', component: ContactComponent
   },
   {
-    path: 'LogIn', component: LogInComponent, canActivate: [CanNotActivate]
+    path: 'LogIn', component: LogInComponent
   },
   {
     path: 'manageDonations', component: ManageDonationRequestsComponent
@@ -26,6 +27,7 @@ const routes: Routes = [
   {
     path: 'reset-password', component: ResetPasswordComponent
   },
+  //TODO: AuthGuard
 ];
 
 @NgModule({

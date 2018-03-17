@@ -51,4 +51,9 @@ public class UserController {
         return null;
     }
 
+    @RequestMapping(value = "/resetPassword/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public boolean resetPassword(@RequestBody UserEntity user) throws Exception {
+        return userService.resetPassword(user.getEmail());
+    }
+
 }

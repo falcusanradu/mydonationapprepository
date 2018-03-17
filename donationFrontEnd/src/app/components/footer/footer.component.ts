@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {SessionValues} from '../../models/constants';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,19 @@ import {Component, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() {
+  constructor(private translate: TranslateService, private sessionValues: SessionValues) {
+    translate.setDefaultLang('en');
   }
 
+  switchLanguage() {
+    if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === 'en') {
+      this.translate.use('de');
+      sessionStorage.setItem(this.sessionValues.LANGUAGE, 'de');
+    } else {
+      this.translate.use('en');
+      sessionStorage.setItem(this.sessionValues.LANGUAGE, 'en');
+    }
+  }
   ngOnInit() {
   }
 

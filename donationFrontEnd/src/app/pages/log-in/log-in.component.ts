@@ -5,19 +5,16 @@ import 'rxjs/add/operator/catch';
 import {User} from '../../models/user';
 import {Router} from '@angular/router';
 import {BackendService} from '../../backend.service';
-import {StoredUser} from '../../user-page-access/stored-user';
-import {SessionValues} from '../../models/constants';
 
 enum errorMsgEnum {
   OCNFIRMATION_INCORRECT = 'confirmation password incorrect!',
   REGISTER_SUCCESS = 'register succes',
   USERNAME_EXISTS = 'username exists',
+  EMAIL_EXISTS = 'email exists',
   INVALID_USERNAME_OR_PASSWORD = 'Invalid username or password',
   LOGIN_FAILED = 'login failed',
   USERNAME_OR_PASSWORD_CANNOT_BE_NULL = 'username or password can\'t be null',
-  EMAIL_NOT_NULL = 'enter email',
-  USER_EXISTS_WITH_THIS_EAMIL = 'user exists with this email',
-}
+};
 
 @Component({
   selector: 'app-log-in',
@@ -41,21 +38,17 @@ export class LogInComponent implements OnInit {
   errorMessageRegister: string;
 
 
-  constructor(private userService: UserService, private router: Router, private backendService: BackendService, private storedUser: StoredUser,
-              private sessionValues: SessionValues) {
+  constructor(private userService: UserService, private router: Router, private backendService: BackendService) {
   }
 
   ngOnInit() {
   }
-
 
   register() {
     if (!this.registerUsername || !this.registerPassword) {
       this.errorMessageRegister = errorMsgEnum.USERNAME_OR_PASSWORD_CANNOT_BE_NULL;
     } else if (this.registerPassword !== this.confirmPassword) {
       this.errorMessageRegister = errorMsgEnum.OCNFIRMATION_INCORRECT;
-    } else if (!this.registerEmail) {
-      this.errorMessageRegister = errorMsgEnum.EMAIL_NOT_NULL;
     } else {
       this.userService.register(this.registerUsername, this.registerPassword, this.registerEmail).subscribe(response => this.registerSuccess(response));
     }
@@ -64,8 +57,8 @@ export class LogInComponent implements OnInit {
   registerSuccess(data: User) {
     if (data === null) {
       this.errorMessageRegister = errorMsgEnum.USERNAME_EXISTS;
-    } else if (data.username === null) {
-      this.errorMessageRegister = errorMsgEnum.USER_EXISTS_WITH_THIS_EAMIL;
+    } else if (data.username === null && data.email === null) {
+      this.errorMessageRegister = errorMsgEnum.EMAIL_EXISTS;
     } else {
       this.errorMessageRegister = errorMsgEnum.REGISTER_SUCCESS;
     }
@@ -85,11 +78,10 @@ export class LogInComponent implements OnInit {
     this.loading = false;
     if (data != null) {
       // TODO: redirect to another page
-      this.storedUser.username = this.loginUsername;
       this.backendService.loggedUsername = this.loginUsername;
-      console.log(this.backendService.loggedUsername);
-      sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
-      // console.log('login succes!!!!!');
+      sessionStorage.setItem(this.loginUsername, JSON.stringify(data));
+
+      console.log('login succes!!!!!');
       this.router.navigate(['/home']);
     } else {
       console.log('failed!!!!!');
