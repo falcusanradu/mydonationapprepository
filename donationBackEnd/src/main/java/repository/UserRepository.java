@@ -23,6 +23,11 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE user_table SET password= :password WHERE email= :email", nativeQuery = true)
     void updateUserPasswordByEmail(@Param("email") String email, @Param("password") String password);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE user_table SET password= :password WHERE username= :username", nativeQuery = true)
+    void updateUserPasswordByUsername(@Param("username") String username, @Param("password") String password);
 }
 
 

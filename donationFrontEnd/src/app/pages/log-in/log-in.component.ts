@@ -80,7 +80,6 @@ export class LogInComponent implements OnInit {
     console.log('I\'m in loginSuccess()');
     this.loading = false;
     if (data != null) {
-      // TODO: redirect to another page
       this.backendService.loggedUsername = this.loginUsername;
       sessionStorage.setItem(this.loginUsername, JSON.stringify(data));
 

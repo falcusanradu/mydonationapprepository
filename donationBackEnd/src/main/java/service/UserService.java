@@ -71,4 +71,12 @@ public class UserService {
         }
         return sb.toString();
     }
+
+    public boolean changePassword(UserEntity user) {
+        if (this.getUserByUsername(user.getUsername()) != null) {
+            this.userRepository.updateUserPasswordByUsername(user.getUsername(), user.getPassword());
+            return true;
+        }
+        return false;
+    }
 }
