@@ -8,7 +8,7 @@ import {BackendService} from '../../backend.service';
 
 enum errorMsgEnum {
   OCNFIRMATION_INCORRECT = 'confirmation password incorrect!',
-  REGISTER_SUCCESS = 'register succes',
+  // REGISTER_SUCCESS = 'register succes',
   USERNAME_EXISTS = 'username exists',
   EMAIL_EXISTS = 'email exists',
   INVALID_USERNAME_OR_PASSWORD = 'Invalid username or password',
@@ -36,6 +36,7 @@ export class LogInComponent implements OnInit {
 
   errorMessageLogin: string;
   errorMessageRegister: string;
+  registerSuccessMsg: boolean = false;
 
 
   constructor(private userService: UserService, private router: Router, private backendService: BackendService) {
@@ -52,6 +53,7 @@ export class LogInComponent implements OnInit {
     } else {
       this.userService.register(this.registerUsername, this.registerPassword, this.registerEmail).subscribe(response => this.registerSuccess(response));
     }
+    this.registerSuccessMsg = false;
   }
 
   registerSuccess(data: User) {
@@ -60,7 +62,8 @@ export class LogInComponent implements OnInit {
     } else if (data.username === null && data.email === null) {
       this.errorMessageRegister = errorMsgEnum.EMAIL_EXISTS;
     } else {
-      this.errorMessageRegister = errorMsgEnum.REGISTER_SUCCESS;
+      this.registerSuccessMsg = true;
+      // this.errorMessageRegister = errorMsgEnum.REGISTER_SUCCESS;
     }
   }
 

@@ -69,7 +69,8 @@
           </div>
         </div>
 
-        <div *ngIf="errorMessageRegister" class="alert-danger alert">{{errorMessageRegister}}</div>
+        <div *ngIf="errorMessageRegister && !registerSuccessMsg" class="alert-danger">{{errorMessageRegister}}</div>
+        <div *ngIf="registerSuccessMsg" class="alert-success">register success!</div>
 
         <div class="text-left">
         <span type="submit" class="btn btn-primary" (click)="register()"><span
