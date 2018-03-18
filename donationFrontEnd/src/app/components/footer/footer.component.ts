@@ -22,7 +22,11 @@ export class FooterComponent implements OnInit {
       sessionStorage.setItem(this.sessionValues.LANGUAGE, 'en');
     }
   }
+
   ngOnInit() {
+    if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === null) {
+      sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
+    }
   }
 
 }

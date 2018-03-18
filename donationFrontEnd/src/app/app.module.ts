@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {HeaderComponent} from './components/header/header.component';
 import {HomeComponent} from './pages/home/home.component';
-import {SignUpComponent} from './pages/sign-up/sign-up.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {LogInComponent} from './pages/log-in/log-in.component';
 import {FormsModule} from '@angular/forms';
@@ -21,6 +20,7 @@ import {SessionValues} from './models/constants';
 import {HttpModule, Http} from '@angular/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {Translate} from './translate.service';
 
 
 export function createTranslateLoader(http_: HttpClient) {
@@ -33,7 +33,6 @@ export function createTranslateLoader(http_: HttpClient) {
     ContactComponent,
     HeaderComponent,
     HomeComponent,
-    SignUpComponent,
     FooterComponent,
     LogInComponent,
     ManageDonationRequestsComponent,
@@ -54,7 +53,7 @@ export function createTranslateLoader(http_: HttpClient) {
     })
   ],
   providers: [UserService, BackendService, AuthGuard, LogInComponent, ResetPasswordComponent, CanNotActivate, StoredUser, SessionValues,
-    ],
+  Translate  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

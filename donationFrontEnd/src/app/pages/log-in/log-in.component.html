@@ -5,7 +5,8 @@
       <div class="form-group">
         <legend class="">Login</legend>
         <label for="loginUsername">Username</label>
-        <input class="form-control" id="loginUsername" placeholder="Username" name="username" [(ngModel)]="loginUsername">
+        <input class="form-control" id="loginUsername" placeholder="Username" name="username"
+               [(ngModel)]="loginUsername">
       </div>
       <div class="form-group">
         <label for="loginPassword">Password</label>
@@ -23,7 +24,8 @@
     </div>
     <!--<span i18n="passwordrecover"></span>-->
     <!--<ng-container i18n>passwordrecover</ng-container>-->
-    <a routerLink="/reset-password"><span class="red">forgot password?</span></a>
+    <a routerLink="/reset-password"><span
+      class="red">{{this.translateService.getTranslatedItem('forgot_password')}}</span></a>
   </div>
   <div class="col-xs-12 col-sm-6">
 
@@ -35,7 +37,7 @@
         </div>
         <div class="control-group">
           <!-- Username -->
-          <label class="control-label"  for="registerUsername">Username</label>
+          <label class="control-label" for="registerUsername">Username</label>
           <div class="controls">
             <input type="text" id="registerUsername" name="username" placeholder="Username" class="form-control"
                    [(ngModel)]="registerUsername">
@@ -51,19 +53,20 @@
             <p class="help-block">Password should be at least 4 characters</p>
           </div>
         </div>
-          <!-- Password-->
-          <label class="control-label" for="registerEmail">Password</label>
-          <div class="controls">
-            <input type="password" id="registerPassword" name="password" placeholder="Password" class="form-control"
-                   [(ngModel)]="registerPassword">
-            <p class="help-block">Password should be at least 4 characters</p>
-          </div>
+        <!-- Password-->
+        <label class="control-label" for="registerEmail">Password</label>
+        <div class="controls">
+          <input type="password" id="registerPassword" name="password" placeholder="Password" class="form-control"
+                 [(ngModel)]="registerPassword">
+          <p class="help-block">Password should be at least 4 characters</p>
+        </div>
 
         <div class="control-group">
           <!-- Password -->
-          <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+          <label class="control-label" for="password_confirm">Password (Confirm)</label>
           <div class="controls">
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password" pattern="[^ @]*@[^ @]*"
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password"
+                   pattern="[^ @]*@[^ @]*"
                    class="form-control" [(ngModel)]="confirmPassword">
             <p class="help-block">Please confirm password</p>
           </div>

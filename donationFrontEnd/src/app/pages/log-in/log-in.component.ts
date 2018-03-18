@@ -5,6 +5,8 @@ import 'rxjs/add/operator/catch';
 import {User} from '../../models/user';
 import {Router} from '@angular/router';
 import {BackendService} from '../../backend.service';
+import {SessionValues} from '../../models/constants';
+import {Translate} from '../../translate.service';
 
 enum errorMsgEnum {
   OCNFIRMATION_INCORRECT = 'confirmation password incorrect!',
@@ -31,7 +33,6 @@ export class LogInComponent implements OnInit {
   registerPassword: string;
   confirmPassword: string;
   registerEmail: string;
-
   loading = false;
 
   errorMessageLogin: string;
@@ -39,10 +40,14 @@ export class LogInComponent implements OnInit {
   registerSuccessMsg: boolean = false;
 
 
-  constructor(private userService: UserService, private router: Router, private backendService: BackendService) {
+  constructor(private userService: UserService, private router: Router, private backendService: BackendService,
+              private sessionValues: SessionValues, private translateService: Translate) {
   }
 
   ngOnInit() {
+    if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === null) {
+      sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
+    }
   }
 
   register() {
@@ -80,8 +85,8 @@ export class LogInComponent implements OnInit {
     console.log('I\'m in loginSuccess()');
     this.loading = false;
     if (data != null) {
-      this.backendService.loggedUsername = this.loginUsername;
-      sessionStorage.setItem(this.loginUsername, JSON.stringify(data));
+      // this.backendService.loggedUsername = this.loginUsername;
+      sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
 
       console.log('login succes!!!!!');
       this.router.navigate(['/home']);
@@ -95,5 +100,7 @@ export class LogInComponent implements OnInit {
     this.loading = false;
     this.errorMessageLogin = errorMsgEnum.LOGIN_FAILED;
   }
+
+
 
 }

@@ -1,6 +1,7 @@
 export class User {
   id: number = null;
-  username: string = "";
-  password: string = "";
-  email: string = "";
+  username: string = '';
+  password: string = '';
+  email: string = '';
+  role: string = '';
 }

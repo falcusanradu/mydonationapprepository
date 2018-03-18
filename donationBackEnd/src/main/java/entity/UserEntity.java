@@ -24,6 +24,9 @@ public class UserEntity {
     @Column(unique = true, name = "email")
     private String email;
 
+    @Column(name = "role")
+    private String role;
+
     public Integer getId() {
         return id;
     }

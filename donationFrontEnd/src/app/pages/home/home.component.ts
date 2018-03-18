@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SessionValues} from '../../models/constants';
+import {Translate} from '../../translate.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sessionValues: SessionValues, private translateService: Translate) {
+  }
 
   ngOnInit() {
+    if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === null) {
+      sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
+    }
   }
 
 }
