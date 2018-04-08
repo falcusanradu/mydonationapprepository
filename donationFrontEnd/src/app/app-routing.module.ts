@@ -6,6 +6,7 @@ import {LogInComponent} from './pages/log-in/log-in.component';
 import {ManageDonationRequestsComponent} from './pages/manage-donation-requests/manage-donation-requests.component';
 import {ResetPasswordComponent} from './pages/reset-password/reset-password.component';
 import {AuthGuard, CanNotActivate} from './user-page-access/authentification.service';
+import {DonateComponent} from './pages/donate/donate.component';
 
 const routes: Routes = [
   //TODO: AuthGuard
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: 'contact', component: ContactComponent
+  },
+  {
+    path: 'app-donate', component: DonateComponent
   },
   {
     path: 'LogIn', component: LogInComponent

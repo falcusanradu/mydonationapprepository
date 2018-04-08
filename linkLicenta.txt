@@ -1,3 +1,4 @@
 https://angular.io/guide/i18n
 https://www.youtube.com/watch?v=Ara2cQ4IQxA
 https://www.npmjs.com/package/angular-translate-json
+https://angular.io/api/router/RouterOutlet

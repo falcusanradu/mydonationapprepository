@@ -22,10 +22,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  public goHome(): void {
-    this.router.navigate(['/home']);
-  }
-
   public logout(): void {
     sessionStorage.removeItem(this.sessionValues.SESSION_KEY);
     // sessionStorage.clear();

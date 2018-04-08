@@ -17,6 +17,8 @@ export class BackendService {
 
   public get(url: string, request?: any): Observable<any> {
     if (!request) {
+      // this.headers.append('Access-Control-Allow-Origin', '*');
+      // this.options = new RequestOptions({headers: this.headers});
       return this.http.post(url, this.options);
     }
     return this.http.get(url, request);
