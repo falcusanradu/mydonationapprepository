@@ -15,7 +15,8 @@ export class DonateComponent implements OnInit {
   products: Product[];
   test: string = '';
 
-yrl:any = '';
+  yrl: any = '';
+
   constructor(private donateService: DonateService, private sanitizer: DomSanitizer) {
   }
 
@@ -29,10 +30,13 @@ yrl:any = '';
 
   receivedData(data: Product[]) {
     // this.products = data;
+
     this.products = data;
-    console.log(data)
-    this.test = this.products[0].image;
-    console.log(this.test)
+    this.products.forEach(p => {
+      p.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + p.image);
+    });
+    console.log(this.products)
+    console.log('middle');
     // let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(this.test);
     // // console.log(this.products)
     // console.log('subs')
