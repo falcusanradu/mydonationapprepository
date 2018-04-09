@@ -23,8 +23,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {Translate} from './translate.service';
 import {DonateComponent} from './pages/manage donations/donate.component';
 import {DonateService} from './pages/manage donations/donate.service';
-import { DonateSomethingComponent } from './pages/donate-something/donate-something.component';
-
+import {DonateSomethingComponent} from './pages/donate-something/donate-something.component';
+import {NgxPaginationModule} from 'ngx-pagination'
 
 export function createTranslateLoader(http_: HttpClient) {
   return new TranslateHttpLoader(http_, 'assets/i18n/', '.json');
@@ -49,6 +49,7 @@ export function createTranslateLoader(http_: HttpClient) {
     FormsModule,
     HttpClientModule,
     HttpModule,
+    NgxPaginationModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -58,7 +59,7 @@ export function createTranslateLoader(http_: HttpClient) {
     })
   ],
   providers: [UserService, BackendService, AuthGuard, LogInComponent, ResetPasswordComponent, CanNotActivate, StoredUser, SessionValues,
-    Translate, DonateService  ],
+    Translate, DonateService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

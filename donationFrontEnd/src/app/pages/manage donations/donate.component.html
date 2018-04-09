@@ -3,9 +3,9 @@
   sa adaug la produs inca un field care sa fie : denumirea produsului
 
 
-
 </p>
-<p> sa adaug la produs inca un field care sa fie : denumirea produsului + un produs o sa aiba o poza principala si mai multe poze secundare (optionale)</p>
+<p> sa adaug la produs inca un field care sa fie : denumirea produsului + un produs o sa aiba o poza principala si mai
+  multe poze secundare (optionale)</p>
 
 <p>sa fac search/filter</p>
 <p>modal in care sa imi apara toate pozele daca dau click pe cevas</p>
@@ -21,9 +21,13 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let product of products">
+  <tr *ngFor="let product of products | paginate : {itemsPerPage: 2, currentPage: product }">
     <td><img [src]="product.image"/></td>
     <td>{{product.description}}</td>
   </tr>
+  <div>boundaryLinks = true</div>
+  <pagination-controls (pageChange)="product =$event"></pagination-controls>
+  <!--<ngb-pagination [collectionSize]="70" [(page)]="product" [boundaryLinks]="true"></ngb-pagination>-->
+
   </tbody>
 </table>
