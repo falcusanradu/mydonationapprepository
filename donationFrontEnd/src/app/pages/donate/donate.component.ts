@@ -12,12 +12,12 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class DonateComponent implements OnInit {
 
+  file: File = null;
   products: Product[];
   test: string = '';
 
-  yrl: any = '';
 
-  constructor(private donateService: DonateService, private sanitizer: DomSanitizer) {
+  constructor(private donateService: DonateService, private sanitizer: DomSanitizer, private backendService: BackendService) {
   }
 
 
@@ -35,13 +35,19 @@ export class DonateComponent implements OnInit {
     this.products.forEach(p => {
       p.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + p.image);
     });
-    console.log(this.products)
-    console.log('middle');
-    // let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(this.test);
-    // // console.log(this.products)
-    // console.log('subs')
-    // this.yes = true;
-    // this.img = this.products[0].image;
+  }
+
+
+  onFileSelected(event){
+    this.file = event.target.files[0];
+  }
+
+
+  uploadFile() {
+    if (this.file) this.donateService.uploadFile('http://localhost:8080/uploadFile/' +  this.file.name, this.file).subscribe(response=>{
+      console.log('ok')
+    });
+
   }
 
 }

@@ -44,5 +44,10 @@ public class ProductController {
         return imagesText.get(0);
     }
 
+    @RequestMapping(value = "/uploadFile/{fileName}", method = RequestMethod.POST, produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public void uploadFile(@RequestBody byte[] file, @PathVariable String fileName) {
+        this.productService.uploadFile(file, fileName);
+    }
 
 }

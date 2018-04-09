@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Headers, RequestOptions, ResponseContentType} from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {User} from '../../models/user';
 
 @Injectable()
 export class DonateService {
@@ -18,7 +17,8 @@ export class DonateService {
     return this.http.get(url);
   }
 
-  getProducts2(url): Observable<any> {
-    return this.http.get(url, {responseType: 'text'});
+  uploadFile(url: string, body): Observable<any> {
+    // this.headers.append('Access-Control-Allow-Origin','*');
+    return this.http.post(url, body);
   }
 }
