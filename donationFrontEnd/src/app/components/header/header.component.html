@@ -8,14 +8,16 @@
       <!--<li class="active"><a routerLink="home">home</a></li>-->
     </ul>
     <ul class="nav navbar-nav">
-      <li class="active"><a routerLink="contact">contact</a></li>
-      <li class="active"><a routerLink="app-donate">donate table</a></li>
+      <!--<li class="active"><a routerLink="contact">contact</a></li>-->
+      <li class="active"><a routerLink="app-donate-something">donate something</a></li>
+      <li class="active"><a routerLink="app-donate">manage donations</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li (click)="logout()"><a routerLink="LogIn">LogOut<span class="glyphicon glyphicon-log-in"></span> </a></li>
-    </ul>
-    <ul>
-      <button (click)="switchLanguage()">switch language</button>
+      <li><a (click)="switchLanguage()">switch language<span class="btn"></span> </a></li>
+      <li *ngIf="isSession()" (click)="logout()"><a routerLink="LogIn">LogOut<span
+        class="glyphicon glyphicon-log-out"></span> </a></li>
+      <li *ngIf="!isSession()" (click)="logout()"><a routerLink="LogIn">LogIn<span
+        class="glyphicon glyphicon-log-in"></span> </a></li>
     </ul>
   </div>
 </nav>

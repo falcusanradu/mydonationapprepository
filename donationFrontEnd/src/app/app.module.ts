@@ -21,8 +21,9 @@ import {HttpModule, Http} from '@angular/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {Translate} from './translate.service';
-import {DonateComponent} from './pages/donate/donate.component';
-import {DonateService} from './pages/donate/donate.service';
+import {DonateComponent} from './pages/manage donations/donate.component';
+import {DonateService} from './pages/manage donations/donate.service';
+import { DonateSomethingComponent } from './pages/donate-something/donate-something.component';
 
 
 export function createTranslateLoader(http_: HttpClient) {
@@ -40,6 +41,7 @@ export function createTranslateLoader(http_: HttpClient) {
     ManageDonationRequestsComponent,
     ResetPasswordComponent,
     DonateComponent,
+    DonateSomethingComponent,
   ],
   imports: [
     BrowserModule,

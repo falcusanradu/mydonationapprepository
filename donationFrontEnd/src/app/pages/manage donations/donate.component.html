@@ -1,0 +1,29 @@
+<p>You can manage the donations if you have the rights.
+
+  sa adaug la produs inca un field care sa fie : denumirea produsului
+
+
+
+</p>
+<p> sa adaug la produs inca un field care sa fie : denumirea produsului + un produs o sa aiba o poza principala si mai multe poze secundare (optionale)</p>
+
+<p>sa fac search/filter</p>
+<p>modal in care sa imi apara toate pozele daca dau click pe cevas</p>
+<p>paginare + status la produs (alegere in functie de status)</p>
+
+<input type="file" class="btn btn-default" (change)="onFileSelected($event)">
+<button class="btn-default" (click)="uploadFile()"></button>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>imange</th>
+    <th>descrption</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products">
+    <td><img [src]="product.image"/></td>
+    <td>{{product.description}}</td>
+  </tr>
+  </tbody>
+</table>
