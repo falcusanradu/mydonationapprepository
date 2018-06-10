@@ -1,5 +1,5 @@
 <!--<div *ngIf="isSession()">-->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" routerLink="home">Home</a>
@@ -9,15 +9,21 @@
     </ul>
     <ul class="nav navbar-nav">
       <!--<li class="active"><a routerLink="contact">contact</a></li>-->
-      <li class="active"><a routerLink="app-donate-something">donate something</a></li>
-      <li class="active"><a routerLink="app-donate">manage donations</a></li>
+      <li><a routerLink="app-donate-something">donate something</a></li>
+      <li><a routerLink="app-donate">manage donations</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a (click)="switchLanguage()">switch language<span class="btn"></span> </a></li>
-      <li *ngIf="isSession()" (click)="logout()"><a routerLink="LogIn">LogOut<span
-        class="glyphicon glyphicon-log-out"></span> </a></li>
-      <li *ngIf="!isSession()" (click)="logout()"><a routerLink="LogIn">LogIn<span
-        class="glyphicon glyphicon-log-in"></span> </a></li>
+      <li><a (click)="switchLanguage()">switch language<span class="btn"></span></a></li>
+      <li *ngIf="isSession()" (click)="logout()">
+        <a routerLink="LogIn">LogOut
+          <span class="glyphicon glyphicon-log-out"></span>
+        </a>
+      </li>
+      <li *ngIf="!isSession()" (click)="logout()">
+        <a routerLink="LogIn">LogIn
+          <span class="glyphicon glyphicon-log-in"></span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -28,4 +34,3 @@
 <!--</div>-->
 
 <!--<router-outlet></router-outlet>-->
-
