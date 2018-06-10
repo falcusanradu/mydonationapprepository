@@ -1,3 +1,4 @@
+import { ChatComponent } from './pages/chat/chat.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ContactComponent} from './pages/contact/contact.component';
@@ -34,6 +35,9 @@ const routes: Routes = [
   },
   {
     path: 'app-donate-something', component: DonateSomethingComponent
+  },
+  {
+    path: 'app-chat', component: ChatComponent
   },
   //TODO: AuthGuard
 ];
