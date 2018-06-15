@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionValues} from '../../models/constants';
-import {Translate} from '../../translate.service';
+import {Translate} from '../../services/translate.service';
 
 @Component({
   selector: 'app-home',

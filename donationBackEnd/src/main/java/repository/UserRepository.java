@@ -1,6 +1,6 @@
 package repository;
 
-import entity.UserEntity;
+import entity.User;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -9,15 +9,16 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 
 
-public interface UserRepository extends CrudRepository<UserEntity, Integer> {
+public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Transactional
-    @Query(value = "SELECT * FROM user_table u WHERE u.username= :username", nativeQuery = true)
-    UserEntity findByUsername(@Param("username") String username);
+    User findUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     @Transactional
-    @Query(value = "SELECT * FROM user_table u WHERE u.email= :email", nativeQuery = true)
-    UserEntity findByEmail(@Param("email") String email);
+    User findByEmail(@Param("email") String email);
+
+    @Transactional
+    User findByUsername(@Param("email") String email);
 
     @Transactional
     @Modifying(clearAutomatically = true)

@@ -1,15 +1,12 @@
 package controller;
 
-import entity.Product;
+import entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.ProductService;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -21,7 +18,7 @@ public class ProductController {
 
     @RequestMapping(value = "/getAllProducts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Product> getAllProducts() {
+    public Iterable<Company> getAllProducts() {
 //        List<byte[]> images = new ArrayList<>();
 //        List<String> imagesText = new ArrayList<>();
 //        productService.getAllProducts().forEach(p -> {

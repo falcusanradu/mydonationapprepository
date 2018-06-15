@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { BackendService } from "../../backend.service";
+import { BackendService } from "../../services/backend.service";
 import { User } from "../../models/user";
 import { Router } from "@angular/router";
 import { SessionValues } from "../../models/constants";

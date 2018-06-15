@@ -4,9 +4,9 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import {User} from '../../models/user';
 import {Router} from '@angular/router';
-import {BackendService} from '../../backend.service';
+import {BackendService} from '../../services/backend.service';
 import {SessionValues} from '../../models/constants';
-import {Translate} from '../../translate.service';
+import {Translate} from '../../services/translate.service';
 
 enum errorMsgEnum {
   OCNFIRMATION_INCORRECT = 'confirmation password incorrect!',

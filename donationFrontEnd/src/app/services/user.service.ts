@@ -2,7 +2,7 @@ import 'rxjs/add/operator/map';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {BackendService} from '../backend.service';
+import {BackendService} from './backend.service';
 import {RequestOptions} from '@angular/http';
 import {Headers} from '@angular/http';
 import {User} from '../models/user';
@@ -22,7 +22,7 @@ export class UserService {
       'username': username,
       'password': password
     };
-    return this.http.post('http://localhost:8080/login/', user);
+    return this.backendService.post('/login/', user);
   }
 
   register(username, password, email): Observable<any> {

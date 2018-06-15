@@ -1,7 +1,6 @@
 package service;
 
-import entity.UserEntity;
-import org.hibernate.boot.spi.InFlightMetadataCollector;
+import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
@@ -30,17 +29,21 @@ public class UserService {
     public static final String ALPHANUM = UPPER + LOWER + DIGITS;
 
 
-    public UserEntity getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User getUserByUsernameAndPassword(User user) {
+        return this.userRepository.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
 
-    public UserEntity getUserByEmail(String email) {
+    public User getUserByUsername(User user) {
+        return this.userRepository.findByUsername(user.getUsername());
+    }
+
+    public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public UserEntity save(String username, String password, String email) {
+    public User save(String username, String password, String email) {
 
-        UserEntity userEntity = new UserEntity();
+        User userEntity = new User();
         userEntity.setUsername(username);
         userEntity.setPassword(password);
         userEntity.setEmail(email);
@@ -72,8 +75,8 @@ public class UserService {
         return sb.toString();
     }
 
-    public boolean changePassword(UserEntity user) {
-        if (this.getUserByUsername(user.getUsername()) != null) {
+    public boolean changePassword(User user) {
+        if (this.userRepository.findByUsername(user.getUsername()) != null) {
             this.userRepository.updateUserPasswordByUsername(user.getUsername(), user.getPassword());
             return true;
         }

@@ -1,18 +1,17 @@
 package entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-
-//@NamedQuery(name = "UserEntity.findUserByUsername",
-//        query = "SELECT u FROM UserEntity u WHERE u.username = :username"
-//)
 @Table(name = "user_table")
 @Entity
-public class UserEntity {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_user")
     private Integer id;
 
     @Column(name = "username", unique = true)
@@ -24,8 +23,12 @@ public class UserEntity {
     @Column(unique = true, name = "email")
     private String email;
 
-    @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_user", columnDefinition = "ENUM ('ADMIN','RIGHT1','MINIMUM')")
+    private USER_TYPE type;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Notification> notifications = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -58,4 +61,22 @@ public class UserEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public USER_TYPE getType() {
+        return type;
+    }
+
+    public void setType(USER_TYPE type) {
+        this.type = type;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+
 }

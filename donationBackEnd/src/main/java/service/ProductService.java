@@ -1,11 +1,9 @@
 package service;
 
 
-import entity.Product;
+import entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import repository.ProductRepository;
 
 import java.util.Base64;
@@ -16,7 +14,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Iterable<Product> getAllProducts() {
+    public Iterable<Company> getAllProducts() {
         return productRepository.findAll();
     }
 

@@ -1,6 +1,6 @@
 package controller;
 
-import entity.UserEntity;
+import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -23,20 +23,15 @@ public class UserController {
 
     @RequestMapping(value = "/login/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public UserEntity login(@RequestBody UserEntity user) {
-
-        UserEntity dbUser = userService.getUserByUsername(user.getUsername());
-
-        if (dbUser != null && dbUser.getPassword().equals(user.getPassword()))
-            return dbUser;
-        return null;
+    public User login(@RequestBody User user) {
+        return userService.getUserByUsernameAndPassword(user);
     }
 
     @RequestMapping(value = "/register/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public UserEntity register(@RequestBody UserEntity user) {
+    public User register(@RequestBody User user) {
 
-        if (this.userService.getUserByUsername(user.getUsername()) == null && this.userService.getUserByEmail(user.getEmail()) == null) {
+        if (this.userService.getUserByUsername(user) == null && this.userService.getUserByEmail(user.getEmail()) == null) {
             List<String> sendTo = new ArrayList<>();
             sendTo.add(user.getEmail());
             try {
@@ -46,22 +41,20 @@ public class UserController {
             }
             return userService.save(user.getUsername(), user.getPassword(), user.getEmail());
         } else if (this.userService.getUserByEmail(user.getEmail()) != null) {
-            return new UserEntity();
+            return new User();
         }
         return null;
     }
 
     @RequestMapping(value = "/resetPassword/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public boolean resetPassword(@RequestBody UserEntity user) throws Exception {
+    public boolean resetPassword(@RequestBody User user) throws Exception {
         return userService.resetPassword(user.getEmail());
     }
 
     @RequestMapping(value = "/changePassword/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public boolean changePassword(@RequestBody UserEntity user) throws Exception {
-            return userService.changePassword(user);
+    public boolean changePassword(@RequestBody User user) throws Exception {
+        return userService.changePassword(user);
     }
-
-
 
 
 }

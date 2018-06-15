@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {BackendService} from '../../backend.service';
+import {BackendService} from '../../services/backend.service';
 import {SessionValues} from '../../models/constants';
 import {TranslateService} from '@ngx-translate/core';
-import {Translate} from '../../translate.service';
+import {Translate} from '../../services/translate.service';
 
 @Component({
   selector: 'app-header',

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../models/product';
-import {BackendService} from '../../backend.service';
+import {BackendService} from '../../services/backend.service';
 import {DonateService} from './donate.service';
 import {Subscription} from 'rxjs/Subscription';
 import {DomSanitizer} from '@angular/platform-browser';
