@@ -26,10 +26,21 @@ PRIMARY KEY (id_company)
 );
 
 
+CREATE TABLE user_company (
+id_user INTEGER NOT NULL,
+id_company INTEGER,
+CONSTRAINT PRIMARY KEY (id_user,id_company),
+CONSTRAINT user_company_fk Foreign key (id_user) references user_table(id_user),
+CONSTRAINT company_fk Foreign key (id_company) references company_table(id_company)
+
+);
+
+
 
 CREATE TABLE notification_table(
 id_notification INTEGER NOT NULL AUTO_INCREMENT,
 message VARCHAR(255),
+message_read boolean,
 PRIMARY KEY (id_notification)
 );
 

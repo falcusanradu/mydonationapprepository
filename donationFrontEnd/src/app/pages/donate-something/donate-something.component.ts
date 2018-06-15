@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {SessionValues} from '../../models/constants';
 
 @Component({
   selector: 'app-donate-something',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./donate-something.component.scss']
 })
 export class DonateSomethingComponent implements OnInit {
-  constructor() { }
+  constructor(private sessionValue: SessionValues, private router: Router) {
+  }
 
   ngOnInit() {
+    if (sessionStorage.getItem(this.sessionValue.SESSION_KEY)) {
+      this.router.navigate(['LogIn']);
+    }
   }
 
 }

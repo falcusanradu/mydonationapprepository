@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ContactComponent} from './pages/contact/contact.component';
 import {HeaderComponent} from './components/header/header.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -34,7 +33,6 @@ export function createTranslateLoader(http_: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    ContactComponent,
     HeaderComponent,
     HomeComponent,
     FooterComponent,

@@ -19,6 +19,9 @@ public class Notification implements Serializable {
     @Column(name = "message")
     private Integer id_user;
 
+    @Column(name = "message_read")
+    private Boolean read;
+
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE,
@@ -29,7 +32,7 @@ public class Notification implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "id_user")
     )
     @JsonIgnore
-    private List<User> users = new ArrayList<>();
+    private List<User> usersNotification = new ArrayList<>();
 
     public Integer getId_user() {
         return id_user;
@@ -47,12 +50,19 @@ public class Notification implements Serializable {
         this.id_notification = id_notification;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<User> getUsersNotification() {
+        return usersNotification;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUsersNotification(List<User> usersNotification) {
+        this.usersNotification = usersNotification;
     }
 
+    public Boolean getRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
+    }
 }

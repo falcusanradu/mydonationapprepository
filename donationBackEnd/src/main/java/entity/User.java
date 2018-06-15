@@ -27,8 +27,11 @@ public class User implements Serializable {
     @Column(name = "type_user", columnDefinition = "ENUM ('ADMIN','RIGHT1','MINIMUM')")
     private USER_TYPE type;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "usersNotification")
     private List<Notification> notifications = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "usersCompany")
+    private List<Company> companies = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -78,5 +81,11 @@ public class User implements Serializable {
         this.notifications = notifications;
     }
 
+    public List<Company> getCompanies() {
+        return companies;
+    }
 
+    public void setCompanies(List<Company> companies) {
+        this.companies = companies;
+    }
 }

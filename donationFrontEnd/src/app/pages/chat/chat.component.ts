@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SessionValues} from '../../models/constants';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sessionValue: SessionValues, private router: Router) {
+  }
 
   ngOnInit() {
+    if (sessionStorage.getItem(this.sessionValue.SESSION_KEY)) {
+      this.router.navigate(['LogIn']);
+    }
   }
 
 }

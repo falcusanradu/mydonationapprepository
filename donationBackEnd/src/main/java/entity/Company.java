@@ -1,6 +1,10 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "company_table")
 @Entity
@@ -20,6 +24,18 @@ public class Company {
     private String address;
     @Column(name = "category")
     private String category;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REMOVE
+    })
+    @JoinTable(name = "user_company",
+            joinColumns = @JoinColumn(name = "id_company"),
+            inverseJoinColumns = @JoinColumn(name = "id_user")
+    )
+    @JsonIgnore
+    private List<User> usersCompany = new ArrayList<>();
 
     public Integer getIdProduct() {
         return idProduct;
@@ -67,5 +83,13 @@ public class Company {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<User> getUsersCompany() {
+        return usersCompany;
+    }
+
+    public void setUsersCompany(List<User> usersCompany) {
+        this.usersCompany = usersCompany;
     }
 }
