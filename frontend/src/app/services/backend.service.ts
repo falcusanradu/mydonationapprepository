@@ -32,5 +32,13 @@ export class BackendService {
     return this.httpClient.post(DEFAULT_URL + url, request);
   }
 
+  public delete(url: string, request?: any): Observable<any> {
+    console.log(DEFAULT_URL + url, request);
+    if (!request) {
+      return this.httpClient.delete(DEFAULT_URL + url);
+    }
+    return this.httpClient.delete(DEFAULT_URL + url, request);
+  }
+
 
 }

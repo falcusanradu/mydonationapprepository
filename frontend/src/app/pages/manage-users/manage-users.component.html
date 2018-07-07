@@ -1,8 +1,28 @@
-<table class="table-bordered">
-  <tr *ngFor="let user of users">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>username</th>
+    <th>email</th>
+    <th>type</th>
+    <th>action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users | paginate : {itemsPerPage: 10, currentPage: page}">
     <td>{{user.username}}</td>
     <td>{{user.email}}</td>
     <td>{{user.type}}</td>
+    <td *ngIf="!editMode">
+      <button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+      <button class="btn btn-default" (click)="edit()">Edit role</button>
+    </td>
+    <td *ngIf="editMode">
+      <button class="btn btn-default" (click)="cancel()">Cancel</button>
+    </td>
   </tr>
+  <div>boundaryLinks = true</div>
+  <pagination-controls (pageChange)="page =$event"></pagination-controls>
+  <!--<ngb-pagination [collectionSize]="70" [(page)]="product" [boundaryLinks]="true"></ngb-pagination>-->
 
+  </tbody>
 </table>

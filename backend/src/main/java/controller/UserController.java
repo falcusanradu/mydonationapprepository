@@ -2,7 +2,9 @@ package controller;
 
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import manager.EmailService;
 import manager.Manager;
@@ -59,6 +61,12 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public Iterable<User> getAllUsers() {
         return this.manager.getAllUsers();
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUserById(@PathVariable("id") Integer id) {
+        this.manager.deleteUserById(id);
+        return new ResponseEntity<User>(HttpStatus.OK);
     }
 
 

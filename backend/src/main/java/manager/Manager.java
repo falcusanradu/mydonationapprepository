@@ -123,5 +123,11 @@ public class Manager {
         return this.userRepository.findAll();
     }
 
+    /**
+     * Deletes a user.
+     */
+    public void deleteUserById(Integer id) {
+        this.userRepository.delete(id);
+    }
 
 }

@@ -1,12 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import { Client, Message, Stomp } from 'stompjs/lib/stomp.min';
+
+// var SockJs = require('sockjs-client');
+// var Stomp = require('stompjs');
+
 const SOCKET_URL = `http://localhost:8080/socket`;
 const NOTIFY_URL = 'http://localhost:8080/notify';
 
-var SockJs = require('sockjs-client');
-var Stomp = require('stompjs');
+let SockJs = require('sockjs-client');
+let Stomp = require('stompjs');
 
 
 @Injectable()
