@@ -1,15 +1,28 @@
-.navbar-default {
-  background-color: #337ab7;
-  border-color: #2e6da4;
-  .navbar-brand {
-    // color: #000000a3;
-    color: #fff;
-    // color: rgba(0, 0, 0, 0.911);
-  }
-  a {
-    color: #fff;
-    .selector {
-      background: red;
-     }
-  }
+//.navbar {
+//  background-color: #337ab7;
+//  border-color: #2e6da4;
+//  .navbar-brand {
+//    // color: #000000a3;
+//    color: #fff;
+//    // color: rgba(0, 0, 0, 0.911);
+//  }
+//  a {
+//    color: #fff;
+//    .selector {
+//      background: red;
+//    }
+//  }
+//}
+
+
+
+.navbar-brand{
+  color: white;
+
+}
+
+
+.navbar-light .navbar-nav .nav-item {
+  color: white;
+  //color: rgba(255, 255, 255, 0.5);
 }

@@ -25,7 +25,8 @@ import {DonateService} from './pages/manage donations/donate.service';
 import {DonateSomethingComponent} from './pages/donate-something/donate-something.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ChatComponent } from './pages/chat/chat.component';
-import { ManageUsersComponent } from './pages/manage-users/manage-users.component'
+import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
+import { NgbdDropdownManualComponent } from './components/ngbd-dropdown-manual/ngbd-dropdown-manual.component';
 
 export function createTranslateLoader(http_: HttpClient) {
   return new TranslateHttpLoader(http_, 'assets/i18n/', '.json');
@@ -44,6 +45,7 @@ export function createTranslateLoader(http_: HttpClient) {
     DonateSomethingComponent,
     ChatComponent,
     ManageUsersComponent,
+    NgbdDropdownManualComponent,
   ],
   imports: [
     BrowserModule,
