@@ -1,4 +1,4 @@
-import { ChatComponent } from './pages/chat/chat.component';
+import {ChatComponent} from './pages/chat/chat.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './pages/home/home.component';
@@ -8,6 +8,7 @@ import {ResetPasswordComponent} from './pages/reset-password/reset-password.comp
 import {AuthGuard, CanNotActivate} from './user-page-access/authentification.service';
 import {DonateComponent} from './pages/manage donations/donate.component';
 import {DonateSomethingComponent} from './pages/donate-something/donate-something.component';
+import {ManageUsersComponent} from './pages/manage-users/manage-users.component';
 
 const routes: Routes = [
   //TODO: AuthGuard
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'app-chat', component: ChatComponent
   },
+
+  {
+    path: 'manage-users', component: ManageUsersComponent
+  },
+
   //TODO: AuthGuard
 ];
 

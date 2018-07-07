@@ -1,4 +1,4 @@
-package service;
+package manager;
 
 import org.springframework.stereotype.Service;
 

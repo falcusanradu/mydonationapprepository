@@ -13,11 +13,11 @@ import java.util.List;
 public class Notification implements Serializable {
 
     @Id
-    @Column(name = "id_notification")
-    private Integer id_notification;
+    @Column(name = "idNotification")
+    private Integer idNotification;
 
     @Column(name = "message")
-    private Integer id_user;
+    private Integer idUser;
 
     @Column(name = "message_read")
     private Boolean read;
@@ -28,26 +28,26 @@ public class Notification implements Serializable {
             CascadeType.REMOVE
     })
     @JoinTable(name = "user_notification",
-            joinColumns = @JoinColumn(name = "id_notification"),
-            inverseJoinColumns = @JoinColumn(name = "id_user")
+            joinColumns = @JoinColumn(name = "idNotification"),
+            inverseJoinColumns = @JoinColumn(name = "idUser")
     )
     @JsonIgnore
     private List<User> usersNotification = new ArrayList<>();
 
-    public Integer getId_user() {
-        return id_user;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(Integer id_user) {
-        this.id_user = id_user;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
-    public Integer getId_notification() {
-        return id_notification;
+    public Integer getIdNotification() {
+        return idNotification;
     }
 
-    public void setId_notification(Integer id_notification) {
-        this.id_notification = id_notification;
+    public void setIdNotification(Integer idNotification) {
+        this.idNotification = idNotification;
     }
 
     public List<User> getUsersNotification() {

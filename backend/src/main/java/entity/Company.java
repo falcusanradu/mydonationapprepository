@@ -13,7 +13,7 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_company")
-    private Integer idProduct;
+    private Integer idCompany;
     @Column(name = "image")
     private String image;
     @Column(name = "description")
@@ -37,12 +37,12 @@ public class Company {
     @JsonIgnore
     private List<User> usersCompany = new ArrayList<>();
 
-    public Integer getIdProduct() {
-        return idProduct;
+    public Integer getIdCompany() {
+        return idCompany;
     }
 
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
+    public void setIdCompany(Integer idCompany) {
+        this.idCompany = idCompany;
     }
 
     public String getImage() {

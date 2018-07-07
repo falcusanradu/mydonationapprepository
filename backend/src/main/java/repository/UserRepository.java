@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 public interface UserRepository extends CrudRepository<User, Integer> {
@@ -29,6 +30,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE user_table SET password= :password WHERE username= :username", nativeQuery = true)
     void updateUserPasswordByUsername(@Param("username") String username, @Param("password") String password);
+
 }
 
 

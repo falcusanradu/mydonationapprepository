@@ -1,23 +1,16 @@
-package service;
+package manager;
 
+import entity.Company;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repository.ProductRepository;
 import repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 
 @Service
-public class UserService {
-
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private EmailService emailService;
-
+public class Manager {
 
     // for random password generator
     public static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -27,6 +20,26 @@ public class UserService {
     public static final String DIGITS = "0123456789";
 
     public static final String ALPHANUM = UPPER + LOWER + DIGITS;
+
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+
+    public Iterable<Company> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+
+    public void uploadFile(byte[] file, String fileName) {
+        String encodedImage = Base64.getEncoder().encodeToString(file);
+        this.productRepository.insertProductWithGivenDescriptionAndImage(fileName, encodedImage);
+    }
 
 
     public User getUserByUsernameAndPassword(User user) {
@@ -50,6 +63,13 @@ public class UserService {
         return userRepository.save(userEntity);
     }
 
+    /**
+     * It resets the password
+     *
+     * @param email
+     * @return
+     * @throws Exception
+     */
     public boolean resetPassword(String email) throws Exception {
         if (this.getUserByEmail(email) != null) {
             String newPass = generateRandomPassword();
@@ -64,6 +84,11 @@ public class UserService {
         return false;
     }
 
+    /**
+     * It generates an alphanumeric random password.
+     *
+     * @return
+     */
     private String generateRandomPassword() {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -75,6 +100,12 @@ public class UserService {
         return sb.toString();
     }
 
+    /**
+     * It changes the password.
+     *
+     * @param user
+     * @return
+     */
     public boolean changePassword(User user) {
         if (this.userRepository.findByUsername(user.getUsername()) != null) {
             this.userRepository.updateUserPasswordByUsername(user.getUsername(), user.getPassword());
@@ -82,4 +113,15 @@ public class UserService {
         }
         return false;
     }
+
+    /**
+     * Gets all users.
+     *
+     * @return
+     */
+    public Iterable<User> getAllUsers() {
+        return this.userRepository.findAll();
+    }
+
+
 }

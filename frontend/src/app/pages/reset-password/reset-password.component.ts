@@ -37,7 +37,7 @@ export class ResetPasswordComponent implements OnInit {
     console.log(this.emailToSend);
     let user: User = new User();
     user.email = this.emailToSend;
-    this.sendRequest("http://localhost:8080/resetPassword/", user, "email");
+    this.sendRequest(`/resetPassword/`, user, "email");
   }
 
   changePass() {
@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
       user.username = this.username;
       user.password = this.newPassword;
       this.sendRequest(
-        "http://localhost:8080/changePassword/",
+        "/changePassword/",
         user,
         "password"
       );

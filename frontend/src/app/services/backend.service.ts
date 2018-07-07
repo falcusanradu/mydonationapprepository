@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Headers, RequestOptions} from '@angular/http';
 
 const DEFAULT_URL = 'http://localhost:8080';
@@ -11,28 +11,25 @@ export class BackendService {
   headers = new Headers({'Content-Type': 'application/json'});
   options = new RequestOptions({headers: this.headers});
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
-  public get(url: string, request?: any): Observable<any> {
-    if (!request) {
-      return this.http.get(DEFAULT_URL + url);
-    }
-    return this.http.get(DEFAULT_URL + url, request);
+  public get(url: string): Observable<any> {
+    return this.httpClient.get(DEFAULT_URL + url);
   }
 
   public put(url: string, request?: any): Observable<any> {
     if (!request) {
-      return this.http.put(DEFAULT_URL + url, this.options);
+      return this.httpClient.put(DEFAULT_URL + url, this.options);
     }
-    return this.http.put(DEFAULT_URL + url, request);
+    return this.httpClient.put(DEFAULT_URL + url, request);
   }
 
   public post(url: string, request?: any): Observable<any> {
     if (!request) {
-      return this.http.post(DEFAULT_URL + url, this.options);
+      return this.httpClient.post(DEFAULT_URL + url, this.options);
     }
-    return this.http.post(DEFAULT_URL + url, request);
+    return this.httpClient.post(DEFAULT_URL + url, request);
   }
 
 
