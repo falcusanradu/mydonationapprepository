@@ -69,5 +69,12 @@ public class UserController {
         return new ResponseEntity<User>(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        this.manager.saveOrUpdateUser(user);
+        return new ResponseEntity<User>(HttpStatus.OK);
+    }
+
 
 }

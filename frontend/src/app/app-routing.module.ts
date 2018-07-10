@@ -3,9 +3,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './pages/home/home.component';
 import {LogInComponent} from './pages/log-in/log-in.component';
-import {ManageDonationRequestsComponent} from './pages/manage-donation-requests/manage-donation-requests.component';
 import {ResetPasswordComponent} from './pages/reset-password/reset-password.component';
-import {AuthGuard, CanNotActivate} from './user-page-access/authentification.service';
 import {DonateComponent} from './pages/manage donations/donate.component';
 import {DonateSomethingComponent} from './pages/donate-something/donate-something.component';
 import {ManageUsersComponent} from './pages/manage-users/manage-users.component';
@@ -23,9 +21,6 @@ const routes: Routes = [
   },
   {
     path: 'LogIn', component: LogInComponent
-  },
-  {
-    path: 'manageDonations', component: ManageDonationRequestsComponent
   },
   {
     path: 'reset-password', component: ResetPasswordComponent

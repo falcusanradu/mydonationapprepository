@@ -23,14 +23,14 @@
       <ng-container>
         <li><a id="switchLanguage" class="nav-link" (click)="switchLanguage()">switch language</a>
         </li>
-        <li *ngIf="isSession()" (click)="logout()" class="glyphicon glyphicon-log-out">
-          <a id="logout" routerLink="LogIn">LogOut
-            <span class="glyphicon glyphicon-log-out"></span>
+        <li *ngIf="isSession()" (click)="logout()">
+          <a class="nav-link" id="logout" routerLink="LogIn">LogOut
+            <img id="logoutImg" [src]="logoutImage()">
           </a>
         </li>
         <li *ngIf="!isSession()" (click)="logout()">
-          <a id="login"  class="nav-link" routerLink="LogIn">LogIn
-            <span class="glyphicon glyphicon-log-in"></span>
+          <a class="nav-link" id="login" routerLink="LogIn">LogIn
+            <img id="loginImg" [src]="loginImage()">
           </a>
         </li>
       </ng-container>
@@ -39,21 +39,5 @@
   </div>
 
 </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

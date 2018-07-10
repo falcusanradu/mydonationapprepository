@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User, USER_TYPE} from '../../models/interfaces';
 import {BackendService} from '../../services/backend.service';
 import {SessionValues} from '../../models/constants';
@@ -11,8 +11,7 @@ import {Router} from '@angular/router';
 })
 export class ManageUsersComponent implements OnInit {
   users: User[] = [];
-  editMode: boolean = false;
-  userTypes: string[] = [USER_TYPE[0], USER_TYPE[1], USER_TYPE[2]];
+  userTypes: string[] = [USER_TYPE[USER_TYPE.ADMIN], USER_TYPE[USER_TYPE.RIGHT1], USER_TYPE[USER_TYPE.MINIMUM]];
 
   constructor(private backendService: BackendService,
               private sessionValues: SessionValues,
@@ -20,20 +19,19 @@ export class ManageUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    // let user: User = JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
-    // if (user.type === USER_TYPE.ADMIN) {
-    this.backendService.get(`/users`).subscribe(users => (this.users = users));
-    // } else {
-    //   this.router.navigate(['/LogIn']);
-    // }
-  }
+    let user: User = JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
+    if (user) {
+      if (user.type.toString() === USER_TYPE[USER_TYPE.ADMIN]) {
+        this.backendService.get(`/users`).subscribe(users => {
+          this.users = users;
+        });
+      } else {
+        this.router.navigate(['/LogIn']);
+      }
+    } else {
+      this.router.navigate(['/LogIn']);
+    }
 
-  edit() {
-    this.editMode = true;
-  }
-
-  cancel() {
-    this.editMode = false;
   }
 
   deleteUser(user: User) {
@@ -41,20 +39,20 @@ export class ManageUsersComponent implements OnInit {
   }
 
   addData(user: User, userType: string) {
-    console.log(USER_TYPE.ADMIN.valueOf());
     user.type = this.convertFromStringToUserType(userType);
+    this.backendService.put('/update', user).subscribe();
   }
 
-  convertFromStringToUserType(userType: string): USER_TYPE {
+  convertFromStringToUserType(userType: string): any {
     switch (userType) {
       case 'ADMIN': {
-        return USER_TYPE.ADMIN;
+        return USER_TYPE[USER_TYPE.ADMIN];
       }
       case 'RIGHT1': {
-        return USER_TYPE.RIGHT1;
+        return USER_TYPE[USER_TYPE.RIGHT1];
       }
       default: {
-        return USER_TYPE.MINIMUM;
+        return USER_TYPE[USER_TYPE.MINIMUM];
       }
     }
   }

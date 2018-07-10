@@ -130,4 +130,15 @@ public class Manager {
         this.userRepository.delete(id);
     }
 
+
+    /**
+     * Updates or create a new user.
+     *
+     * @param user mandatory
+     */
+    public void saveOrUpdateUser(final User user) {
+        this.userRepository.save(user);
+    }
+
+
 }

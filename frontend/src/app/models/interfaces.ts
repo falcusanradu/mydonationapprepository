@@ -9,9 +9,9 @@ export interface User {
 }
 
 export enum USER_TYPE {
-  ADMIN = 'admin',
-  RIGHT1 = 'right1',
-  MINIMUM = 'minimum',
+  ADMIN,
+  RIGHT1,
+  MINIMUM,
 }
 
 export interface Company {

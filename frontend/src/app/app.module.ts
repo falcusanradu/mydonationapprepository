@@ -11,7 +11,6 @@ import {FormsModule} from '@angular/forms';
 import {UserService} from './services/user.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {BackendService} from './services/backend.service';
-import {ManageDonationRequestsComponent} from './pages/manage-donation-requests/manage-donation-requests.component';
 import {ResetPasswordComponent} from './pages/reset-password/reset-password.component';
 import {AuthGuard, CanNotActivate} from './user-page-access/authentification.service';
 import {StoredUser} from './user-page-access/stored-user';
@@ -39,7 +38,6 @@ export function createTranslateLoader(http_: HttpClient) {
     HomeComponent,
     FooterComponent,
     LogInComponent,
-    ManageDonationRequestsComponent,
     ResetPasswordComponent,
     DonateComponent,
     DonateSomethingComponent,

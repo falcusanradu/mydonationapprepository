@@ -14,13 +14,19 @@
 //  }
 //}
 
-
-
-#switchLanguage, #login, .navbar-brand{
+#switchLanguage, #login, .navbar-brand, #logout {
   color: white;
   hover {
     background-color: #ff3e19;
   }
 }
+
+#logoutImg, #loginImg {
+
+  width: 4%;
+  height: 10%;
+
+}
+
 
 
