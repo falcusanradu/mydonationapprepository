@@ -21,18 +21,18 @@
       </li>
 
       <ng-container>
-      <li><a class="nav-item"  (click)="switchLanguage()">switch language</a>
-      </li>
-      <li *ngIf="isSession()" (click)="logout()" class="glyphicon glyphicon-log-out">
-        <a  routerLink="LogIn">LogOut
-          <span class="glyphicon glyphicon-log-out"></span>
-        </a>
-      </li>
-      <li *ngIf="!isSession()" (click)="logout()">
-        <a  class="nav-link" routerLink="LogIn">LogIn
-          <!--<span class="glyphicon glyphicon-log-in"></span>-->
-        </a>
-      </li>
+        <li><a id="switchLanguage" class="nav-link" (click)="switchLanguage()">switch language</a>
+        </li>
+        <li *ngIf="isSession()" (click)="logout()" class="glyphicon glyphicon-log-out">
+          <a id="logout" routerLink="LogIn">LogOut
+            <span class="glyphicon glyphicon-log-out"></span>
+          </a>
+        </li>
+        <li *ngIf="!isSession()" (click)="logout()">
+          <a id="login"  class="nav-link" routerLink="LogIn">LogIn
+            <span class="glyphicon glyphicon-log-in"></span>
+          </a>
+        </li>
       </ng-container>
 
     </ul>

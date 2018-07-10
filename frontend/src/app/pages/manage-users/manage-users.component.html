@@ -11,33 +11,33 @@
   <tr *ngFor="let user of users | paginate : {itemsPerPage: 10, currentPage: page}">
     <td>{{user.username}}</td>
     <td>{{user.email}}</td>
-    <td *ngIf="!editMode">{{user.type}}</td>
     <!--dropdown-->
-    <td *ngIf="editMode">
-      <!-- Example split danger button -->
-      <div class="btn-group">
-        <button type="button" class="btn btn-danger">Action</button>
-        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-        </div>
+    <!-- Example split danger button -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary">{{user.type}}</button>
+      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+
+      <div class="dropdown-menu">
+        <ng-container *ngFor="let userType of userTypes">
+          <ng-container *ngIf="userType !== user.type">
+            <a class="dropdown-item" (click)="addData(user, userType)">{{userType}}</a>
+          </ng-container>
+          <!-- <a (ngModel)="user.type" class="dropdown-item">Action</a>
+      <a class="dropdown-item">Another action</a>
+      <a class="dropdown-item">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item">Separated link</a> -->
+        </ng-container>
       </div>
+    </div>
 
 
-
-    </td>
-    <td *ngIf="!editMode">
+    <td>
       <button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
-      <button class="btn btn-default" (click)="edit()">Edit role</button>
-    </td>
-    <td *ngIf="editMode">
-      <button class="btn btn-default" (click)="cancel()">Cancel</button>
     </td>
   </tr>
   <div>boundaryLinks = true</div>
@@ -48,12 +48,4 @@
 </table>
 
 
-<app-ngbd-dropdown-manual></app-ngbd-dropdown-manual>
-
-
-
-
-
-
-
-
+<app-ngbd-dropdown-manual class="pagination"></app-ngbd-dropdown-manual>

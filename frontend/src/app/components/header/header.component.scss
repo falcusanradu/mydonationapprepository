@@ -16,13 +16,11 @@
 
 
 
-.navbar-brand{
+#switchLanguage, #login, .navbar-brand{
   color: white;
-
+  hover {
+    background-color: #ff3e19;
+  }
 }
 
 
-.navbar-light .navbar-nav .nav-item {
-  color: white;
-  //color: rgba(255, 255, 255, 0.5);
-}

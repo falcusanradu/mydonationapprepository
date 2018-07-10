@@ -1,7 +1,11 @@
 package entity;
 
 public enum USER_TYPE {
-    ADMIN,
-    RIGHT1,
-    MINIMUM;
+    ADMIN("admin"),
+    RIGHT1("right1"),
+    MINIMUM("minimum");
+
+    USER_TYPE(String minimum) {
+
+    }
 }
