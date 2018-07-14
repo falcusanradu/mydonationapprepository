@@ -10,7 +10,7 @@ export interface User {
 
 export enum USER_TYPE {
   ADMIN,
-  RIGHT1,
+  COMPANY,
   MINIMUM,
 }
 

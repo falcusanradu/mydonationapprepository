@@ -24,7 +24,7 @@ public class User implements Serializable {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type_user", columnDefinition = "ENUM ('ADMIN','RIGHT1','MINIMUM')")
+    @Column(name = "type_user", columnDefinition = "ENUM ('ADMIN','COMPANY','MINIMUM')")
     private USER_TYPE type;
 
     @ManyToMany(mappedBy = "usersNotification")

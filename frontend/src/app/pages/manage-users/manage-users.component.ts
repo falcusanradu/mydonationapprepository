@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class ManageUsersComponent implements OnInit {
   users: User[] = [];
-  userTypes: string[] = [USER_TYPE[USER_TYPE.ADMIN], USER_TYPE[USER_TYPE.RIGHT1], USER_TYPE[USER_TYPE.MINIMUM]];
+  userTypes: string[] = [USER_TYPE[USER_TYPE.ADMIN], USER_TYPE[USER_TYPE.COMPANY], USER_TYPE[USER_TYPE.MINIMUM]];
 
   constructor(private backendService: BackendService,
               private sessionValues: SessionValues,
@@ -48,8 +48,8 @@ export class ManageUsersComponent implements OnInit {
       case 'ADMIN': {
         return USER_TYPE[USER_TYPE.ADMIN];
       }
-      case 'RIGHT1': {
-        return USER_TYPE[USER_TYPE.RIGHT1];
+      case 'COMPANY': {
+        return USER_TYPE[USER_TYPE.COMPANY];
       }
       default: {
         return USER_TYPE[USER_TYPE.MINIMUM];
