@@ -38,12 +38,19 @@ export class HeaderComponent implements OnInit {
     this.getImages();
   }
 
+  /**
+   * logout
+   */
   public logout(): void {
     sessionStorage.removeItem(this.sessionValues.SESSION_KEY);
     // sessionStorage.clear();
     this.router.navigate(['/LogIn']);
   }
 
+  /**
+   * Verify if a user is logged in.
+   * @returns {boolean}
+   */
   isSession(): boolean {
     if (sessionStorage.getItem(this.sessionValues.SESSION_KEY) !== null) {
       return true;
@@ -51,7 +58,29 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
+  /**
+   * It switches the language to german.
+   */
+  switchToGerman() {
+    if (sessionStorage.getItem(this.sessionValues.LANGUAGE) !== this.sessionValues.DE) {
+      sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.DE);
+      this.translateService.Language = this.sessionValues.DE;
+    }
+  }
 
+  /**
+   * it switches the language to english.
+   */
+  switchToEnglish() {
+    if (sessionStorage.getItem(this.sessionValues.LANGUAGE) !== this.sessionValues.EN) {
+      sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
+      this.translateService.Language = this.sessionValues.EN;
+    }
+  }
+
+  /**
+   * It switches the language.
+   */
   switchLanguage() {
     if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === this.sessionValues.EN) {
       sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.DE);
@@ -63,6 +92,10 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  /**
+   * All images from the json file
+   * @returns {Promise<Object>}
+   */
   public getImages(): Promise<Object> {
     return this.http.get(this.apiHost)
       .toPromise()

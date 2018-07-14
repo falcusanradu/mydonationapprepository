@@ -12,9 +12,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-        <a class="nav-link" id="homeImgAnchor" routerLink="home">
-          <img id="homeImg" [src]="getHomeImage()">
-        </a>
+      <a class="nav-link" id="homeImgAnchor" routerLink="home">
+        <img id="homeImg" [src]="getHomeImage()">
+      </a>
       <li class="nav-item dropdown">
         <a class="dropdown-toggle navbar-brand" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
@@ -28,30 +28,44 @@
           <a class="nav-link" routerLink="manage-users">manage users</a>
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle navbar-brand" href="#" id="chooseLanguages" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Languages
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="nav-link" id="germanyFlagAnchor" (click)="switchToGerman()">
+            Deutsch
+          </a>
+          <a class="nav-link" id="britishFlagAnchor" (click)="switchToEnglish()">
+            English
+          </a>
+        </div>
+      </li>
       <ng-container>
-        <li class="right" (click)="logout()">
-          <a class="nav-link" id="britishFlagAnchor" routerLink="LogIn">
-            <img id="britishFlagImg" [src]="getBritishFlagImage()">
+        <!--<li (click)="logout()">-->
+        <!--<a class="nav-link" id="britishFlagAnchor" routerLink="LogIn">-->
+        <!--<img id="britishFlagImg" [src]="getBritishFlagImage()" (click)="switchToEnglish()">-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li (click)="logout()">-->
+        <!--<a class="nav-link" id="germanyFlagAnchor" routerLink="LogIn">-->
+        <!--<img id="germanyFlagImg" [src]="getGermanyFlagImage()" (click)="switchToGerman()">-->
+        <!--</a>-->
+        <!--</li>-->
+        <li *ngIf="isSession()" (click)="logout()">
+          <a class="nav-link" id="logout">
+            <img routerLink="LogIn" id="logoutImg" [src]="getLogoutImage()">
           </a>
         </li>
-        <li class="right" (click)="logout()">
-          <a class="nav-link" id="germanyFlagAnchor" routerLink="LogIn">
-            <img id="germanyFlagImg" [src]="getGermanyFlagImage()">
-          </a>
-        </li>
-        <li class="right" *ngIf="isSession()" (click)="logout()">
-          <a class="nav-link" id="logout" routerLink="LogIn">
-            <img id="logoutImg" [src]="getLogoutImage()">
-          </a>
-        </li>
-        <li class="right" *ngIf="!isSession()" (click)="logout()">
-          <a class="nav-link" id="login" routerLink="LogIn">
-            <img id="loginImg" [src]="getLoginImage()">
+        <li *ngIf="!isSession()" (click)="logout()">
+          <a class="nav-link" id="login">
+            <img routerLink="LogIn" id="loginImg" [src]="getLoginImage()">
           </a>
         </li>
       </ng-container>
-
     </ul>
+
   </div>
 
 </nav>
