@@ -16,13 +16,21 @@ export enum USER_TYPE {
 
 export interface Company {
   idCompany: number;
-  image: string;
+  image: any;
   description: string;
   email: string;
   address: string;
-  category: string;
+  category: CategoryEnum;
   usersCompany: User[];
+  name: string;
 }
+
+export enum CategoryEnum {
+  other,
+  IT,
+  marketing,
+}
+
 
 export interface Notification {
   idNotification: number;

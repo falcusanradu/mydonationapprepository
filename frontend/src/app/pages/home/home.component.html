@@ -1,8 +1,42 @@
-<p>
-  //TODO: short description about the app
-
-  TODO: contact above
-  here you can find us:
-</p>
 <p>{{this.translateService.getTranslatedItem('test')}}</p>
+
+
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Picture</th>
+    <th scope="col">Description</th>
+    <th scope="col">Email</th>
+    <th scope="col">Address</th>
+    <th scope="col">Category</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let company of companies | paginate : {itemsPerPage: 2, currentPage: company}">
+    <td scope="col">{{company.name}}</td>
+    <td><img [src]="company.image"/></td>
+    <td scope="col">{{company.description}}</td>
+    <td scope="col">{{company.email}}</td>
+    <td scope="col">{{company.address}}</td>
+    <td scope="col">{{company.category}}</td>
+  </tr>
+  <div>boundaryLinks = true</div>
+  <pagination-controls (pageChange)="company =$event"></pagination-controls>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

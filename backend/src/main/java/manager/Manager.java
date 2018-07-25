@@ -4,7 +4,7 @@ import entity.Company;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.ProductRepository;
+import repository.CompanyRepository;
 import repository.UserRepository;
 
 import java.util.*;
@@ -28,17 +28,17 @@ public class Manager {
     private EmailService emailService;
 
     @Autowired
-    private ProductRepository productRepository;
+    private CompanyRepository companyRepository;
 
 
-    public Iterable<Company> getAllProducts() {
-        return productRepository.findAll();
+    public Iterable<Company> getAllCompanies() {
+        return companyRepository.findAll();
     }
 
 
     public void uploadFile(byte[] file, String fileName) {
         String encodedImage = Base64.getEncoder().encodeToString(file);
-        this.productRepository.insertProductWithGivenDescriptionAndImage(fileName, encodedImage);
+        this.companyRepository.insertProductWithGivenDescriptionAndImage(fileName, encodedImage);
     }
 
 

@@ -11,22 +11,16 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class ProductController {
+@RequestMapping("/company")
+public class CompanyController {
 
     @Autowired
     private Manager manager;
 
-    @RequestMapping(value = "/getAllProducts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/companies", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Company> getAllProducts() {
-//        List<byte[]> images = new ArrayList<>();
-//        List<String> imagesText = new ArrayList<>();
-//        manager.getAllProducts().forEach(p -> {
-//            imagesText.add(p.getImage());
-//        });
-//
-//        return imagesText.get(0);
-        return this.manager.getAllProducts();
+    public Iterable<Company> games() {
+        return this.manager.getAllCompanies();
     }
 
     @RequestMapping(value = "/getAllProducts2", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -34,7 +28,7 @@ public class ProductController {
     public String getAllProducts2() {
         List<byte[]> images = new ArrayList<>();
         List<String> imagesText = new ArrayList<>();
-        manager.getAllProducts().forEach(p -> {
+        manager.getAllCompanies().forEach(p -> {
             imagesText.add(p.getImage());
         });
 

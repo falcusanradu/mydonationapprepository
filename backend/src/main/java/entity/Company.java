@@ -24,6 +24,8 @@ public class Company {
     private String address;
     @Column(name = "category")
     private String category;
+    @Column(name = "name")
+    private String name;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
@@ -91,5 +93,13 @@ public class Company {
 
     public void setUsersCompany(List<User> usersCompany) {
         this.usersCompany = usersCompany;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

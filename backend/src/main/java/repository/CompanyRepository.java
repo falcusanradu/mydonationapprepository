@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 
-public interface ProductRepository extends CrudRepository<Company, Integer> {
+public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
     @Transactional
     @Modifying(clearAutomatically = true)

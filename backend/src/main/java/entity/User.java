@@ -25,7 +25,7 @@ public class User implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_user", columnDefinition = "ENUM ('ADMIN','COMPANY','MINIMUM')")
-    private USER_TYPE type;
+    private UserTypeEnum type;
 
     @ManyToMany(mappedBy = "usersNotification")
     private List<Notification> notifications = new ArrayList<>();
@@ -65,11 +65,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public USER_TYPE getType() {
+    public UserTypeEnum getType() {
         return type;
     }
 
-    public void setType(USER_TYPE type) {
+    public void setType(UserTypeEnum type) {
         this.type = type;
     }
 
