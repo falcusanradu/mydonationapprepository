@@ -15,7 +15,7 @@ export class BackendService {
   }
 
   public get(url: string): Observable<any> {
-    console.log(DEFAULT_URL + url)
+    console.log('myconsole log', DEFAULT_URL + url);
     return this.httpClient.get(DEFAULT_URL + url);
   }
 

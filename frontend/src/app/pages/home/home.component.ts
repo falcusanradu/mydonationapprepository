@@ -24,11 +24,14 @@ export class HomeComponent implements OnInit {
       sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
     }
 
-    this.backendService.get(`/company/companies`).subscribe(companies => this.companies = companies);
-
-    this.companies.forEach(c => {
-      c.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + c.image);
+    this.backendService.get('/company/companies').subscribe(companies =>{
+      companies.forEach(c => {
+        c.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + c.image);
+      });
+      console.log(companies)
+      this.companies = companies
     });
+    console.log(this.companies);
   }
 
 

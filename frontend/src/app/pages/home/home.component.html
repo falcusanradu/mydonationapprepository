@@ -2,7 +2,7 @@
 
 
 <table class="table">
-  <thead class="thead-dark">
+  <thead class="thead-inverse">
   <tr>
     <th scope="col">Name</th>
     <th scope="col">Picture</th>
@@ -13,18 +13,17 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let company of companies | paginate : {itemsPerPage: 2, currentPage: company}">
+  <tr *ngFor="let company of companies | paginate : {itemsPerPage: 5, currentPage: company}">
     <td scope="col">{{company.name}}</td>
-    <td><img [src]="company.image"/></td>
+    <td><img [src]="company.image" alt="photo" height="50"/></td>
     <td scope="col">{{company.description}}</td>
     <td scope="col">{{company.email}}</td>
     <td scope="col">{{company.address}}</td>
     <td scope="col">{{company.category}}</td>
   </tr>
-  <div>boundaryLinks = true</div>
-  <pagination-controls (pageChange)="company =$event"></pagination-controls>
   </tbody>
 </table>
+<pagination-controls (pageChange)="company =$event"></pagination-controls>
 
 
 
