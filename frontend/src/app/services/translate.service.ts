@@ -18,6 +18,35 @@ export class Translate {
       ID: 'test',
       de: 'german',
       en: 'english'
+    }, {
+      ID: 'name',
+      de: 'Name',
+      en: 'Name'
+    },
+    {
+      ID: 'image',
+      de: 'Foto',
+      en: 'Photo'
+    },
+    {
+      ID: 'description',
+      de: 'Beschreibung',
+      en: 'Description'
+    },
+    {
+      ID: 'email',
+      de: 'Email',
+      en: 'Email'
+    },
+    {
+      ID: 'address',
+      de: 'Adresse',
+      en: 'Address'
+    },
+    {
+      ID: 'category',
+      de: 'Kategorie',
+      en: 'Category'
     },
 
 

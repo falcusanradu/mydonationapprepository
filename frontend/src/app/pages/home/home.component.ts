@@ -12,7 +12,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-
+  tableHeaders = ['name', 'image', 'description', 'email', 'address', 'category'];
+  ascendingSort: boolean = true;
   companies: Company[] = [];
 
   constructor(private sessionValues: SessionValues, private translateService: Translate, private backendService: BackendService,
@@ -24,15 +25,39 @@ export class HomeComponent implements OnInit {
       sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
     }
 
-    this.backendService.get('/company/companies').subscribe(companies =>{
+    this.backendService.get('/company/companies').subscribe(companies => {
       companies.forEach(c => {
         c.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + c.image);
       });
-      console.log(companies)
-      this.companies = companies
+      this.companies = companies;
+      this.reassignNullValues();
     });
     console.log(this.companies);
   }
 
 
+  sort(index: number) {
+    if (this.ascendingSort) {
+      this.companies.sort((c1, c2) => {
+        return c1[this.tableHeaders[index]].toUpperCase() >= c2[this.tableHeaders[index]].toUpperCase();
+      });
+    } else {
+      this.companies.sort((c1, c2) => {
+        return c1[this.tableHeaders[index]].toUpperCase() <= c2[this.tableHeaders[index]].toUpperCase();
+      });
+    }
+    this.ascendingSort = !this.ascendingSort;
+
+  }
+
+
+  reassignNullValues() {
+    this.tableHeaders.forEach(header => {
+      this.companies.forEach(company => {
+        if (!company[header]) {
+          company[header] = '';
+        }
+      });
+    });
+  }
 }

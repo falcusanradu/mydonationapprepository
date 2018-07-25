@@ -4,12 +4,12 @@
 <table class="table">
   <thead class="thead-inverse">
   <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Picture</th>
-    <th scope="col">Description</th>
-    <th scope="col">Email</th>
-    <th scope="col">Address</th>
-    <th scope="col">Category</th>
+    <th scope="col" (click)="sort(0)">{{this.translateService.getTranslatedItem(tableHeaders[0])}}</th>
+    <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[1])}}</th>
+    <th scope="col" (click)="sort(2)">{{this.translateService.getTranslatedItem(tableHeaders[2])}}</th>
+    <th scope="col" (click)="sort(3)">{{this.translateService.getTranslatedItem(tableHeaders[3])}}</th>
+    <th scope="col" (click)="sort(4)">{{this.translateService.getTranslatedItem(tableHeaders[4])}}</th>
+    <th scope="col" (click)="sort(5)">{{this.translateService.getTranslatedItem(tableHeaders[5])}}</th>
   </tr>
   </thead>
   <tbody>
