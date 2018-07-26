@@ -53,15 +53,14 @@ a, li {
   //margin-left: 620%;
 }
 
-
-#navigation_layout{
-  position:relative;
+#navigation_layout {
+  position: relative;
   sdev: 50%;
 }
+
 #homeImgAnchor[_ngcontent-c1] {
   width: 2.4%;
 }
-
 
 @media screen and (min-width: 480px) {
   body {
@@ -69,7 +68,21 @@ a, li {
   }
 }
 
+.classNavigate {
+  width: 3.5%;
+}
 
+.blue-btn {
+  color: white;
+  background-color: #0275d8;
+  :hover {
+    color: black;
+  }
+}
+
+blue-btn:hover {
+  color: black;
+}
 
 //
 //#navigation_layout {

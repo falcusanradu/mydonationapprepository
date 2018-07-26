@@ -5,6 +5,7 @@
 <script type="text/javascript" src="vendor.bundle.js"></script>
 <script type="text/javascript" src="main.bundle.js"></script>
 
+
 <nav class="navbar navbar-toggleable-md navbar-light bg-primary">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,6 +16,12 @@
       <a class="nav-link" id="homeImgAnchor" routerLink="home">
         <img id="homeImg" [src]="getHomeImage()">
       </a>
+      <li>
+        <button type="button" class="btn btn-default blue-btn navbar-brand" (click)="openContent()">Navigate through
+          pages
+        </button>
+        <span class="glyphicon glyphicon"></span>
+      </li>
       <li class="nav-item dropdown">
         <a class="dropdown-toggle navbar-brand" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
@@ -69,5 +76,76 @@
   </div>
 
 </nav>
+
+
+<hr>
+<div *ngIf="openNavigation" class="horizontal-collapse" uib-collapse="isCollapsedHorizontal" horizontal>
+  <table>
+    <tr>
+      <td><a class="nav-link" routerLink="home">Home</a>
+      </td>
+      <td>
+        <a class="nav-link" id="navigateAnchor" routerLink="home">
+          <img class="classNavigate " [src]="getNavigateImage()">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a class="nav-link" routerLink="app-donate-something">donate something</a>
+      </td>
+      <td>
+        <a class="nav-link" routerLink="home">
+          <img class="classNavigate " [src]="getNavigateImage()">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a class="nav-link" routerLink="app-donate">manage donations</a>
+      </td>
+      <td>
+        <a class="nav-link" routerLink="home">
+          <img class="classNavigate " [src]="getNavigateImage()">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a class="nav-link" routerLink="app-donate">manage donations</a>
+      </td>
+      <td>
+        <a class="nav-link" routerLink="home">
+          <img class="classNavigate " [src]="getNavigateImage()">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a class="nav-link" routerLink="app-chat">Chat</a>
+      </td>
+      <td>
+        <a class="nav-link" routerLink="home">
+          <img class="classNavigate " [src]="getNavigateImage()">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a class="nav-link" routerLink="manage-users">manage users</a>
+      </td>
+      <td>
+        <a class="nav-link" routerLink="home">
+          <img class="classNavigate " [src]="getNavigateImage()">
+        </a>
+      </td>
+    </tr>
+  </table>
+
+  <a class="nav-link" id="contente2">
+    contente2
+  </a>
+</div>
+
 
 

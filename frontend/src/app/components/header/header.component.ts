@@ -13,7 +13,8 @@ interface Base64Img {
   logout: string;
   home: string;
   germanyFlag: string;
-  britishFlag: string
+  britishFlag: string;
+  navigate: string;
 }
 
 @Component({
@@ -23,6 +24,7 @@ interface Base64Img {
 })
 export class HeaderComponent implements OnInit {
 
+  openNavigation: boolean = false;
   private apiHost: string = './assets/images-base64/log-in-out.json';
 
   private images: Base64Img;
@@ -134,6 +136,16 @@ export class HeaderComponent implements OnInit {
   getBritishFlagImage() {
     if (this.images)
       return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + this.images.britishFlag);
+  }
+
+  getNavigateImage() {
+    if (this.images)
+      return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + this.images.navigate);
+  }
+
+
+  openContent() {
+    this.openNavigation = !this.openNavigation;
   }
 
 }
