@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {BackendService} from '../../services/backend.service';
 import {SessionValues} from '../../models/constants';
-import {TranslateService} from '@ngx-translate/core';
 import {Translate} from '../../services/translate.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import {HttpClient} from '@angular/common/http';
 import {Http} from '@angular/http';
 
 interface Base64Img {
