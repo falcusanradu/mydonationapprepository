@@ -1,15 +1,30 @@
 <p>{{this.translateService.getTranslatedItem('test')}}</p>
 
 
+<div>
+  <label>IT: </label> <input id="IT" type="checkbox" [(ngModel)]="showIT" (click)="filterBy($event)">
+  <label>marketing: </label> <input type="checkbox" [(ngModel)]="showMarketing" (click)="filterBy($event)">
+  <label>other: </label> <input type="checkbox" [(ngModel)]="showOther" (click)="filterBy($event)">
+</div>
+
 <table class="table">
-  <thead class="thead-inverse">
+  <thead class="thead-default">
   <tr>
-    <th scope="col" (click)="sort(0)">{{this.translateService.getTranslatedItem(tableHeaders[0])}}</th>
+    <th scope="col" id="IT">{{this.translateService.getTranslatedItem(tableHeaders[0])}} <i (click)="OnSort(0)"
+                                                                                            [ngClass]="(ascendingSort)?'up':'down'"></i>
+    </th>
     <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[1])}}</th>
-    <th scope="col" (click)="sort(2)">{{this.translateService.getTranslatedItem(tableHeaders[2])}}</th>
-    <th scope="col" (click)="sort(3)">{{this.translateService.getTranslatedItem(tableHeaders[3])}}</th>
-    <th scope="col" (click)="sort(4)">{{this.translateService.getTranslatedItem(tableHeaders[4])}}</th>
-    <th scope="col" (click)="sort(5)">{{this.translateService.getTranslatedItem(tableHeaders[5])}}</th>
+    <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[2])}} <i (click)="OnSort(2)"
+                                                                                    [ngClass]="(ascendingSort)?'up':'down'"></i>
+    </th>
+    <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[3])}} <i (click)="OnSort(3)"
+                                                                                    [ngClass]="(ascendingSort)?'up':'down'"></i>
+    </th>
+    <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[4])}} <i (click)="OnSort(4)"
+                                                                                    [ngClass]="(ascendingSort)?'up':'down'"></i>
+    </th>
+    <th class="setWidthTo20" scope="col">{{this.translateService.getTranslatedItem(tableHeaders[5])}}
+      <i (click)="OnSort(5)" [ngClass]="(ascendingSort)?'up':'down'"></i></th>
   </tr>
   </thead>
   <tbody>

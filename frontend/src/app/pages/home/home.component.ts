@@ -4,20 +4,26 @@ import {Translate} from '../../services/translate.service';
 import {Company} from '../../models/interfaces';
 import {BackendService} from '../../services/backend.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AbstractTable} from '../abstractTable';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends AbstractTable implements OnInit {
 
   tableHeaders = ['name', 'image', 'description', 'email', 'address', 'category'];
-  ascendingSort: boolean = true;
+  ascendingSort = true;
   companies: Company[] = [];
+  // filter by attributes
+  showIT = true;
+  showOther = true;
+  showMarketing = true;
 
   constructor(private sessionValues: SessionValues, private translateService: Translate, private backendService: BackendService,
               private sanitizer: DomSanitizer) {
+    super();
   }
 
   ngOnInit() {
@@ -36,21 +42,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  sort(index: number) {
-    if (this.ascendingSort) {
-      this.companies.sort((c1, c2) => {
-        return c1[this.tableHeaders[index]].toUpperCase() >= c2[this.tableHeaders[index]].toUpperCase();
-      });
-    } else {
-      this.companies.sort((c1, c2) => {
-        return c1[this.tableHeaders[index]].toUpperCase() <= c2[this.tableHeaders[index]].toUpperCase();
-      });
-    }
-    this.ascendingSort = !this.ascendingSort;
-
-  }
-
-
   reassignNullValues() {
     this.tableHeaders.forEach(header => {
       this.companies.forEach(company => {
@@ -60,4 +51,34 @@ export class HomeComponent implements OnInit {
       });
     });
   }
+
+  filterBy(event: Event) {
+    console.log(this.companies[0].category);
+    console.log(event.path[0].id);
+    this.companies.filter((c1) => {
+      // return
+    });
+
+  }
+
+
+  OnFilter() {
+    // TODO change checkboxes
+  }
+
+  OnSort(index: number) {
+    this.sort(this.companies, this.tableHeaders[index], this.ascendingSort);
+    // if (this.ascendingSort) {
+    //   this.companies.sort((c1, c2) => {
+    //     return c1[this.tableHeaders[index]].toUpperCase() >= c2[this.tableHeaders[index]].toUpperCase();
+    //   });
+    // } else {
+    //   this.companies.sort((c1, c2) => {
+    //     return c1[this.tableHeaders[index]].toUpperCase() <= c2[this.tableHeaders[index]].toUpperCase();
+    //   });
+    // }
+    this.ascendingSort = !this.ascendingSort;
+
+  }
+
 }

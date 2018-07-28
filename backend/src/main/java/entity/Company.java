@@ -22,8 +22,9 @@ public class Company {
     private String email;
     @Column(name = "address")
     private String address;
-    @Column(name = "category")
-    private String category;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", columnDefinition = "ENUM ('other','IT','marketing')")
+    private CategoryEnum category;
     @Column(name = "name")
     private String name;
 
@@ -79,11 +80,11 @@ public class Company {
         this.address = address;
     }
 
-    public String getCategory() {
+    public CategoryEnum getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(CategoryEnum category) {
         this.category = category;
     }
 

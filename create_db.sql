@@ -21,7 +21,8 @@ image LONGTEXT,
 description VARCHAR(255),
 email VARCHAR(250),
 address VARCHAR(255),
-category VARCHAR(255),
+category enum('other','IT','marketing'),
+name VARCHAR(255),
 PRIMARY KEY (id_company)
 );
 
