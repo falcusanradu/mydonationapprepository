@@ -12,30 +12,17 @@
     <td>{{user.username}}</td>
     <td>{{user.email}}</td>
     <!--dropdown-->
-    <!-- Example split danger button -->
     <td>
-      <div class="btn-group">
-        <button type="button" class="btn btn-primary">{{user.type}}</button>
-        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false">
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-
-        <div class="dropdown-menu">
+      <div class="dropdown">
+        <span>{{user.type}}</span>
+        <div class="dropdown-content">
           <ng-container *ngFor="let userType of userTypes">
             <ng-container *ngIf="userType !== user.type">
               <a class="dropdown-item" (click)="addData(user, userType)">{{userType}}</a>
             </ng-container>
-            <!-- <a (ngModel)="user.type" class="dropdown-item">Action</a>
-        <a class="dropdown-item">Another action</a>
-        <a class="dropdown-item">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item">Separated link</a> -->
           </ng-container>
         </div>
       </div>
-
     </td>
     <td>
       <button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
