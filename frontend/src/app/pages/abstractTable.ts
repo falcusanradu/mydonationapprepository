@@ -6,11 +6,11 @@ export abstract class AbstractTable {
 
   protected sort(array: any, sortBy, sortWay: boolean) {
     if (sortWay) {
-      array.sort((o1, o2) => {
+      return array.sort((o1, o2) => {
         return o1[sortBy].toUpperCase() >= o2[sortBy].toUpperCase();
       });
     } else {
-      array.sort((o1, o2) => {
+      return array.sort((o1, o2) => {
         return o1[sortBy].toUpperCase() <= o2[sortBy].toUpperCase();
       });
     }

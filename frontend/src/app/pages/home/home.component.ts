@@ -20,6 +20,7 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
 
   // for filter
   searchInput = '';
+  oldSearchInput = '';
   dropDownItems: string [] = ['name', 'description', 'email', 'address', 'category'];
   selectedItem: any;
 
@@ -31,7 +32,10 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.OnFilter();
+    if (this.searchInput !== this.oldSearchInput) {
+      this.OnFilter();
+      this.oldSearchInput = this.searchInput;
+    }
   }
 
 
@@ -66,7 +70,7 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
   }
 
   OnSort(index: number) {
-    this.sort(this.companies, this.tableHeaders[index], this.ascendingSort);
+    this.companies = this.sort(this.companies, this.tableHeaders[index], this.ascendingSort);
     this.ascendingSort = !this.ascendingSort;
 
   }
