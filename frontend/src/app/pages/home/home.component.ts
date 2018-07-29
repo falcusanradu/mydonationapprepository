@@ -16,10 +16,11 @@ export class HomeComponent extends AbstractTable implements OnInit {
   tableHeaders = ['name', 'image', 'description', 'email', 'address', 'category'];
   ascendingSort = true;
   companies: Company[] = [];
-  // filter by attributes
-  showIT = true;
-  showOther = true;
-  showMarketing = true;
+  allCompanies: Company[] = [];
+
+  // for filter
+  searchInput: string;
+  selectedItem: any;
 
   constructor(private sessionValues: SessionValues, private translateService: Translate, private backendService: BackendService,
               private sanitizer: DomSanitizer) {
@@ -37,8 +38,8 @@ export class HomeComponent extends AbstractTable implements OnInit {
       });
       this.companies = companies;
       this.reassignNullValues();
+      this.allCompanies = this.companies;
     });
-    console.log(this.companies);
   }
 
 
@@ -52,31 +53,18 @@ export class HomeComponent extends AbstractTable implements OnInit {
     });
   }
 
-  filterBy(event: Event) {
-    console.log(this.companies[0].category);
+  OnFilter(event) {
+    // console.log(this.companies[0].category);
     console.log(event.path[0].id);
-    this.companies.filter((c1) => {
-      // return
-    });
-
-  }
-
-
-  OnFilter() {
-    // TODO change checkboxes
+    if (event.path[0].id === 'all') {
+      this.companies = this.allCompanies;
+    } else {
+      this.companies = this.filter(this.allCompanies, 'category', event.path[0].id);
+    }
   }
 
   OnSort(index: number) {
     this.sort(this.companies, this.tableHeaders[index], this.ascendingSort);
-    // if (this.ascendingSort) {
-    //   this.companies.sort((c1, c2) => {
-    //     return c1[this.tableHeaders[index]].toUpperCase() >= c2[this.tableHeaders[index]].toUpperCase();
-    //   });
-    // } else {
-    //   this.companies.sort((c1, c2) => {
-    //     return c1[this.tableHeaders[index]].toUpperCase() <= c2[this.tableHeaders[index]].toUpperCase();
-    //   });
-    // }
     this.ascendingSort = !this.ascendingSort;
 
   }

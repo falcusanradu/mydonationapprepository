@@ -1,19 +1,25 @@
 export abstract class AbstractTable {
 
-  abstract OnFilter();
+  abstract OnFilter(event);
 
   abstract OnSort(index: number);
 
-  sort(sortableArray: any, sortBy, sortWay: boolean) {
+  protected sort(array: any, sortBy, sortWay: boolean) {
     if (sortWay) {
-      sortableArray.sort((o1, o2) => {
+      array.sort((o1, o2) => {
         return o1[sortBy].toUpperCase() >= o2[sortBy].toUpperCase();
       });
     } else {
-      sortableArray.sort((o1, o2) => {
+      array.sort((o1, o2) => {
         return o1[sortBy].toUpperCase() <= o2[sortBy].toUpperCase();
       });
     }
+  }
+
+  protected filter(array: any, filterBy: string, value: string) {
+   return array.filter((element) => {
+      return element[filterBy].toUpperCase().includes(value.toUpperCase());
+    });
   }
 
 }
