@@ -48,7 +48,30 @@ export class Translate {
       de: 'Kategorie',
       en: 'Category'
     },
-
+    {
+      ID: 'searchDropDown.name',
+      de: 'Suche nach Name',
+      en: 'Search by name'
+    },
+    {
+      ID: 'searchDropDown.description',
+      de: 'Suche nach Beschreibung',
+      en: 'Search by description'
+    },
+    {
+      ID: 'searchDropDown.email',
+      de: 'Suche nach E-Mail',
+      en: 'Search by email'
+    },
+    {
+      ID: 'searchDropDown.address',
+      de: 'Suche nach Adresse',
+      en: 'Search by address'
+    }, {
+      ID: 'searchDropDown.category',
+      de: 'Suche nach Kategorie',
+      en: ' Search by category'
+    },
 
     // -----------------------------------------------------------------------------------
 

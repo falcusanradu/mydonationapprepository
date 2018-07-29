@@ -3,15 +3,11 @@
 
 <!--dropdown-->
 <div class="dropdown">
-  <span class="btn btn-primary">filter by name</span>
+  <span class="btn btn-primary">{{this.translateService.getTranslatedItem('searchDropDown.'+selectedItem)}}</span>
   <div class="dropdown-content">
-    <ng-container>
-      <ng-container>
-        <a class="dropdown-item">filter by name</a>
-        <a class="dropdown-item">filter by description</a>
-        <a class="dropdown-item">filter by email</a>
-        <a class="dropdown-item">filter by address</a>
-        <a class="dropdown-item">filter by category</a>
+    <ng-container *ngFor="let item of dropDownItems">
+      <ng-container *ngIf="item !== selectedItem">
+        <a (click)="changeSelectedItem(item)" class="dropdown-item">{{this.translateService.getTranslatedItem('searchDropDown.'+item)}}</a>
       </ng-container>
     </ng-container>
   </div>
@@ -21,7 +17,8 @@
     <form action="" class="search-form">
       <div class="form-group has-feedback">
         <label for="search" class="sr-only">Search</label>
-        <input type="text" class="form-control" name="search" id="search" placeholder="search" [(ngModel)]="searchInput">
+        <input type="text" class="form-control" name="search" id="search" placeholder="search"
+               [(ngModel)]="searchInput">
       </div>
     </form>
   </div>

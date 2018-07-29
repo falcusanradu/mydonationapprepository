@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, KeyValueDiffer, KeyValueDiffers, OnInit} from '@angular/core';
 import {SessionValues} from '../../models/constants';
 import {Translate} from '../../services/translate.service';
 import {Company} from '../../models/interfaces';
@@ -11,7 +11,7 @@ import {AbstractTable} from '../abstractTable';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent extends AbstractTable implements OnInit {
+export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
 
   tableHeaders = ['name', 'image', 'description', 'email', 'address', 'category'];
   ascendingSort = true;
@@ -19,13 +19,21 @@ export class HomeComponent extends AbstractTable implements OnInit {
   allCompanies: Company[] = [];
 
   // for filter
-  searchInput: string;
+  searchInput = '';
+  dropDownItems: string [] = ['name', 'description', 'email', 'address', 'category'];
   selectedItem: any;
 
+  differ: KeyValueDiffer<string, any>;
+
   constructor(private sessionValues: SessionValues, private translateService: Translate, private backendService: BackendService,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer, private differs: KeyValueDiffers) {
     super();
   }
+
+  ngDoCheck() {
+    this.OnFilter();
+  }
+
 
   ngOnInit() {
     if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === null) {
@@ -40,8 +48,8 @@ export class HomeComponent extends AbstractTable implements OnInit {
       this.reassignNullValues();
       this.allCompanies = this.companies;
     });
+    this.selectedItem = this.dropDownItems[0];
   }
-
 
   reassignNullValues() {
     this.tableHeaders.forEach(header => {
@@ -53,20 +61,20 @@ export class HomeComponent extends AbstractTable implements OnInit {
     });
   }
 
-  OnFilter(event) {
-    // console.log(this.companies[0].category);
-    console.log(event.path[0].id);
-    if (event.path[0].id === 'all') {
-      this.companies = this.allCompanies;
-    } else {
-      this.companies = this.filter(this.allCompanies, 'category', event.path[0].id);
-    }
+  OnFilter() {
+    this.companies = this.filter(this.allCompanies, this.selectedItem, this.searchInput);
   }
 
   OnSort(index: number) {
     this.sort(this.companies, this.tableHeaders[index], this.ascendingSort);
     this.ascendingSort = !this.ascendingSort;
 
+  }
+
+  changeSelectedItem(item) {
+    this.selectedItem = item;
+    this.companies = this.allCompanies;
+    this.searchInput = '';
   }
 
 }
