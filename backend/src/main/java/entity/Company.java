@@ -1,10 +1,6 @@
 package entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Table(name = "company_table")
 @Entity
@@ -33,12 +29,8 @@ public class Company {
             CascadeType.MERGE,
             CascadeType.REMOVE
     })
-    @JoinTable(name = "user_company",
-            joinColumns = @JoinColumn(name = "id_company"),
-            inverseJoinColumns = @JoinColumn(name = "id_user")
-    )
-    @JsonIgnore
-    private List<User> usersCompany = new ArrayList<>();
+    @OneToOne(mappedBy = "company")
+    private User userCompany;
 
     public Integer getIdCompany() {
         return idCompany;
@@ -88,12 +80,12 @@ public class Company {
         this.category = category;
     }
 
-    public List<User> getUsersCompany() {
-        return usersCompany;
+    public User getUserCompany() {
+        return userCompany;
     }
 
-    public void setUsersCompany(List<User> usersCompany) {
-        this.usersCompany = usersCompany;
+    public void setUserCompany(User userCompany) {
+        this.userCompany = userCompany;
     }
 
     public String getName() {

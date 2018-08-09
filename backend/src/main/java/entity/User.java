@@ -30,8 +30,9 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "usersNotification")
     private List<Notification> notifications = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "usersCompany")
-    private List<Company> companies = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_company")
+    private Company company;
 
     public Integer getId() {
         return id;
@@ -81,11 +82,11 @@ public class User implements Serializable {
         this.notifications = notifications;
     }
 
-    public List<Company> getCompanies() {
-        return companies;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }
