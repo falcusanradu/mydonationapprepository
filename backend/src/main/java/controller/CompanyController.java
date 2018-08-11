@@ -2,7 +2,9 @@ package controller;
 
 import entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import manager.Manager;
 
@@ -39,6 +41,13 @@ public class CompanyController {
     @ResponseBody
     public void uploadFile(@RequestBody byte[] file, @PathVariable String fileName) {
         this.manager.uploadFile(file, fileName);
+    }
+
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUserById(@PathVariable("id") Integer id) {
+        this.manager.deleteCompanyById(id);
+        return new ResponseEntity<Company>(HttpStatus.OK);
     }
 
 }

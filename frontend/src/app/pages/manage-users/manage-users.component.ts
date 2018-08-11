@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class ManageUsersComponent implements OnInit {
   users: User[] = [];
-  userTypes: string[] = [USER_TYPE[USER_TYPE.ADMIN], USER_TYPE[USER_TYPE.COMPANY], USER_TYPE[USER_TYPE.MINIMUM]];
+  userTypes: string[] = [USER_TYPE[USER_TYPE.admin], USER_TYPE[USER_TYPE.company], USER_TYPE[USER_TYPE.normal]];
 
   constructor(private backendService: BackendService,
               private sessionValues: SessionValues,
@@ -19,9 +19,9 @@ export class ManageUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    let user: User = JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
+    const user: User = JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
     if (user) {
-      if (user.type.toString() === USER_TYPE[USER_TYPE.ADMIN]) {
+      if (user.type.toString() === USER_TYPE[USER_TYPE.admin]) {
         this.backendService.get(`/users`).subscribe(users => {
           this.users = users;
         });
@@ -38,21 +38,24 @@ export class ManageUsersComponent implements OnInit {
     this.backendService.delete(`/delete/${user.id}`).subscribe();
   }
 
-  addData(user: User, userType: string) {
+  changeUserType(user: User, userType: string) {
     user.type = this.convertFromStringToUserType(userType);
+    if (user.companies) {
+      this.backendService.delete(`/delete${user.companies[0].idCompany}`).subscribe();
+    }
     this.backendService.put('/update', user).subscribe();
   }
 
   convertFromStringToUserType(userType: string): any {
     switch (userType) {
-      case 'ADMIN': {
-        return USER_TYPE[USER_TYPE.ADMIN];
+      case 'admin': {
+        return USER_TYPE[USER_TYPE.admin];
       }
-      case 'COMPANY': {
-        return USER_TYPE[USER_TYPE.COMPANY];
+      case 'company': {
+        return USER_TYPE[USER_TYPE.company];
       }
       default: {
-        return USER_TYPE[USER_TYPE.MINIMUM];
+        return USER_TYPE[USER_TYPE.normal];
       }
     }
   }

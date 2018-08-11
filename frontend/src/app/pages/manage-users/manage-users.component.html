@@ -18,7 +18,7 @@
         <div class="dropdown-content">
           <ng-container *ngFor="let userType of userTypes">
             <ng-container *ngIf="userType !== user.type">
-              <a class="dropdown-item" (click)="addData(user, userType)">{{userType}}</a>
+              <a class="dropdown-item" (click)="changeUserType(user, userType)">{{userType}}</a>
             </ng-container>
           </ng-container>
         </div>

@@ -9,9 +9,9 @@ export interface User {
 }
 
 export enum USER_TYPE {
-  ADMIN,
-  COMPANY,
-  MINIMUM,
+  admin,
+  company,
+  normal,
 }
 
 export interface Company {

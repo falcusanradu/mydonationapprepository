@@ -25,7 +25,6 @@ public class User implements Serializable {
     @Column(unique = true, name = "email")
     private String email;
 
-
     @Enumerated(EnumType.STRING)
     @Column(name = "type_user", columnDefinition = "ENUM('admin', 'company', 'normal')")
     private UserTypeEnum type;
