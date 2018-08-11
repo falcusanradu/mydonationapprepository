@@ -5,7 +5,7 @@ export interface User {
   email: string;
   type: USER_TYPE;
   notifications: Notification[];
-  companies: Company [];
+  company: Company;
 }
 
 export enum USER_TYPE {
@@ -21,7 +21,7 @@ export interface Company {
   email: string;
   address: string;
   category: CategoryEnum;
-  usersCompany: User[];
+  userCompany: User;
   name: string;
 }
 

@@ -38,12 +38,8 @@ export class ManageUsersComponent implements OnInit {
     this.backendService.delete(`/delete/${user.id}`).subscribe();
   }
 
-  changeUserType(user: User, userType: string) {
-    user.type = this.convertFromStringToUserType(userType);
-    if (user.companies) {
-      this.backendService.delete(`/delete${user.companies[0].idCompany}`).subscribe();
-    }
-    this.backendService.put('/update', user).subscribe();
+  changeUserType(user: User, newUserType: string) {
+    this.backendService.post(`/update/${this.convertFromStringToUserType(newUserType)}`, user).subscribe();
   }
 
   convertFromStringToUserType(userType: string): any {

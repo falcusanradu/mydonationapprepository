@@ -150,6 +150,9 @@ public class Manager {
     }
 
 
+    public User findUserById(User user) {
+        return this.userRepository.findById(user.getId());
+    }
 
 
 }

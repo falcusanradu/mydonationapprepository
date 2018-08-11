@@ -21,6 +21,10 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Transactional
     User findByUsername(@Param("email") String email);
 
+
+    @Transactional
+    User findById(@Param("id") Integer id);
+
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE user_table SET password= :password WHERE email= :email", nativeQuery = true)

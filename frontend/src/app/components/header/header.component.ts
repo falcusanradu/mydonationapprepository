@@ -13,6 +13,7 @@ interface Base64Img {
   germanyFlag: string;
   britishFlag: string;
   navigate: string;
+  backgroundImg: string;
 }
 
 @Component({
@@ -139,6 +140,12 @@ export class HeaderComponent implements OnInit {
   getNavigateImage() {
     if (this.images)
       return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + this.images.navigate);
+  }
+
+  getBackgroundImg() {
+    if (this.images) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64, ' + this.images.backgroundImg);
+    }
   }
 
 

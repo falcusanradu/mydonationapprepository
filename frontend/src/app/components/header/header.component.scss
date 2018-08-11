@@ -33,7 +33,6 @@ a, li {
   width: 25%;
 }
 
-
 #homeImgAnchor[_ngcontent-c1] {
   width: 3%;
 }
@@ -75,4 +74,10 @@ a, li {
   border-top: .3em solid;
   border-right: .3em solid transparent;
   border-left: .3em solid transparent;
+}
+
+#backgroundImg {
+  width: 100%;
+  position: absolute;
+  opacity: 0.37;
 }

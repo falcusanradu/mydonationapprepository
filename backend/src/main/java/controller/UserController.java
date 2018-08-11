@@ -1,6 +1,7 @@
 package controller;
 
 import entity.User;
+import entity.UserTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -69,13 +70,14 @@ public class UserController {
         return new ResponseEntity<User>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateUser(@RequestBody User user) {
+    @RequestMapping(value = "/update/{newUserType}", method = RequestMethod.POST)
+    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable("newUserType") UserTypeEnum newUserType) {
+        Integer companyId = this.manager.findUserById(user).getCompany().getIdCompany();
+        this.manager.deleteCompanyById(companyId);
+        user.setType(newUserType);
         this.manager.saveOrUpdateUser(user);
         return new ResponseEntity<User>(HttpStatus.OK);
     }
-
-
 
 
 }
