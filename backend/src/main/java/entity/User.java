@@ -1,5 +1,7 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,15 +25,18 @@ public class User implements Serializable {
     @Column(unique = true, name = "email")
     private String email;
 
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "type_user", columnDefinition = "ENUM ('ADMIN','COMPANY','MINIMUM')")
+    @Column(name = "type_user", columnDefinition = "ENUM('admin', 'company', 'normal')")
     private UserTypeEnum type;
 
     @ManyToMany(mappedBy = "usersNotification")
+    @JsonIgnore
     private List<Notification> notifications = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_company")
+    @JsonIgnore
     private Company company;
 
     public Integer getId() {

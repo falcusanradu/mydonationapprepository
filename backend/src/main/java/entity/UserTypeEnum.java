@@ -1,11 +1,8 @@
 package entity;
 
 public enum UserTypeEnum {
-    ADMIN("admin"),
-    COMPANY("right1"),
-    MINIMUM("minimum");
+    admin,
+    company,
+    normal;
 
-    UserTypeEnum(String minimum) {
-
-    }
 }

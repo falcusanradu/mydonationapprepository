@@ -1,5 +1,7 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Table(name = "company_table")
@@ -30,6 +32,7 @@ public class Company {
             CascadeType.REMOVE
     })
     @OneToOne(mappedBy = "company")
+    @JsonIgnore
     private User userCompany;
 
     public Integer getIdCompany() {
