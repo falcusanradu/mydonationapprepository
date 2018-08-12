@@ -1,5 +1,6 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -30,12 +31,12 @@ public class User implements Serializable {
     private UserTypeEnum type;
 
     @ManyToMany(mappedBy = "usersNotification")
-    @JsonIgnore
+    @JsonFormat
     private List<Notification> notifications = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_company")
-    @JsonIgnore
+    @JsonFormat
     private Company company;
 
     public Integer getId() {

@@ -22,9 +22,7 @@ export class ManageUsersComponent implements OnInit {
     const user: User = JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
     if (user) {
       if (user.type.toString() === USER_TYPE[USER_TYPE.admin]) {
-        this.backendService.get(`/users`).subscribe(users => {
-          this.users = users;
-        });
+        this.loadUsers();
       } else {
         this.router.navigate(['/LogIn']);
       }
@@ -34,12 +32,19 @@ export class ManageUsersComponent implements OnInit {
 
   }
 
+
+  private loadUsers() {
+    this.backendService.get(`/users`).subscribe(users => {
+      this.users = users;
+    });
+  }
+
   deleteUser(user: User) {
     this.backendService.delete(`/delete/${user.id}`).subscribe();
   }
 
   changeUserType(user: User, newUserType: string) {
-    this.backendService.post(`/update/${this.convertFromStringToUserType(newUserType)}`, user).subscribe();
+    this.backendService.post(`/update/${this.convertFromStringToUserType(newUserType)}`, user).subscribe(() => this.loadUsers());
   }
 
   convertFromStringToUserType(userType: string): any {

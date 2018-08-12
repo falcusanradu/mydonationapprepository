@@ -146,7 +146,7 @@ public class Manager {
      * Deletes a user.
      */
     public void deleteCompanyById(Integer id) {
-        this.companyRepository.delete(id);
+        this.companyRepository.deleteCompaniesById(id);
     }
 
 

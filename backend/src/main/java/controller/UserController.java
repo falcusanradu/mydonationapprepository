@@ -72,10 +72,17 @@ public class UserController {
 
     @RequestMapping(value = "/update/{newUserType}", method = RequestMethod.POST)
     public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable("newUserType") UserTypeEnum newUserType) {
-        Integer companyId = this.manager.findUserById(user).getCompany().getIdCompany();
-        this.manager.deleteCompanyById(companyId);
+        boolean deleteCompany = this.manager.findUserById(user).getCompany() != null;
+        Integer companyId = null;
+        if (deleteCompany) {
+            companyId = this.manager.findUserById(user).getCompany().getIdCompany();
+        }
+        user.setCompany(null);
         user.setType(newUserType);
         this.manager.saveOrUpdateUser(user);
+        if (deleteCompany) {
+            this.manager.deleteCompanyById(companyId);
+        }
         return new ResponseEntity<User>(HttpStatus.OK);
     }
 

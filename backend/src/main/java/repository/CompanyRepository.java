@@ -14,4 +14,12 @@ public interface CompanyRepository extends CrudRepository<Company, Integer> {
     @Modifying(clearAutomatically = true)
     @Query(value = "INSERT INTO product_table (description,image) VALUES (:description, :image)", nativeQuery = true)
     void insertProductWithGivenDescriptionAndImage(@Param("description") String description, @Param("image") String image);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("delete from Company c where c.idCompany= ?1")
+    void deleteCompaniesById(@Param("id") Integer id);
+
+
+
 }
