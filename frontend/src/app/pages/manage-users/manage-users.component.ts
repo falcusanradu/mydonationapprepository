@@ -19,6 +19,8 @@ export class ManageUsersComponent extends AbstractTable implements OnInit, DoChe
   // for filter
   searchInput = '';
   oldSearchInput = '';
+  // delete user
+  userToDelete ;
 
   constructor(private backendService: BackendService,
               private sessionValues: SessionValues,
@@ -66,8 +68,15 @@ export class ManageUsersComponent extends AbstractTable implements OnInit, DoChe
     });
   }
 
-  deleteUser(user: User) {
-    this.backendService.delete(`/delete/${user.id}`).subscribe(() => this.loadUsers());
+  deleteUser() {
+    this.backendService.delete(`/delete/${this.userToDelete.id}`).subscribe(() => this.loadUsers());
+
+  }
+
+  openModal(user: User) {
+    this.userToDelete = user;
+    const openModalBtn = document.getElementById('openModalBtn');
+    openModalBtn.click();
   }
 
   changeUserType(user: User, newUserType: string) {
