@@ -71,6 +71,10 @@ export class Translate {
       ID: 'searchDropDown.category',
       de: 'Suche nach Kategorie',
       en: ' Search by category'
+    }, {
+      ID: 'searchByUsername',
+      de: 'Suche nach Benutzername',
+      en: ' Search by username'
     },
 
     // -----------------------------------------------------------------------------------
