@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {Headers, RequestOptions} from '@angular/http';
+import {User} from '../models/interfaces';
+import {SessionValues} from '../models/constants';
 
 const DEFAULT_URL = 'http://localhost:8080';
 
@@ -11,7 +13,7 @@ export class BackendService {
   headers = new Headers({'Content-Type': 'application/json'});
   options = new RequestOptions({headers: this.headers});
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private sessionValues: SessionValues) {
   }
 
   public get(url: string): Observable<any> {
@@ -41,5 +43,9 @@ export class BackendService {
     return this.httpClient.delete(DEFAULT_URL + url, request);
   }
 
+
+  getSessionUser(): User {
+    return JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
+  }
 
 }

@@ -5,6 +5,7 @@ import {SessionValues} from '../../models/constants';
 import {Translate} from '../../services/translate.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Http} from '@angular/http';
+import {User} from '../../models/interfaces';
 
 interface Base64Img {
   login: string;
@@ -151,6 +152,17 @@ export class HeaderComponent implements OnInit {
 
   openContent() {
     this.openNavigation = !this.openNavigation;
+  }
+
+  userHasCOmpany() {
+    if (!this.isSession()) {
+      return false;
+    }
+    const user: User = this.backendService.getSessionUser();
+    if (user.company) {
+      return true;
+    }
+    return false;
   }
 
 }

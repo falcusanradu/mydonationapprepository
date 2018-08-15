@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import { StompService } from 'ng2-stomp-service';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -25,6 +24,7 @@ import {DonateSomethingComponent} from './pages/donate-something/donate-somethin
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
+import {ManageCompanyComponent} from './pages/manage-company/manage-company.component';
 
 export function createTranslateLoader(http_: HttpClient) {
   return new TranslateHttpLoader(http_, 'assets/i18n/', '.json');
@@ -42,6 +42,7 @@ export function createTranslateLoader(http_: HttpClient) {
     DonateSomethingComponent,
     ChatComponent,
     ManageUsersComponent,
+    ManageCompanyComponent
   ],
   imports: [
     BrowserModule,

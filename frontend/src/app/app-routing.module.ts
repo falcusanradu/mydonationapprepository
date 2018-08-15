@@ -7,6 +7,7 @@ import {ResetPasswordComponent} from './pages/reset-password/reset-password.comp
 import {DonateComponent} from './pages/manage donations/donate.component';
 import {DonateSomethingComponent} from './pages/donate-something/donate-something.component';
 import {ManageUsersComponent} from './pages/manage-users/manage-users.component';
+import {ManageCompanyComponent} from './pages/manage-company/manage-company.component';
 
 const routes: Routes = [
   //TODO: AuthGuard
@@ -34,6 +35,9 @@ const routes: Routes = [
 
   {
     path: 'manage-users', component: ManageUsersComponent
+  },
+  {
+    path: 'manage-company', component: ManageCompanyComponent
   },
 
   //TODO: AuthGuard

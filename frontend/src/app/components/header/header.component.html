@@ -12,6 +12,8 @@
             <a class="nav-link" routerLink="app-donate-something">donate something</a>
             <a class="nav-link" routerLink="app-donate">manage donations</a>
             <a class="nav-link" routerLink="app-chat">Chat</a>
+            <a *ngIf="isSession() && !userHasCOmpany()" class="nav-link" routerLink="manage-company">create company</a>
+            <a *ngIf="isSession() && userHasCOmpany()" class="nav-link" routerLink="manage-company">manage company</a>
             <a class="nav-link" routerLink="manage-users">manage users</a>
           </div>
         </div>
