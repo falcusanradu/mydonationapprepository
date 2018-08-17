@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.mail.iap.Response;
 import entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class CompanyController {
 
     @RequestMapping(value = "/companies", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Company> games() {
+    public Iterable<Company> getAllCompanies() {
         return this.manager.getAllCompanies();
     }
 
@@ -49,5 +50,12 @@ public class CompanyController {
         this.manager.deleteCompanyById(id);
         return new ResponseEntity<Company>(HttpStatus.OK);
     }
+
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateCompany(@RequestBody Company company) throws Exception {
+        manager.saveOrUpdateCompany(company);
+    }
+
 
 }

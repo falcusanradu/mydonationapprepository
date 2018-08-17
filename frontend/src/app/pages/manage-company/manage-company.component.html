@@ -4,14 +4,14 @@
     <label for="companyName" class="col-sm-2 col-form-label">Company Name</label>
     <div class="col-sm-10">
       <input [disabled]="disabled" type="input" class="form-control" id="companyName"
-             placeholder="Enter company name here" name="companyNameInput" [(ngModel)]="loggedUser.company.name">
+             placeholder="Enter company name here" name="companyNameInput" [(ngModel)]="name">
     </div>
   </div>
   <div class="form-group row">
     <label for="companyEmail" class="col-sm-2 col-form-label">Company Email</label>
     <div class="col-sm-10">
       <input [disabled]="disabled" type="email" class="form-control" id="companyEmail"
-             placeholder="Enter company email here" name="companyEmailInput" [(ngModel)]="loggedUser.company.email">
+             placeholder="Enter company email here" name="companyEmailInput" [(ngModel)]="email">
     </div>
   </div>
   <div class="form-group row">
@@ -19,20 +19,20 @@
     <div class="col-sm-10">
       <input [disabled]="disabled" type="email" class="form-control" id="companyAddress"
              placeholder="Enter company address here" name="companyAddressInput"
-             [(ngModel)]="loggedUser.company.address">
+             [(ngModel)]="address">
     </div>
   </div>
   <div class="form-group row">
     <label for="companyDescription" class="col-sm-2 col-form-label">Company Description</label>
     <div class="col-sm-10">
       <textarea [disabled]="disabled" id="companyDescription" class="form-control" name="paragraph_text" cols="50"
-                rows="10" name="companyDescriptionInput" [(ngModel)]="loggedUser.company.description"></textarea>
+                rows="10" name="companyDescriptionInput" [(ngModel)]="description"></textarea>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Company Image</label>
     <div class="col-sm-10">
-      <img *ngIf="disabled" [src]="trustImage(loggedUser.company.image)" alt="photo" height="70"/>
+      <img *ngIf="disabled" [src]="trustImage(image)" alt="photo" height="70"/>
       <ng-container *ngIf="!disabled">
         <input id="uploadInput" type="file" class="btn btn-default" (change)="onFileSelected($event)">
         <button class="btn btn-default" (click)="uploadFile()">save</button>
@@ -43,16 +43,16 @@
     <div class="row">
       <legend class="col-form-label col-sm-2 pt-0">Category</legend>
       <div class="col-sm-10">
-        <ng-container *ngFor="let category of companyCategory">
+        <ng-container *ngFor="let companyCategory of companyCategory">
           <div class="form-check">
-            <input *ngIf="loggedUser.company.category !== category" [disabled]="disabled" class="form-check-input"
-                   type="radio" name="gridRadios" [id]="category"
-                   [value]="category">
-            <input *ngIf="loggedUser.company.category === category" [disabled]="disabled" class="form-check-input"
-                   type="radio" name="gridRadios" [id]="category"
-                   [value]="category" checked>
-            <label class="form-check-label" [for]="category">
-              {{category}}
+            <input *ngIf="category !== companyCategory" [disabled]="disabled" class="form-check-input"
+                   type="radio" name="gridRadios" [id]="companyCategory"
+                   [value]="companyCategory">
+            <input *ngIf="category === companyCategory" [disabled]="disabled" class="form-check-input"
+                   type="radio" name="gridRadios" [id]="companyCategory"
+                   [value]="companyCategory" checked>
+            <label class="form-check-label" [for]="companyCategory">
+              {{companyCategory}}
             </label>
             <br>
           </div>
@@ -64,7 +64,7 @@
     <div class="col-sm-10">
       <button *ngIf="disabled" type="submit" class="btn btn-default" (click)="edit()">Edit</button>
       <button *ngIf="!disabled && hasCompany()" type="submit" class="btn btn-default" (click)="cancel()">Cancel</button>
-      <button *ngIf="!disabled" type="submit" class="btn btn-default" (click)="cancel()">Save</button>
+      <button *ngIf="!disabled" type="submit" class="btn btn-default" (click)="saveActions()">Save actions</button>
     </div>
   </div>
 </form>

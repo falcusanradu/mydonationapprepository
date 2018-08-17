@@ -141,7 +141,6 @@ public class Manager {
     }
 
 
-
     /**
      * Deletes a user.
      */
@@ -152,6 +151,17 @@ public class Manager {
 
     public User findUserById(User user) {
         return this.userRepository.findById(user.getId());
+    }
+
+    public User findUserById(Integer id) {
+        return this.userRepository.findById(id);
+    }
+
+    public void saveOrUpdateCompany(Company company) {
+//        final User user = this.userRepository.findUserByCompanyIdCompany(company.getIdCompany());
+//        user.setCompany(company);
+//        this.saveOrUpdateUser(user);
+        this.companyRepository.save(company);
     }
 
 

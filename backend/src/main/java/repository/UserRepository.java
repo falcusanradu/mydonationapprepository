@@ -35,6 +35,10 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Query(value = "UPDATE user_table SET password= :password WHERE username= :username", nativeQuery = true)
     void updateUserPasswordByUsername(@Param("username") String username, @Param("password") String password);
 
+    @Transactional
+//    @Query(value = "UPDATE user_table SET password= :password WHERE username= :username", nativeQuery = true)
+    User findUserByCompanyIdCompany(@Param("id_company") Integer idCompany);
+
 }
 
 

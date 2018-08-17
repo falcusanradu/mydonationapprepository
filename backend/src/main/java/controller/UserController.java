@@ -87,4 +87,14 @@ public class UserController {
     }
 
 
+    @RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findUserById(@PathVariable("id") Integer id) {
+        User user = this.manager.findUserById(id);
+        if (user == null)
+            return new ResponseEntity<>("404", HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
 }

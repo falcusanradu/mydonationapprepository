@@ -25,6 +25,7 @@ export class BackendService {
     if (!request) {
       return this.httpClient.put(DEFAULT_URL + url, this.options);
     }
+    console.log('URL + request', DEFAULT_URL + url, request);
     return this.httpClient.put(DEFAULT_URL + url, request);
   }
 
