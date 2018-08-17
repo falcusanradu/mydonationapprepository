@@ -36,9 +36,12 @@ public class Manager {
     }
 
 
-    public void uploadFile(byte[] file, String fileName) {
+    public void uploadFile(byte[] file, String fileName, Integer companyId) {
         String encodedImage = Base64.getEncoder().encodeToString(file);
-        this.companyRepository.insertProductWithGivenDescriptionAndImage(fileName, encodedImage);
+        final Company company = this.companyRepository.findOne(companyId);
+        company.setImage(encodedImage);
+        this.companyRepository.save(company);
+//        this.companyRepository.insertProductWithGivenDescriptionAndImage(fileName, encodedImage);
     }
 
 
@@ -162,6 +165,13 @@ public class Manager {
 //        user.setCompany(company);
 //        this.saveOrUpdateUser(user);
         this.companyRepository.save(company);
+    }
+
+    public void createCompanyForSpecificUser(Integer userId) {
+        final User user = this.userRepository.findById(userId);
+        Company company = new Company();
+        user.setCompany(company);
+        this.userRepository.save(user);
     }
 
 

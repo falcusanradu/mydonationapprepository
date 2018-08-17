@@ -12,7 +12,8 @@
             <!--<a class="nav-link" routerLink="app-donate-something">donate something</a>-->
             <!--<a class="nav-link" routerLink="app-donate">manage donations</a>-->
             <a class="nav-link" routerLink="app-chat">Chat</a>
-            <a *ngIf="isSession() && !userHasCOmpany()" class="nav-link" routerLink="manage-company">create company</a>
+            <a *ngIf="isSession() && !userHasCOmpany()" class="nav-link"
+               (click)="openModal()">create company</a>
             <a *ngIf="isSession() && userHasCOmpany()" class="nav-link" routerLink="manage-company">manage company</a>
             <a class="nav-link" routerLink="manage-users">manage users</a>
           </div>
@@ -51,3 +52,33 @@
 
 
 <img id="backgroundImg" [src]="getBackgroundImg()">
+
+<!--modal-->
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button hidden id="openModalBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+    Open Modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>Are you sure that you want to create a company?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button routerLink="manage-company" type="button" class="btn btn-success" data-dismiss="modal"
+                  (click)="createCompany()">Create
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

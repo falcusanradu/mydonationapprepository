@@ -1,6 +1,5 @@
 package controller;
 
-import com.sun.mail.iap.Response;
 import entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,10 +37,10 @@ public class CompanyController {
         return imagesText.get(0);
     }
 
-    @RequestMapping(value = "/uploadFile/{fileName}", method = RequestMethod.POST, produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "/uploadFile/{fileName}/{companyId}", method = RequestMethod.POST, produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody
-    public void uploadFile(@RequestBody byte[] file, @PathVariable String fileName) {
-        this.manager.uploadFile(file, fileName);
+    public void uploadFile(@RequestBody byte[] file, @PathVariable String fileName, @PathVariable Integer companyId) {
+        this.manager.uploadFile(file, fileName, companyId);
     }
 
 
@@ -54,8 +53,12 @@ public class CompanyController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateCompany(@RequestBody Company company) throws Exception {
-        manager.saveOrUpdateCompany(company);
+        this.manager.saveOrUpdateCompany(company);
     }
 
+    @RequestMapping(value = "/createCompany/{userId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createCompanyForUser(@PathVariable("userId") Integer userId) {
+        this.manager.createCompanyForSpecificUser(userId);
+    }
 
 }

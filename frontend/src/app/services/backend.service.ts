@@ -13,6 +13,12 @@ export class BackendService {
   headers = new Headers({'Content-Type': 'application/json'});
   options = new RequestOptions({headers: this.headers});
 
+  // for upload
+
+  imageHeaders = new Headers({'Content-Type': 'images/jpeg'});
+  imageOptions = new RequestOptions({headers: this.headers});
+
+
   constructor(private httpClient: HttpClient, private sessionValues: SessionValues) {
   }
 
@@ -30,6 +36,7 @@ export class BackendService {
   }
 
   public post(url: string, request?: any): Observable<any> {
+    console.log('posttttttttttttt', DEFAULT_URL + url, request);
     if (!request) {
       return this.httpClient.post(DEFAULT_URL + url, this.options);
     }
@@ -48,5 +55,12 @@ export class BackendService {
   getSessionUser(): User {
     return JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
   }
+
+
+  uploadFile(url: string, body): Observable<any> {
+    // this.headers.append('Access-Control-Allow-Origin','*');
+    return this.httpClient.post(DEFAULT_URL + url, body);
+  }
+
 
 }

@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
   private apiHost: string = './assets/images-base64/log-in-out.json';
 
   private images: Base64Img;
+  hasCompany;
 
   constructor(private translateService: Translate, private router: Router, private backendService: BackendService,
               private sessionValues: SessionValues, private sanitizer: DomSanitizer, private http: Http) {
@@ -38,6 +39,11 @@ export class HeaderComponent implements OnInit {
       sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
     }
     this.getImages();
+    if (this.userHasCOmpany()) {
+      this.hasCompany = true;
+    } else {
+      this.hasCompany = false;
+    }
   }
 
   /**
@@ -164,5 +170,16 @@ export class HeaderComponent implements OnInit {
     }
     return false;
   }
+
+
+  createCompany() {
+    this.backendService.post(`/company/createCompany/${this.backendService.getSessionUser().id}`).subscribe(() => this.hasCompany = true);
+  }
+
+  private openModal() {
+    const openModalBtn = document.getElementById('openModalBtn');
+    openModalBtn.click();
+  }
+
 
 }
