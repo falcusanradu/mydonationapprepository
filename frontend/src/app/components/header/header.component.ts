@@ -173,7 +173,10 @@ export class HeaderComponent implements OnInit {
 
 
   createCompany() {
-    this.backendService.post(`/company/createCompany/${this.backendService.getSessionUser().id}`).subscribe(() => this.hasCompany = true);
+    this.backendService.post(`/company/createCompany/${this.backendService.getSessionUser().id}`).subscribe(() => {
+      this.hasCompany = true;
+      // location.reload();
+    });
   }
 
   private openModal() {

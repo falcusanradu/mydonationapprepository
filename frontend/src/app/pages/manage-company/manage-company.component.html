@@ -32,7 +32,7 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Company Image</label>
     <div class="col-sm-10">
-      <img *ngIf="disabled" [src]="trustImage(this.loggedUser.company.image)" alt="photo" height="70"/>
+      <img *ngIf="disabled && loggedUser.company" [src]="trustImage(this.loggedUser.company.image)" alt="photo" height="70"/>
       <ng-container *ngIf="!disabled">
         <input id="uploadInput" type="file" class="btn btn-default" (change)="onFileSelected($event)">
         <!--<button class="btn btn-default" (click)="uploadFile()">save</button>-->

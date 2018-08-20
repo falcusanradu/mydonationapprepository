@@ -3,6 +3,7 @@ import {CategoryEnum, User} from '../../models/interfaces';
 import {BackendService} from '../../services/backend.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DonateService} from '../manage donations/donate.service';
+import {SessionValues} from '../../models/constants';
 
 @Component({
   selector: 'app-manage-company',
@@ -20,6 +21,8 @@ export class ManageCompanyComponent implements OnInit {
   // for upload file
   file: File = null;
 
+  // sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
+
   companyCategory: any[] = [];
 
   disabled = true;
@@ -28,11 +31,17 @@ export class ManageCompanyComponent implements OnInit {
   errorMsg: string = 'Fields must not be empty';
   error = false;
 
-  constructor(private backendService: BackendService, private sanitizer: DomSanitizer, private donateService: DonateService) {
+  constructor(private sessionValues: SessionValues, private backendService: BackendService, private sanitizer: DomSanitizer, private donateService: DonateService) {
   }
 
   ngOnInit() {
-    this.loadLoggedUserWithCompany();
+    this.backendService.get(`/getUser/${this.backendService.getSessionUser().id}`).subscribe((data) => {
+      sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
+      this.loadLoggedUserWithCompany();
+      if (!this.loggedUser.company.name) {
+        this.disabled = false;
+      }
+    });
   }
 
   trustImage(image) {
@@ -44,11 +53,15 @@ export class ManageCompanyComponent implements OnInit {
   }
 
   cancel() {
+    this.setAttributes();
     this.error = false;
     this.disabled = true;
   }
 
   hasCompany() {
+    if (!this.loggedUser.company) {
+      return false;
+    }
     if (this.loggedUser.company.idCompany) {
       return true;
     }
@@ -57,6 +70,9 @@ export class ManageCompanyComponent implements OnInit {
 
   fieldsNotEmpty(): boolean {
     const nullCheck: boolean = this.name != null && this.email != null && this.address != null && this.description != null && this.category != null;
+    if (nullCheck == false) {
+      return false;
+    }
     const emptyCheck: boolean = this.name.length > 0 && this.email.length > 0 && this.address.length > 0 && this.description.length > 0;
     return nullCheck && emptyCheck;
   }
@@ -117,12 +133,14 @@ export class ManageCompanyComponent implements OnInit {
   }
 
   private setAttributes() {
-    this.name = this.loggedUser.company.name;
-    this.email = this.loggedUser.company.email;
-    this.address = this.loggedUser.company.address;
-    this.description = this.loggedUser.company.description;
-    this.image = this.loggedUser.company.image;
-    this.category = this.loggedUser.company.category;
+    if (this.loggedUser.company) {
+      this.name = this.loggedUser.company.name;
+      this.email = this.loggedUser.company.email;
+      this.address = this.loggedUser.company.address;
+      this.description = this.loggedUser.company.description;
+      this.image = this.loggedUser.company.image;
+      this.category = this.loggedUser.company.category;
+    }
   }
 
   private setInverseAttributes() {
