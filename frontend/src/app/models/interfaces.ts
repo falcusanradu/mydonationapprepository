@@ -4,8 +4,8 @@ export interface User {
   password: string;
   email: string;
   type: USER_TYPE;
-  notifications: Notification[];
   company: Company;
+  notifications: Notification[];
 }
 
 export enum USER_TYPE {
@@ -34,8 +34,9 @@ export enum CategoryEnum {
 
 export interface Notification {
   idNotification: number;
-  idUser: number;
+  message: string;
   read: Boolean;
-  usersNotification: User[];
+  userTo: User;
+  usernameFrom: string;
 
 }

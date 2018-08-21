@@ -1,7 +1,10 @@
 package entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,37 +13,27 @@ import java.util.List;
 
 @Table(name = "notification_table")
 @Entity
-public class Notification implements Serializable {
+public class Notification {
 
     @Id
-    @Column(name = "idNotification")
+    @Column(name = "id_notification")
     private Integer idNotification;
 
     @Column(name = "message")
-    private Integer idUser;
+    private String message;
 
     @Column(name = "message_read")
     private Boolean read;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.REMOVE
-    })
-    @JoinTable(name = "user_notification",
-            joinColumns = @JoinColumn(name = "idNotification"),
-            inverseJoinColumns = @JoinColumn(name = "idUser")
-    )
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user_to")
     @JsonIgnore
-    private List<User> usersNotification = new ArrayList<>();
+    private User userTo;
 
-    public Integer getIdUser() {
-        return idUser;
-    }
+    @Column(name = "username_from")
+    private String usernameFrom;
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
-    }
 
     public Integer getIdNotification() {
         return idNotification;
@@ -50,12 +43,12 @@ public class Notification implements Serializable {
         this.idNotification = idNotification;
     }
 
-    public List<User> getUsersNotification() {
-        return usersNotification;
+    public String getMessage() {
+        return message;
     }
 
-    public void setUsersNotification(List<User> usersNotification) {
-        this.usersNotification = usersNotification;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Boolean getRead() {
@@ -65,4 +58,21 @@ public class Notification implements Serializable {
     public void setRead(Boolean read) {
         this.read = read;
     }
+
+    public User getUserTo() {
+        return userTo;
+    }
+
+    public void setUserTo(User userTo) {
+        this.userTo = userTo;
+    }
+
+    public String getUsernameFrom() {
+        return usernameFrom;
+    }
+
+    public void setUsernameFrom(String usernameFrom) {
+        this.usernameFrom = usernameFrom;
+    }
+
 }

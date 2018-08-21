@@ -80,7 +80,12 @@ export class ManageUsersComponent extends AbstractTable implements OnInit, DoChe
   }
 
   changeUserType(user: User, newUserType: string) {
-    this.backendService.post(`/update/${this.convertFromStringToUserType(newUserType)}`, user).subscribe(() => this.loadUsers());
+    this.backendService.post(`/update/${this.convertFromStringToUserType(newUserType)}`, user).subscribe(() => {
+      this.loadUsers();
+      this.backendService.get(`/getUser/${this.backendService.getSessionUser().id}`).subscribe((data) => {
+        sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
+      });
+    });
   }
 
   convertFromStringToUserType(userType: string): any {

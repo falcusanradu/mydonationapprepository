@@ -22,9 +22,10 @@ import {DonateComponent} from './pages/manage donations/donate.component';
 import {DonateService} from './pages/manage donations/donate.service';
 import {DonateSomethingComponent} from './pages/donate-something/donate-something.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { ChatComponent } from './pages/chat/chat.component';
-import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
+import {ChatComponent} from './pages/chat/chat.component';
+import {ManageUsersComponent} from './pages/manage-users/manage-users.component';
 import {ManageCompanyComponent} from './pages/manage-company/manage-company.component';
+import {WebSocketService} from './services/webSocket';
 
 export function createTranslateLoader(http_: HttpClient) {
   return new TranslateHttpLoader(http_, 'assets/i18n/', '.json');
@@ -59,7 +60,7 @@ export function createTranslateLoader(http_: HttpClient) {
       }
     })
   ],
-  providers: [UserService, BackendService, AuthGuard, LogInComponent, ResetPasswordComponent, CanNotActivate, StoredUser, SessionValues,
+  providers: [WebSocketService, UserService, BackendService, AuthGuard, LogInComponent, ResetPasswordComponent, CanNotActivate, StoredUser, SessionValues,
     Translate, DonateService],
   bootstrap: [AppComponent]
 })

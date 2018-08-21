@@ -144,11 +144,13 @@ export class ManageCompanyComponent implements OnInit {
   }
 
   private setInverseAttributes() {
-    this.loggedUser.company.name = this.name;
-    this.loggedUser.company.email = this.email;
-    this.loggedUser.company.address = this.address;
-    this.loggedUser.company.description = this.description;
-    this.loggedUser.company.category = this.category;
+    if (this.loggedUser.company) {
+      this.loggedUser.company.name = this.name;
+      this.loggedUser.company.email = this.email;
+      this.loggedUser.company.address = this.address;
+      this.loggedUser.company.description = this.description;
+      this.loggedUser.company.category = this.category;
+    }
   }
 
 }

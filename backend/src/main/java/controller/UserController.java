@@ -97,4 +97,11 @@ public class UserController {
     }
 
 
+    @RequestMapping(value = "/findByUsername/{username}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public User findUserByUsername(@PathVariable("username") String username) {
+        return this.manager.findUserByUsername(username);
+    }
+
+
 }

@@ -1,10 +1,12 @@
 package manager;
 
 import entity.Company;
+import entity.Notification;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.CompanyRepository;
+import repository.NotificationRepository;
 import repository.UserRepository;
 
 import java.util.*;
@@ -29,6 +31,9 @@ public class Manager {
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
 
     public Iterable<Company> getAllCompanies() {
@@ -172,6 +177,20 @@ public class Manager {
         Company company = new Company();
         user.setCompany(company);
         this.userRepository.save(user);
+    }
+
+    public User findUserByUsername(String username) {
+        return this.userRepository.findByUsername(username);
+    }
+
+
+    public Iterable<Notification> findAllNotifications() {
+        return this.notificationRepository.findAll();
+    }
+
+
+    public void saveNotification(final Notification notification) {
+        this.notificationRepository.save(notification);
     }
 
 

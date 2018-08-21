@@ -6,14 +6,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@ComponentScan({"controller", "manager"})
+@ComponentScan({"controller", "manager", "config"})
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "repository")
 @EntityScan(basePackages = "entity")
 public class DonationAppApplication {
 
     public static void main(String[] args) {
-
 
 
         SpringApplication.run(DonationAppApplication.class, args);

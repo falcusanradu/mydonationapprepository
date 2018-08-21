@@ -31,21 +31,12 @@ CONSTRAINT company_fk Foreign key (id_company) references company_table(id_compa
 CREATE TABLE notification_table(
 id_notification INTEGER NOT NULL AUTO_INCREMENT,
 message VARCHAR(255),
+id_user_to INTEGER NOT NULL,
+username_from VARCHAR(255),
 message_read boolean,
-PRIMARY KEY (id_notification)
+PRIMARY KEY (id_notification),
+CONSTRAINT notification_fk Foreign key (id_user_to) references user_table(id_user)
 );
-
-
-CREATE TABLE user_notification(
-id_user INTEGER NOT NULL,
-id_notification INTEGER,
-CONSTRAINT PRIMARY KEY (id_user,id_notification),
-CONSTRAINT user_fk Foreign key (id_user) references user_table(id_user),
-CONSTRAINT notification_fk Foreign key (id_notification) references notification_table(id_notification)
-);
-
-
-
 
 
 -- companies
@@ -113,5 +104,11 @@ INSERT INTO user_table (username , password , email, type_user, id_company)
 VALUES ('c10', 'c10', 'c10@yahoo.com', "company", '10');
 
 
+-- notifications
+
+INSERT INTO notification_table(message,id_user_to,username_from,message_read) VALUES ('message1','1','admin',true);
+INSERT INTO notification_table(message,id_user_to,username_from,message_read) VALUES ('message21331','2','admin',true);
+INSERT INTO notification_table(message,id_user_to,username_from,message_read) VALUES ('message','1','2',true);
+INSERT INTO notification_table(message,id_user_to,username_from,message_read) VALUES ('message423','1','3',true);
 
 
