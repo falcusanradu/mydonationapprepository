@@ -40,7 +40,6 @@ public class Manager {
         return companyRepository.findAll();
     }
 
-
     public void uploadFile(byte[] file, String fileName, Integer companyId) {
         String encodedImage = Base64.getEncoder().encodeToString(file);
         final Company company = this.companyRepository.findOne(companyId);
@@ -166,9 +165,6 @@ public class Manager {
     }
 
     public void saveOrUpdateCompany(Company company) {
-//        final User user = this.userRepository.findUserByCompanyIdCompany(company.getIdCompany());
-//        user.setCompany(company);
-//        this.saveOrUpdateUser(user);
         this.companyRepository.save(company);
     }
 
@@ -187,7 +183,6 @@ public class Manager {
     public Iterable<Notification> findAllNotifications() {
         return this.notificationRepository.findAll();
     }
-
 
     public void saveNotification(final Notification notification) {
         this.notificationRepository.save(notification);

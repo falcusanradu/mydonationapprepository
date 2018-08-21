@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Notification;
+import entity.User;
 import manager.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,9 +21,11 @@ public class NotificationsController {
     }
 
 
+
+
     @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void register(@RequestBody Notification notification) {
+    public void persistNotification(@RequestBody final Notification notification) {
         this.manager.saveNotification(notification);
 
     }

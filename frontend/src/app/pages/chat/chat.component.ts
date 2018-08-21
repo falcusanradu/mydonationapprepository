@@ -3,6 +3,7 @@ import {SessionValues} from '../../models/constants';
 import {Router} from '@angular/router';
 import {BackendService} from '../../services/backend.service';
 import {WebSocketService} from '../../services/webSocket';
+import {Notification} from '../../models/interfaces';
 
 @Component({
   selector: 'app-chat',
@@ -15,9 +16,22 @@ export class ChatComponent implements OnInit {
   message = '';
   usernameToSend = '';
   notifications = ['312321', 'sadddddddddddsadddddddddddddddddddddddddddddadsaddddddddddddddddddddddddddddsadddddddddddddddddddddddddddddadsaddddddddddddddddddddddddddddsadddddddddddddddddddddddddddddadsaddddddddddddddddddddddddddddddddddddddddddddddadsadddddddddddddddddddddddddddd'];
+  usernameTo = null;
 
   constructor(private sessionValue: SessionValues, private router: Router, private backendService: BackendService,
               private webSocketService: WebSocketService) {
+    let stompClient = this.webSocketService.connect();
+
+    stompClient.connect({}, frame => {
+
+      stompClient.subscribe('/topic/notification', notifications => {
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        // this.notifications = JSON.parse(notifications.body).count;
+        this.backendService.get(`/notification/notifications`).subscribe((response) => this.notifications = response);
+
+      });
+
+    });
   }
 
   ngOnInit() {
@@ -25,7 +39,10 @@ export class ChatComponent implements OnInit {
     //   this.router.navigate(['LogIn']);
     // }
     this.backendService.get('/users').subscribe((users) => this.users = users);
-    this.backendService.get(`/notification/notifications`).subscribe((response) => this.notifications = response);
+    this.backendService.get(`/notification/notifications`).subscribe((response) => {
+      this.notifications = response;
+      this.backendService.get(`/notification/notifications`).subscribe((response) => this.notifications = response);
+    });
   }
 
 
@@ -34,27 +51,19 @@ export class ChatComponent implements OnInit {
       if (!response) {
         alert('username not good');
       } else {
-        let notification: Notification = {
-          idNotification: null,
-          message: this.message,
-          read: false,
-          userTo : this.backendService.getSessionUser();
-
-
-        };
-        this.backendService.post(`/notification/save`,);
-        const stompClient = this.webSocketService.connect();
-
-        stompClient.connect({}, frame => {
-
-          console.log('before subs');
-          stompClient.subscribe('/topic/notification', notifications => {
-            console.log('before subs');
-            this.notifications = JSON.parse(notifications.body).count;
-            this.backendService.get(`/notification/notifications`).subscribe((response) => this.notifications = response);
-          });
-
+        this.usernameTo = response.username;
+        const notification: Notification = {
+            idNotification: null,
+            message: this.message,
+            read: false,
+            usernameTo: this.usernameTo,
+            usernameFrom: this.backendService.getSessionUser().username
+          }
+        ;
+        this.backendService.post(`/notification/save`, notification).subscribe(() => {
+          this.webSocketService.notifyTheOtherClients().subscribe();
         });
+
       }
     });
   }

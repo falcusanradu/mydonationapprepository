@@ -5,7 +5,6 @@ export interface User {
   email: string;
   type: USER_TYPE;
   company: Company;
-  notifications: Notification[];
 }
 
 export enum USER_TYPE {
@@ -36,7 +35,7 @@ export interface Notification {
   idNotification: number;
   message: string;
   read: Boolean;
-  userTo: User;
+  usernameTo: string;
   usernameFrom: string;
 
 }

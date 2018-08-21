@@ -103,5 +103,4 @@ public class UserController {
         return this.manager.findUserByUsername(username);
     }
 
-
 }

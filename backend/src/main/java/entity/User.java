@@ -34,12 +34,9 @@ public class User implements Serializable {
     @JsonFormat
     private Company company;
 
-    @OneToMany(
-            mappedBy = "userTo"
-    )
-    @JsonIgnore
-    private List<Notification> notifications;
+    public User() {
 
+    }
 
     public Integer getId() {
         return id;
@@ -90,11 +87,4 @@ public class User implements Serializable {
         this.company = company;
     }
 
-    public List<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(List<Notification> notifications) {
-        this.notifications = notifications;
-    }
 }

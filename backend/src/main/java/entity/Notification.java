@@ -1,21 +1,15 @@
 package entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Table(name = "notification_table")
 @Entity
-public class Notification {
+public class Notification implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_notification")
     private Integer idNotification;
 
@@ -26,14 +20,15 @@ public class Notification {
     private Boolean read;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user_to")
-    @JsonIgnore
-    private User userTo;
+    @JoinColumn(name = "username_to")
+//    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private String usernameTo;
 
     @Column(name = "username_from")
     private String usernameFrom;
 
+    public Notification() {
+    }
 
     public Integer getIdNotification() {
         return idNotification;
@@ -59,12 +54,12 @@ public class Notification {
         this.read = read;
     }
 
-    public User getUserTo() {
-        return userTo;
+    public String getUsernameTo() {
+        return usernameTo;
     }
 
-    public void setUserTo(User userTo) {
-        this.userTo = userTo;
+    public void setUsernameTo(String usernameTo) {
+        this.usernameTo = usernameTo;
     }
 
     public String getUsernameFrom() {
