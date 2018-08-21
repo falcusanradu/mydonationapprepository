@@ -1,6 +1,26 @@
 <div class="modal-body row">
   <!--left-->
   <div class="col-xs-12 col-sm-6">
+    <table class="table">
+      <thead class="thead-default">
+      <th>date</th>
+      <th>from</th>
+      <th>message</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let notification of notifications | paginate : {itemsPerPage: 5, currentPage: notification}">
+        <td scope="col">{{notification.notificationTime | date }}</td>
+        <td scope="col">{{notification.usernameFrom}}</td>
+        <td scope="col"> {{notification.message}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="notification =$event"></pagination-controls>
+  </div>
+
+
+  <!--right-->
+  <div class="col-xs-12 col-sm-6">
     <form class="form-inline d-flex dropdown">
       <input class="form-check-input" type="text" placeholder="Message to" id="menu1" data-toggle="dropdown"
              name="usernameToSend" [(ngModel)]="usernameToSend">
@@ -15,14 +35,6 @@
     <textarea id="sendMsgArea" class="form-control" name="paragraph_text" cols="50"
               rows="10" name="companyDescriptionInput" [(ngModel)]="message"></textarea>
     <button class="btn btn-default" type="submit" (click)="checkUser()">Send notification</button>
-  </div>
-  <!--right-->
-  <div class="col-xs-12 col-sm-6">
-    <ng-container *ngFor="let notification of notifications">
-      <legend> {{notification.usernameFrom}}</legend>
-      <legend> {{notification.usernameTo}}</legend>
-      <textarea disabled>{{notification.message}}</textarea>
-    </ng-container>
   </div>
 
 </div>

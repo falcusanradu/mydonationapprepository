@@ -3,6 +3,7 @@ package entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 
 @Table(name = "notification_table")
 @Entity
@@ -26,6 +27,10 @@ public class Notification implements Serializable {
 
     @Column(name = "username_from")
     private String usernameFrom;
+
+    @Column(name = "notification_time")
+    private Calendar notificationTime;
+
 
     public Notification() {
     }
@@ -70,4 +75,11 @@ public class Notification implements Serializable {
         this.usernameFrom = usernameFrom;
     }
 
+    public Calendar getNotificationTime() {
+        return notificationTime;
+    }
+
+    public void setNotificationTime(Calendar notificationTime) {
+        this.notificationTime = notificationTime;
+    }
 }

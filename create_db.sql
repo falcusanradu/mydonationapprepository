@@ -31,9 +31,10 @@ CONSTRAINT company_fk Foreign key (id_company) references company_table(id_compa
 CREATE TABLE notification_table(
 id_notification INTEGER NOT NULL AUTO_INCREMENT,
 message VARCHAR(255),
-username_to INTEGER NOT NULL,
+username_to VARCHAR(255),
 username_from VARCHAR(255),
 message_read boolean,
+notification_time datetime,
 PRIMARY KEY (id_notification)
 );
 

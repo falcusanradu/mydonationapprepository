@@ -10,6 +10,7 @@ import repository.NotificationRepository;
 import repository.UserRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class Manager {
@@ -180,13 +181,44 @@ public class Manager {
     }
 
 
-    public Iterable<Notification> findAllNotifications() {
-        return this.notificationRepository.findAll();
+    private List<Notification> sortByDate(final List<Notification> notifications) {
+        final List<Notification> withNullValues = new ArrayList<>();
+        final List<Notification> withoutNull = new ArrayList<>();
+        for (Notification not : notifications) {
+            if (not.getNotificationTime() != null) {
+                withoutNull.add(not);
+            } else {
+                withNullValues.add(not);
+            }
+        }
+        final List<Notification> sortedNottifications = withoutNull.stream().sorted((n1, n2) ->
+                n2.getNotificationTime().compareTo(n1.getNotificationTime())).collect(Collectors.toList());
+        withNullValues.forEach(n -> sortedNottifications.add(n));
+        return sortedNottifications;
+
+    }
+
+    public List<Notification> getAllNotificationsSortedByDate() {
+        return sortByDate(this.convertIterableToList(this.notificationRepository.findAll()));
+
     }
 
     public void saveNotification(final Notification notification) {
+        notification.setNotificationTime(this.toCalendar(new Date()));
         this.notificationRepository.save(notification);
     }
 
 
+    private <T> List<T> convertIterableToList(Iterable<T> source) {
+        List<T> target = new ArrayList<>();
+        source.forEach(target::add);
+        return target;
+    }
+
+
+    private Calendar toCalendar(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+    }
 }

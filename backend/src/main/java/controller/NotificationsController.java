@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/notification")
@@ -16,8 +18,8 @@ public class NotificationsController {
     private Manager manager;
 
     @RequestMapping(value = "/notifications", method = RequestMethod.GET)
-    public Iterable<Notification> getAllNotifications() {
-        return this.manager.findAllNotifications();
+    public List<Notification> getAllNotifications() {
+        return this.manager.getAllNotificationsSortedByDate();
     }
 
 

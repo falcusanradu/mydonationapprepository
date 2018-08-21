@@ -15,20 +15,16 @@ export class ChatComponent implements OnInit {
   users = [];
   message = '';
   usernameToSend = '';
-  notifications = ['312321', 'sadddddddddddsadddddddddddddddddddddddddddddadsaddddddddddddddddddddddddddddsadddddddddddddddddddddddddddddadsaddddddddddddddddddddddddddddsadddddddddddddddddddddddddddddadsaddddddddddddddddddddddddddddddddddddddddddddddadsadddddddddddddddddddddddddddd'];
+  notifications = [];
   usernameTo = null;
 
   constructor(private sessionValue: SessionValues, private router: Router, private backendService: BackendService,
               private webSocketService: WebSocketService) {
-    let stompClient = this.webSocketService.connect();
+    const stompClient = this.webSocketService.connect();
 
     stompClient.connect({}, frame => {
-
       stompClient.subscribe('/topic/notification', notifications => {
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        // this.notifications = JSON.parse(notifications.body).count;
         this.backendService.get(`/notification/notifications`).subscribe((response) => this.notifications = response);
-
       });
 
     });
@@ -57,7 +53,8 @@ export class ChatComponent implements OnInit {
             message: this.message,
             read: false,
             usernameTo: this.usernameTo,
-            usernameFrom: this.backendService.getSessionUser().username
+            usernameFrom: this.backendService.getSessionUser().username,
+            notificationTime: null
           }
         ;
         this.backendService.post(`/notification/save`, notification).subscribe(() => {

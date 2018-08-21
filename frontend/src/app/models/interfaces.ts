@@ -37,5 +37,5 @@ export interface Notification {
   read: Boolean;
   usernameTo: string;
   usernameFrom: string;
-
+  notificationTime: any;
 }
