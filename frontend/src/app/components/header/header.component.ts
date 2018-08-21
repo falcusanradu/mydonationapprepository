@@ -180,7 +180,7 @@ export class HeaderComponent implements OnInit {
   }
 
   private openModal() {
-    const openModalBtn = document.getElementById('openModalBtn');
+    const openModalBtn = document.getElementById('openModalBtnHeader');
     openModalBtn.click();
   }
 

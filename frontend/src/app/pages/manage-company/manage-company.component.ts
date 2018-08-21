@@ -28,7 +28,7 @@ export class ManageCompanyComponent implements OnInit {
   disabled = true;
   loggedUser: User;
 
-  errorMsg: string = 'Fields must not be empty';
+  errorMsg = 'Fields must not be empty';
   error = false;
 
   constructor(private sessionValues: SessionValues, private backendService: BackendService, private sanitizer: DomSanitizer, private donateService: DonateService) {
@@ -59,6 +59,7 @@ export class ManageCompanyComponent implements OnInit {
   }
 
   hasCompany() {
+    this.loggedUser = this.backendService.getSessionUser();
     if (!this.loggedUser.company) {
       return false;
     }
@@ -98,6 +99,7 @@ export class ManageCompanyComponent implements OnInit {
   }
 
   uploadFile() {
+    this.loadLoggedUserWithCompany();
     if (this.file) {
       this.backendService.post(`/company/uploadFile/${this.file.name}/${this.loggedUser.company.idCompany}`, this.file).subscribe();
     }
@@ -108,28 +110,32 @@ export class ManageCompanyComponent implements OnInit {
   }
 
   private loadLoggedUserWithCompany() {
-    this.companyCategory = Object.keys(CategoryEnum).map(key => CategoryEnum[key]).filter(key => isNaN(key));
-    this.loggedUser = this.backendService.getSessionUser();
-    this.backendService.get(`/getUser/${this.loggedUser.id}`).subscribe((response) => {
+    this.backendService.get(`/findByUsername/${this.loggedUser.username}`).subscribe((response => {
+
+      sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(response));
+      this.companyCategory = Object.keys(CategoryEnum).map(key => CategoryEnum[key]).filter(key => isNaN(key));
       this.loggedUser = response;
+      this.backendService.get(`/getUser/${this.loggedUser.id}`).subscribe((response) => {
+        this.loggedUser = response;
+        this.setAttributes();
+      });
+      if (this.loggedUser.company) {
+        this.disabled = true;
+      } else {
+        this.disabled = false;
+        this.loggedUser.company = {
+          idCompany: null,
+          image: null,
+          description: '',
+          email: '',
+          address: '',
+          category: null,
+          userCompany: null,
+          name: ''
+        };
+      }
       this.setAttributes();
-    });
-    if (this.loggedUser.company) {
-      this.disabled = true;
-    } else {
-      this.disabled = false;
-      this.loggedUser.company = {
-        idCompany: null,
-        image: null,
-        description: '',
-        email: '',
-        address: '',
-        category: null,
-        userCompany: null,
-        name: ''
-      };
-    }
-    this.setAttributes();
+    }));
   }
 
   private setAttributes() {
@@ -151,6 +157,16 @@ export class ManageCompanyComponent implements OnInit {
       this.loggedUser.company.description = this.description;
       this.loggedUser.company.category = this.category;
     }
+  }
+
+  isCompanyDisplayed() {
+    if (!this.loggedUser || !this.loggedUser.company) {
+      return false;
+    }
+    if (this.loggedUser.company.idCompany && this.loggedUser.company.name) {
+      return true;
+    }
+    return false;
   }
 
 }
