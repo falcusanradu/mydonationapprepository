@@ -5,6 +5,7 @@
     <table class="table">
       <thead class="thead-default">
       <tr>
+        <th>read</th>
         <th scope="col" id="date">date</th>
         <th scope="col" id="from">from</th>
         <th scope="col" id="msg">message</th>
@@ -14,6 +15,8 @@
       <ng-container
         *ngFor="let notification of filterNotifications() | paginate : {itemsPerPage: 5, currentPage: notification}">
         <tr *ngIf="toThisUser(notification)">
+          <td><input type="checkbox" [checked]="notification.read" [disabled]="notification.read"
+                     (click)="notificationRead(notification)"></td>
           <td scope="col">{{notification.notificationTime | date }}</td>
           <td scope="col">{{notification.usernameFrom}}</td>
           <td scope="col"> {{notification.message}}</td>

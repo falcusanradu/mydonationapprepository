@@ -38,9 +38,12 @@ export class ChatComponent implements OnInit, DoCheck {
     //   this.router.navigate(['LogIn']);
     // }
     this.loadAllUsers();
+    this.loadNotifications();
+  }
+
+  private loadNotifications() {
     this.backendService.get(`/notification/notifications`).subscribe((response) => {
       this.notifications = response;
-      this.backendService.get(`/notification/notifications`).subscribe((response) => this.notifications = response);
     });
   }
 
@@ -72,6 +75,7 @@ export class ChatComponent implements OnInit, DoCheck {
         ;
         this.backendService.post(`/notification/save`, notification).subscribe(() => {
           this.filteredUsers = [];
+          this.usernameToSendBefore = '';
           this.webSocketService.notifyTheOtherClients().subscribe();
         });
 
@@ -96,9 +100,15 @@ export class ChatComponent implements OnInit, DoCheck {
     });
   }
 
+  notificationRead(notification) {
+    notification.read = true;
+    this.backendService.post('/notification/save', notification).subscribe(
+      () => this.loadNotifications());
+  }
+
   filterNotifications() {
     const filteredNot = [];
-    this.notifications.forEach( (n) => {
+    this.notifications.forEach((n) => {
       if (this.toThisUser(n)) {
         filteredNot.push(n);
       }
