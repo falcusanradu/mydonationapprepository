@@ -1,73 +1,78 @@
-<br>
-<div *ngIf="!isCompanyDisplayed()" class="alert-warning">you neeed to complete the fields before the company can be seen by others</div>
-<form>
-  <div class="form-group row">
-    <label for="companyName" class="col-sm-2 col-form-label">Company Name</label>
-    <div class="col-sm-10">
-      <input [disabled]="disabled" type="input" class="form-control" id="companyName"
-             placeholder="Enter company name here" name="companyNameInput" [(ngModel)]="name">
-    </div>
+<div class="container">
+  <br>
+  <div *ngIf="!isCompanyDisplayed()" class="alert-warning">you neeed to complete the fields before the company can be
+    seen by others
   </div>
-  <div class="form-group row">
-    <label for="companyEmail" class="col-sm-2 col-form-label">Company Email</label>
-    <div class="col-sm-10">
-      <input [disabled]="disabled" type="email" class="form-control" id="companyEmail"
-             placeholder="Enter company email here" name="companyEmailInput" [(ngModel)]="email">
+  <form>
+    <div class="form-group row">
+      <label for="companyName" class="col-sm-2 col-form-label">Company Name</label>
+      <div class="col-sm-10">
+        <input [disabled]="disabled" type="input" class="form-control" id="companyName"
+               placeholder="Enter company name here" name="companyNameInput" [(ngModel)]="name">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="companyAddress" class="col-sm-2 col-form-label">Company Address</label>
-    <div class="col-sm-10">
-      <input [disabled]="disabled" type="email" class="form-control" id="companyAddress"
-             placeholder="Enter company address here" name="companyAddressInput"
-             [(ngModel)]="address">
+    <div class="form-group row">
+      <label for="companyEmail" class="col-sm-2 col-form-label">Company Email</label>
+      <div class="col-sm-10">
+        <input [disabled]="disabled" type="email" class="form-control" id="companyEmail"
+               placeholder="Enter company email here" name="companyEmailInput" [(ngModel)]="email">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="companyDescription" class="col-sm-2 col-form-label">Company Description</label>
-    <div class="col-sm-10">
+    <div class="form-group row">
+      <label for="companyAddress" class="col-sm-2 col-form-label">Company Address</label>
+      <div class="col-sm-10">
+        <input [disabled]="disabled" type="email" class="form-control" id="companyAddress"
+               placeholder="Enter company address here" name="companyAddressInput"
+               [(ngModel)]="address">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="companyDescription" class="col-sm-2 col-form-label">Company Description</label>
+      <div class="col-sm-10">
       <textarea [disabled]="disabled" id="companyDescription" class="form-control" name="paragraph_text" cols="50"
                 rows="10" name="companyDescriptionInput" [(ngModel)]="description"></textarea>
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Company Image</label>
-    <div class="col-sm-10">
-      <img *ngIf="disabled && hasCompany()" [src]="trustImage(this.loggedUser.company.image)" alt="photo" height="70"/>
-      <ng-container *ngIf="!disabled">
-        <input id="uploadInput" type="file" class="btn btn-default" (change)="onFileSelected($event)">
-        <!--<button class="btn btn-default" (click)="uploadFile()">save</button>-->
-      </ng-container>
-    </div>
-  </div>
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0">Category</legend>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Company Image</label>
       <div class="col-sm-10">
-        <ng-container *ngFor="let companyCategory of companyCategory">
-          <div class="form-check">
-            <input *ngIf="category !== companyCategory" [disabled]="disabled" class="form-check-input"
-                   type="radio" name="gridRadios" [id]="companyCategory"
-                   [value]="companyCategory" (change)="onSelectionChangeRadio(companyCategory)">
-            <input *ngIf="category === companyCategory" [disabled]="disabled" class="form-check-input"
-                   type="radio" name="gridRadios" [id]="companyCategory"
-                   [value]="companyCategory" checked (change)="onSelectionChangeRadio(companyCategory)">
-            <label class="form-check-label" [for]="companyCategory">
-              {{companyCategory}}
-            </label>
-            <br>
-          </div>
+        <img *ngIf="disabled && hasCompany()" [src]="trustImage(this.loggedUser.company.image)" alt="photo"
+             height="70"/>
+        <ng-container *ngIf="!disabled">
+          <input id="uploadInput" type="file" class="btn btn-default" (change)="onFileSelected($event)">
+          <!--<button class="btn btn-default" (click)="uploadFile()">save</button>-->
         </ng-container>
       </div>
     </div>
-  </fieldset>
-  <div *ngIf="error" class="alert-danger">{{errorMsg}}</div>
-  <div class="form-group row">
-    <div class="col-sm-10">
-      <button *ngIf="disabled" type="submit" class="btn btn-default" (click)="edit()">Edit</button>
-      <button *ngIf="!disabled && hasCompany()" type="submit" class="btn btn-default" (click)="cancel()">Cancel</button>
-      <button *ngIf="!disabled" type="submit" class="btn btn-default" (click)="saveActions()">Save actions</button>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Category</legend>
+        <div class="col-sm-10">
+          <ng-container *ngFor="let companyCategory of companyCategory">
+            <div class="form-check">
+              <input *ngIf="category !== companyCategory" [disabled]="disabled" class="form-check-input"
+                     type="radio" name="gridRadios" [id]="companyCategory"
+                     [value]="companyCategory" (change)="onSelectionChangeRadio(companyCategory)">
+              <input *ngIf="category === companyCategory" [disabled]="disabled" class="form-check-input"
+                     type="radio" name="gridRadios" [id]="companyCategory"
+                     [value]="companyCategory" checked (change)="onSelectionChangeRadio(companyCategory)">
+              <label class="form-check-label" [for]="companyCategory">
+                {{companyCategory}}
+              </label>
+              <br>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </fieldset>
+    <div *ngIf="error" class="alert-danger">{{errorMsg}}</div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button *ngIf="disabled" type="submit" class="btn btn-default" (click)="edit()">Edit</button>
+        <button *ngIf="!disabled && hasCompany()" type="submit" class="btn btn-default" (click)="cancel()">Cancel
+        </button>
+        <button *ngIf="!disabled" type="submit" class="btn btn-default" (click)="saveActions()">Save actions</button>
+      </div>
     </div>
-  </div>
-</form>
-
+  </form>
+</div>

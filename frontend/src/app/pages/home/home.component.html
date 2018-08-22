@@ -28,10 +28,10 @@
 <table class="table">
   <thead class="thead-default">
   <tr>
+    <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[1])}}</th>
     <th scope="col" id="IT">{{this.translateService.getTranslatedItem(tableHeaders[0])}} <i (click)="OnSort(0)"
                                                                                             [ngClass]="(ascendingSort)?'up':'down'"></i>
     </th>
-    <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[1])}}</th>
     <th scope="col">{{this.translateService.getTranslatedItem(tableHeaders[2])}} <i (click)="OnSort(2)"
                                                                                     [ngClass]="(ascendingSort)?'up':'down'"></i>
     </th>
@@ -43,17 +43,20 @@
     </th>
     <th class="setWidthTo20" scope="col">{{this.translateService.getTranslatedItem(tableHeaders[5])}}
       <i (click)="OnSort(5)" [ngClass]="(ascendingSort)?'up':'down'"></i></th>
+    <th class="setWidthTo20" scope="col">contact
+      <i (click)="OnSort(6)" [ngClass]="(ascendingSort)?'up':'down'"></i></th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let company of companies | paginate : {itemsPerPage: 5, currentPage: company}">
     <ng-container *ngIf="company.name">
-      <td scope="col">{{company.name}}</td>
       <td><img [src]="company.image" alt="photo" height="50"/></td>
+      <td scope="col">{{company.name}}</td>
       <td scope="col">{{company.description}}</td>
       <td scope="col">{{company.email}}</td>
       <td scope="col">{{company.address}}</td>
       <td scope="col">{{company.category}}</td>
+      <td scope="col">{{company.contact}}</td>
     </ng-container>
   </tr>
   </tbody>

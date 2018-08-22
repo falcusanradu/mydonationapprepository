@@ -22,6 +22,7 @@ export interface Company {
   category: CategoryEnum;
   userCompany: User;
   name: string;
+  contact?: string;
 }
 
 export enum CategoryEnum {

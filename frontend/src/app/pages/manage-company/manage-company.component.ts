@@ -34,14 +34,9 @@ export class ManageCompanyComponent implements OnInit {
   constructor(private sessionValues: SessionValues, private backendService: BackendService, private sanitizer: DomSanitizer, private donateService: DonateService) {
   }
 
+
   ngOnInit() {
-    this.backendService.get(`/getUser/${this.backendService.getSessionUser().id}`).subscribe((data) => {
-      sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
-      this.loadLoggedUserWithCompany();
-      if (!this.loggedUser.company.name) {
-        this.disabled = false;
-      }
-    });
+    this.init();
   }
 
   trustImage(image) {
@@ -89,7 +84,7 @@ export class ManageCompanyComponent implements OnInit {
       this.backendService.put('/company/update', this.loggedUser.company).subscribe(() => {
         this.uploadFile();
         // this.loadLoggedUserWithCompany();
-        location.reload();
+        this.init();
       });
     }
   }
@@ -107,6 +102,16 @@ export class ManageCompanyComponent implements OnInit {
 
   onSelectionChangeRadio(category: any) {
     this.category = category;
+  }
+
+  isCompanyDisplayed() {
+    if (!this.loggedUser || !this.loggedUser.company) {
+      return false;
+    }
+    if (this.loggedUser.company.idCompany && this.loggedUser.company.name) {
+      return true;
+    }
+    return false;
   }
 
   private loadLoggedUserWithCompany() {
@@ -159,14 +164,15 @@ export class ManageCompanyComponent implements OnInit {
     }
   }
 
-  isCompanyDisplayed() {
-    if (!this.loggedUser || !this.loggedUser.company) {
-      return false;
-    }
-    if (this.loggedUser.company.idCompany && this.loggedUser.company.name) {
-      return true;
-    }
-    return false;
+  private init() {
+    this.backendService.get(`/getUser/${this.backendService.getSessionUser().id}`).subscribe((data) => {
+      sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
+      this.loadLoggedUserWithCompany();
+      if (!this.loggedUser.company.name) {
+        this.disabled = false;
+      }
+    });
   }
+
 
 }

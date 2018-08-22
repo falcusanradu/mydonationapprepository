@@ -1,87 +1,88 @@
-<div class="row">
-  <!--left-->
-  <div class="col-xs-12 col-sm-6">
-    <form *ngIf="!loading">
-      <div class="form-group">
-        <legend class="">Login</legend>
-        <label for="loginUsername">Username</label>
-        <input class="form-control" id="loginUsername" placeholder="Username" name="username"
-               [(ngModel)]="loginUsername">
-      </div>
-      <div class="form-group">
-        <label for="loginPassword">Password</label>
-        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password"
-               [(ngModel)]="LoginPassword">
-      </div>
-      <div *ngIf="errorMessageLogin" class="alert-danger alert">{{errorMessageLogin}}</div>
-      <div class="text-left">
+<div class="container">
+  <div class="row">
+    <!--left-->
+    <div class="col-xs-12 col-sm-6">
+      <form *ngIf="!loading">
+        <div class="form-group">
+          <legend class="">Login</legend>
+          <label for="loginUsername">Username</label>
+          <input class="form-control" id="loginUsername" placeholder="Username" name="username"
+                 [(ngModel)]="loginUsername">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password"
+                 [(ngModel)]="LoginPassword">
+        </div>
+        <div *ngIf="errorMessageLogin" class="alert-danger alert">{{errorMessageLogin}}</div>
+        <div class="text-left">
         <span type="submit" class="btn btn-primary" (click)="login()"><span
           class="fa fa-user-circle-o"></span> Login</span>
+        </div>
+      </form>
+      <div class="loading" *ngIf="loading">
+        Loading ...
       </div>
-    </form>
-    <div class="loading" *ngIf="loading">
-      Loading ...
+      <!--<span i18n="passwordrecover"></span>-->
+      <!--<ng-container i18n>passwordrecover</ng-container>-->
+      <a routerLink="/reset-password"><span
+        class="red">{{this.translateService.getTranslatedItem('forgot_password')}}</span></a>
     </div>
-    <!--<span i18n="passwordrecover"></span>-->
-    <!--<ng-container i18n>passwordrecover</ng-container>-->
-    <a routerLink="/reset-password"><span
-      class="red">{{this.translateService.getTranslatedItem('forgot_password')}}</span></a>
-  </div>
-  <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12 col-sm-6">
 
-    <!--right-->
-    <form class="form-horizontal" action='' method="POST">
-      <fieldset>
-        <div id="legend">
-          <legend class="">Register</legend>
-        </div>
-        <div class="control-group">
-          <!-- Username -->
-          <label class="control-label" for="registerUsername">Username</label>
-          <div class="controls">
-            <input type="text" id="registerUsername" name="username" placeholder="Username" class="form-control"
-                   [(ngModel)]="registerUsername">
-            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+      <!--right-->
+      <form class="form-horizontal" action='' method="POST">
+        <fieldset>
+          <div id="legend">
+            <legend class="">Register</legend>
           </div>
-        </div>
-        <div class="control-group">
-          <!--email-->
-          <label class="control-label" for="registerPassword">Email</label>
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="registerUsername">Username</label>
+            <div class="controls">
+              <input type="text" id="registerUsername" name="username" placeholder="Username" class="form-control"
+                     [(ngModel)]="registerUsername">
+              <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <!--email-->
+            <label class="control-label" for="registerPassword">Email</label>
+            <div class="controls">
+              <input type="email" id="registerEmail" name="email" placeholder="email" class="form-control"
+                     [(ngModel)]="registerEmail">
+              <p class="help-block">Password should be at least 4 characters</p>
+            </div>
+          </div>
+          <!-- Password-->
+          <label class="control-label" for="registerEmail">Password</label>
           <div class="controls">
-            <input type="email" id="registerEmail" name="email" placeholder="email" class="form-control"
-                   [(ngModel)]="registerEmail">
+            <input type="password" id="registerPassword" name="password" placeholder="Password" class="form-control"
+                   [(ngModel)]="registerPassword">
             <p class="help-block">Password should be at least 4 characters</p>
           </div>
-        </div>
-        <!-- Password-->
-        <label class="control-label" for="registerEmail">Password</label>
-        <div class="controls">
-          <input type="password" id="registerPassword" name="password" placeholder="Password" class="form-control"
-                 [(ngModel)]="registerPassword">
-          <p class="help-block">Password should be at least 4 characters</p>
-        </div>
 
-        <div class="control-group">
-          <!-- Password -->
-          <label class="control-label" for="password_confirm">Password (Confirm)</label>
-          <div class="controls">
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password"
-                   pattern="[^ @]*@[^ @]*"
-                   class="form-control" [(ngModel)]="confirmPassword">
-            <p class="help-block">Please confirm password</p>
+          <div class="control-group">
+            <!-- Password -->
+            <label class="control-label" for="password_confirm">Password (Confirm)</label>
+            <div class="controls">
+              <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password"
+                     pattern="[^ @]*@[^ @]*"
+                     class="form-control" [(ngModel)]="confirmPassword">
+              <p class="help-block">Please confirm password</p>
+            </div>
           </div>
-        </div>
 
-        <div *ngIf="errorMessageRegister && !registerSuccessMsg" class="alert-danger">{{errorMessageRegister}}</div>
-        <div *ngIf="registerSuccessMsg" class="alert-success">register success!</div>
+          <div *ngIf="errorMessageRegister && !registerSuccessMsg" class="alert-danger">{{errorMessageRegister}}</div>
+          <div *ngIf="registerSuccessMsg" class="alert-success">register success!</div>
 
-        <div class="text-left">
+          <div class="text-left">
         <span type="submit" class="btn btn-primary" (click)="register()"><span
           class="fa fa-user-circle-o"></span> Register</span>
-        </div>
-      </fieldset>
-    </form>
+          </div>
+        </fieldset>
+      </form>
 
+    </div>
   </div>
 </div>
-

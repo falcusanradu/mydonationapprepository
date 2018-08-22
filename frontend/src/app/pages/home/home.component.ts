@@ -1,7 +1,7 @@
-import {Component, DoCheck, KeyValueDiffer, KeyValueDiffers, OnInit} from '@angular/core';
+import {Component, DoCheck, HostBinding, KeyValueDiffer, KeyValueDiffers, OnInit} from '@angular/core';
 import {SessionValues} from '../../models/constants';
 import {Translate} from '../../services/translate.service';
-import {Company} from '../../models/interfaces';
+import {Company, User} from '../../models/interfaces';
 import {BackendService} from '../../services/backend.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AbstractTable} from '../abstractTable';
@@ -13,7 +13,7 @@ import {AbstractTable} from '../abstractTable';
 })
 export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
 
-  tableHeaders = ['name', 'image', 'description', 'email', 'address', 'category'];
+  tableHeaders = ['name', 'image', 'description', 'email', 'address', 'category', 'contact'];
   ascendingSort = true;
   companies: Company[] = [];
   allCompanies: Company[] = [];
@@ -21,10 +21,8 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
   // for filter
   searchInput = '';
   oldSearchInput = '';
-  dropDownItems: string [] = ['name', 'description', 'email', 'address', 'category'];
+  dropDownItems: string [] = ['name', 'description', 'email', 'address', 'category', 'contact'];
   selectedItem: any;
-
-  differ: KeyValueDiffer<string, any>;
 
   constructor(private sessionValues: SessionValues, private translateService: Translate, private backendService: BackendService,
               private sanitizer: DomSanitizer, private differs: KeyValueDiffers) {
@@ -51,6 +49,7 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
       this.companies = companies;
       this.reassignNullValues();
       this.allCompanies = this.companies;
+      this.setContact();
     });
     this.selectedItem = this.dropDownItems[0];
   }
@@ -79,6 +78,26 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
     this.selectedItem = item;
     this.companies = this.allCompanies;
     this.searchInput = '';
+  }
+
+  private setContact() {
+    this.backendService.get(`/users`).subscribe(users => {
+      users.forEach(u => {
+        this.allCompanies.forEach(c => {
+          if (u.company && c.idCompany === u.company.idCompany) {
+            c.contact = u.username;
+          }
+        });
+      });
+
+    });
+  }
+
+  hasContactAssigned(company) {
+    if (company.contect) {
+      return true;
+    }
+    return false;
   }
 
 }

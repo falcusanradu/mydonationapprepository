@@ -1,18 +1,24 @@
 <div class="modal-body row">
   <!--left-->
   <div class="col-xs-12 col-sm-6">
+
     <table class="table">
       <thead class="thead-default">
-      <th>date</th>
-      <th>from</th>
-      <th>message</th>
+      <tr>
+        <th scope="col" id="date">date</th>
+        <th scope="col" id="from">from</th>
+        <th scope="col" id="msg">message</th>
+      </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let notification of notifications | paginate : {itemsPerPage: 5, currentPage: notification}">
-        <td scope="col">{{notification.notificationTime | date }}</td>
-        <td scope="col">{{notification.usernameFrom}}</td>
-        <td scope="col"> {{notification.message}}</td>
-      </tr>
+      <ng-container
+        *ngFor="let notification of filterNotifications() | paginate : {itemsPerPage: 5, currentPage: notification}">
+        <tr *ngIf="toThisUser(notification)">
+          <td scope="col">{{notification.notificationTime | date }}</td>
+          <td scope="col">{{notification.usernameFrom}}</td>
+          <td scope="col"> {{notification.message}}</td>
+        </tr>
+      </ng-container>
       </tbody>
     </table>
     <pagination-controls (pageChange)="notification =$event"></pagination-controls>
@@ -22,11 +28,12 @@
   <!--right-->
   <div class="col-xs-12 col-sm-6">
     <form class="form-inline d-flex dropdown">
-      <input class="form-check-input" type="text" placeholder="Message to" id="menu1" data-toggle="dropdown"
+      <input autocomplete="off" class="form-check-input" type="text" placeholder="Message to" id="menu1"
+             data-toggle="dropdown"
              name="usernameToSend" [(ngModel)]="usernameToSend">
       <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-        <ng-container *ngFor="let user of users">
-          <li class="dropdown-item">{{user.username}}</li>
+        <ng-container *ngFor="let user of filteredUsers">
+          <li class="dropdown-item" (click)="autoCompleteAfterClick(user.username)">{{user.username}}</li>
           <!--<li role="presentation"><a role="menuitem" tabindex="-1">{{user.username}}</a></li>-->
         </ng-container>
       </ul>
@@ -38,25 +45,4 @@
   </div>
 
 </div>
-<!--<p>-->
-<!--chat works!-->
-<!--</p>-->
-
-
-<!--<div class='chatContainer'>-->
-<!--<div class='chatHeader'>-->
-<!--<h3>Welcome, User</h3>-->
-<!--</div>-->
-<!--<div class='chatMessages'></div>-->
-<!--<div class='chatBottom'>-->
-<!--<form action='#' onsubmit='return false;' id="chatForm">-->
-<!--<input type='hidden' id='name' value="input1">-->
-<!--<input type='text' id='text' value="text" value="" placeholder="type your chat message here">-->
-<!--<button class='btn btn-primary'>Post</button>-->
-<!--</form>-->
-<!--</div>-->
-<!--</div>-->
-
-
-
 

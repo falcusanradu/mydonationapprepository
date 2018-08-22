@@ -9,8 +9,6 @@ import {SessionValues} from './models/constants';
 })
 export class AppComponent implements AfterViewInit {
 
-  title = 'app 2';
-
   constructor(private translate: TranslateService, private sessionValues: SessionValues, private elementRef: ElementRef) {
     translate.setDefaultLang('en');
     sessionStorage.setItem(sessionValues.LANGUAGE, 'en');
