@@ -68,10 +68,10 @@
     <div *ngIf="error" class="alert-danger">{{errorMsg}}</div>
     <div class="form-group row">
       <div class="col-sm-10">
-        <button *ngIf="disabled" type="submit" class="btn btn-default" (click)="edit()">Edit</button>
-        <button *ngIf="!disabled && hasCompany()" type="submit" class="btn btn-default" (click)="cancel()">Cancel
-        </button>
-        <button *ngIf="!disabled" type="submit" class="btn btn-default" (click)="saveActions()">Save actions</button>
+        <button *ngIf="disabled" type="submit" class="btn btn-primary" (click)="edit()">Edit</button>
+        <button *ngIf="disabled" type="submit" class="btn btn-danger" (click)="deleteCompany()">Delete</button>
+        <button *ngIf="!disabled" type="submit" class="btn btn-primary" (click)="saveActions()">Save actions</button>
+        <button *ngIf="!disabled && hasCompany()" type="submit" class="btn btn-default" (click)="cancel()">Cancel</button>
       </div>
     </div>
   </form>

@@ -4,6 +4,7 @@ import {BackendService} from '../../services/backend.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DonateService} from '../manage donations/donate.service';
 import {SessionValues} from '../../models/constants';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-manage-company',
@@ -31,7 +32,8 @@ export class ManageCompanyComponent implements OnInit {
   errorMsg = 'Fields must not be empty';
   error = false;
 
-  constructor(private sessionValues: SessionValues, private backendService: BackendService, private sanitizer: DomSanitizer, private donateService: DonateService) {
+  constructor(private sessionValues: SessionValues, private backendService: BackendService, private sanitizer: DomSanitizer,
+              private donateService: DonateService, private router: Router) {
   }
 
 
@@ -112,6 +114,13 @@ export class ManageCompanyComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  deleteCompany() {
+    this.backendService.delete(`/deleteByUser/${this.loggedUser.id}`).subscribe(() => {
+      this.router.navigate(['/home']);
+      this.init();
+    });
   }
 
   private loadLoggedUserWithCompany() {

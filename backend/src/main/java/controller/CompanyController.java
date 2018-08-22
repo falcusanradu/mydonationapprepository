@@ -51,6 +51,7 @@ public class CompanyController {
     }
 
 
+
     @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateCompany(@RequestBody Company company) throws Exception {
         this.manager.saveOrUpdateCompany(company);

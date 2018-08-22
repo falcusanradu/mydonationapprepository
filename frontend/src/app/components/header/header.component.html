@@ -11,7 +11,7 @@
             <a class="nav-link" routerLink="home">Home</a>
             <!--<a class="nav-link" routerLink="app-donate-something">donate something</a>-->
             <!--<a class="nav-link" routerLink="app-donate">manage donations</a>-->
-            <a class="nav-link" routerLink="app-chat">Chat</a>
+            <a class="nav-link" routerLink="app-chat">Notifications</a>
             <a *ngIf="isSession() && !userHasCOmpany()" class="nav-link"
                (click)="openModal()">create company</a>
             <a *ngIf="isSession() && userHasCOmpany()" class="nav-link" routerLink="manage-company">manage company</a>

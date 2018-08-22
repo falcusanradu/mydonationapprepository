@@ -152,10 +152,16 @@ public class Manager {
     /**
      * Deletes a user.
      */
-    public void deleteCompanyById(Integer id) {
+    public void deleteCompanyById(final Integer id) {
         this.companyRepository.deleteCompaniesById(id);
     }
 
+    public void deleteCompanyByUser(final User user) {
+        final Integer companyId = user.getCompany().getIdCompany();
+        user.setCompany(null);
+        this.userRepository.save(user);
+        this.companyRepository.deleteCompaniesById(companyId);
+    }
 
     public User findUserById(User user) {
         return this.userRepository.findById(user.getId());

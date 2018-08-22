@@ -103,4 +103,12 @@ public class UserController {
         return this.manager.findUserByUsername(username);
     }
 
+
+    @RequestMapping(value = "/deleteByUser/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteCompanyUserByUser(@PathVariable("id") Integer id) {
+        final User user = this.manager.findUserById(id);
+        this.manager.deleteCompanyByUser(user);
+        return new ResponseEntity<User>(HttpStatus.OK);
+    }
+
 }
