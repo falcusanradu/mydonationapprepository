@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { BackendService } from "../../services/backend.service";
-import { User } from "../../models/user";
-import { Router } from "@angular/router";
-import { SessionValues } from "../../models/constants";
+import {Component, OnInit} from '@angular/core';
+import {BackendService} from '../../services/backend.service';
+import {User} from '../../models/user';
+import {Router} from '@angular/router';
+import {SessionValues} from '../../models/constants';
 
 @Component({
-  selector: "app-reset-password",
-  templateUrl: "./reset-password.component.html",
-  styleUrls: ["./reset-password.component.scss"]
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
   emailSent: boolean = false;
@@ -18,11 +18,13 @@ export class ResetPasswordComponent implements OnInit {
   newPassword: string;
   newPasswordConfirm: string;
 
-  constructor(
-    private sessionValues: SessionValues,
-    private backendService: BackendService,
-    private router: Router
-  ) {}
+
+  modalMessage = '';
+
+  constructor(private sessionValues: SessionValues,
+              private backendService: BackendService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === null) {
@@ -37,7 +39,7 @@ export class ResetPasswordComponent implements OnInit {
     console.log(this.emailToSend);
     let user: User = new User();
     user.email = this.emailToSend;
-    this.sendRequest(`/resetPassword/`, user, "email");
+    this.sendRequest(`/resetPassword/`, user, 'email');
   }
 
   changePass() {
@@ -47,12 +49,14 @@ export class ResetPasswordComponent implements OnInit {
       user.username = this.username;
       user.password = this.newPassword;
       this.sendRequest(
-        "/changePassword/",
+        '/changePassword/',
         user,
-        "password"
+        'password'
       );
-      this.router.navigate(["/LogIn"]);
-      alert("success!!");
+      this.router.navigate(['/LogIn']);
+      // alert('success!!');
+      this.modalMessage = 'success!!';
+      // this.openModal();
     }
   }
 
@@ -66,15 +70,24 @@ export class ResetPasswordComponent implements OnInit {
   sendRequest(url: string, user: User, invalidation) {
     this.backendService.post(url, user).subscribe(r => {
       if (r == false) {
-        alert("Invalid " + invalidation + "!");
-        if ("email" === invalidation) {
+        // alert('Invalid ' + invalidation + '!');
+        this.modalMessage = 'Invalid ' + invalidation + '!';
+        this.openModal();
+        if ('email' === invalidation) {
           this.emailSent = false;
         }
       } else {
-        if ("email" === invalidation) {
+        if ('email' === invalidation) {
           this.emailSent = true;
         }
       }
     });
   }
+
+  private openModal() {
+    const openModalBtn = document.getElementById('openModalBtnResetPassword');
+    openModalBtn.click();
+  }
+
+
 }
