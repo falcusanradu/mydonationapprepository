@@ -102,7 +102,7 @@ export class ChatComponent implements OnInit, DoCheck {
 
   notificationRead(notification) {
     notification.read = true;
-    this.backendService.post('/notification/save', notification).subscribe(
+    this.backendService.post('/notification/saveCheck', notification).subscribe(
       () => this.loadNotifications());
   }
 

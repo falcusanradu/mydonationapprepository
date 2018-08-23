@@ -214,6 +214,9 @@ public class Manager {
         this.notificationRepository.save(notification);
     }
 
+    public void saveCheckedNotification(final Notification notification) {
+        this.notificationRepository.save(notification);
+    }
 
     private <T> List<T> convertIterableToList(Iterable<T> source) {
         List<T> target = new ArrayList<>();

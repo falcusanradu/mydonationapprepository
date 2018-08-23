@@ -33,4 +33,12 @@ public class NotificationsController {
     }
 
 
+    @RequestMapping(value = "/saveCheck", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void persistCheckedNotification(@RequestBody final Notification notification) {
+        this.manager.saveCheckedNotification(notification);
+
+    }
+
+
 }
