@@ -47,16 +47,21 @@ export class ResetPasswordComponent implements OnInit {
       let user: User = new User();
       user.email = this.emailToSend;
       user.username = this.username;
-      user.password = this.newPassword;
-      this.sendRequest(
-        '/changePassword/',
-        user,
-        'password'
-      );
-      this.router.navigate(['/LogIn']);
-      // alert('success!!');
-      this.modalMessage = 'success!!';
-      // this.openModal();
+      user.password = this.oldPassword;
+      console.log(user)
+      this.backendService.post(`/login/`, user).subscribe((response) => {
+        if (response) {
+          user.password = this.newPassword;
+          this.backendService.put(`/updateUser`, user).subscribe(() =>
+            this.router.navigate(['/LogIn']));
+        } else {
+          this.modalMessage = 'wrong username or password!!';
+          this.openModal();
+        }
+      });
+    }else {
+      this.modalMessage = 'invalid passsword confirmation!!';
+      this.openModal();
     }
   }
 
@@ -69,7 +74,7 @@ export class ResetPasswordComponent implements OnInit {
 
   sendRequest(url: string, user: User, invalidation) {
     this.backendService.post(url, user).subscribe(r => {
-      if (r == false) {
+      if (r === false) {
         // alert('Invalid ' + invalidation + '!');
         this.modalMessage = 'Invalid ' + invalidation + '!';
         this.openModal();

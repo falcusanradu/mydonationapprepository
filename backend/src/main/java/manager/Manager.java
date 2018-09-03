@@ -230,4 +230,10 @@ public class Manager {
         cal.setTime(date);
         return cal;
     }
+
+    public User updateUser(final User user) {
+        User u = this.findUserByUsername(user.getUsername());
+        u.setPassword(user.getPassword());
+        return this.userRepository.save(u);
+    }
 }

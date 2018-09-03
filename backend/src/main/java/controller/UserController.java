@@ -111,4 +111,10 @@ public class UserController {
         return new ResponseEntity<User>(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/updateUser", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public User updateUser(@RequestBody User user) {
+        return this.manager.updateUser(user);
+    }
+
 }
