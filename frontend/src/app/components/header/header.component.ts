@@ -5,7 +5,7 @@ import {SessionValues} from '../../models/constants';
 import {Translate} from '../../services/translate.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Http} from '@angular/http';
-import {User} from '../../models/interfaces';
+import {User, USER_TYPE} from '../../models/interfaces';
 
 interface Base64Img {
   login: string;
@@ -61,6 +61,14 @@ export class HeaderComponent implements OnInit {
    */
   isSession(): boolean {
     if (sessionStorage.getItem(this.sessionValues.SESSION_KEY) !== null) {
+      return true;
+    }
+    return false;
+  }
+
+  isAdmin() {
+    const user: User = JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
+    if (user.type.toString() === USER_TYPE[USER_TYPE.admin]) {
       return true;
     }
     return false;

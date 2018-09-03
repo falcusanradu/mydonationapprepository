@@ -4,18 +4,18 @@
       <a class="nav-link" id="homeImgAnchor" routerLink="home">
         <img id="homeImg" [src]="getHomeImage()">
       </a>
-      <li>
+      <li *ngIf="isSession()">
         <div class="dropdown navbar-brand">
           <span>Navigate through pages</span>
           <div class="dropdown-content">
-            <a class="nav-link" routerLink="home">Home</a>
+            <a *ngIf="isSession()" class="nav-link" routerLink="home">Home</a>
             <!--<a class="nav-link" routerLink="app-donate-something">donate something</a>-->
             <!--<a class="nav-link" routerLink="app-donate">manage donations</a>-->
-            <a class="nav-link" routerLink="app-chat">Notifications</a>
+            <a *ngIf="isSession()" class="nav-link" routerLink="app-chat">Notifications</a>
             <a *ngIf="isSession() && !userHasCOmpany()" class="nav-link"
                (click)="openModal()">create company</a>
             <a *ngIf="isSession() && userHasCOmpany()" class="nav-link" routerLink="manage-company">manage company</a>
-            <a class="nav-link" routerLink="manage-users">manage users</a>
+            <a *ngIf="isSession() && isAdmin()" class="nav-link" routerLink="manage-users">manage users</a>
           </div>
         </div>
       </li>

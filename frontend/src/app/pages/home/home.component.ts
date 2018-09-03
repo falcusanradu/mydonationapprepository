@@ -5,6 +5,7 @@ import {Company, User} from '../../models/interfaces';
 import {BackendService} from '../../services/backend.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AbstractTable} from '../abstractTable';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
   selectedItem: any;
 
   constructor(private sessionValues: SessionValues, private translateService: Translate, private backendService: BackendService,
-              private sanitizer: DomSanitizer, private differs: KeyValueDiffers) {
+              private sanitizer: DomSanitizer, private differs: KeyValueDiffers, private router: Router) {
     super();
   }
 
@@ -38,6 +39,9 @@ export class HomeComponent extends AbstractTable implements OnInit, DoCheck {
 
 
   ngOnInit() {
+    if (!sessionStorage.getItem(this.sessionValues.SESSION_KEY)) {
+      this.router.navigate(['LogIn']);
+    }
     if (sessionStorage.getItem(this.sessionValues.LANGUAGE) === null) {
       sessionStorage.setItem(this.sessionValues.LANGUAGE, this.sessionValues.EN);
     }

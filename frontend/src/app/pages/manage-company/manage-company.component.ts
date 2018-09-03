@@ -38,6 +38,9 @@ export class ManageCompanyComponent implements OnInit {
 
 
   ngOnInit() {
+    if (!sessionStorage.getItem(this.sessionValues.SESSION_KEY)) {
+      this.router.navigate(['LogIn']);
+    }
     this.init();
   }
 

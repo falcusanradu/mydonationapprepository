@@ -34,9 +34,9 @@ export class ChatComponent implements OnInit, DoCheck {
 
 
   ngOnInit() {
-    // if (sessionStorage.getItem(this.sessionValue.SESSION_KEY)) {
-    //   this.router.navigate(['LogIn']);
-    // }
+    if (!sessionStorage.getItem(this.sessionValue.SESSION_KEY)) {
+      this.router.navigate(['LogIn']);
+    }
     this.loadAllUsers();
     this.loadNotifications();
   }
