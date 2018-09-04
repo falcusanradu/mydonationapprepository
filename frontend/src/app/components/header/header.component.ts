@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit {
 
   isAdmin() {
     const user: User = JSON.parse(sessionStorage.getItem(this.sessionValues.SESSION_KEY));
-    if (user.type.toString() === USER_TYPE[USER_TYPE.admin]) {
+    if (user.type && user.type.toString() === USER_TYPE[USER_TYPE.admin]) {
       return true;
     }
     return false;
