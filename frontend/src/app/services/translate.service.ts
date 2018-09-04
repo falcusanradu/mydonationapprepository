@@ -133,27 +133,161 @@ export class Translate {
       de: 'Registrierung erfolgreich!',
       en: 'register success!'
     }, {
-      ID: 'searchByUsername',
-      de: 'Suche nach Benutzername',
-      en: ' Search by username'
+      ID: 'WRONG_USERNAME_OR_PASSWORD',
+      de: 'Benutzername oder Passwort ist falsch!!\n',
+      en: 'wrong username or password!!'
     }, {
-      ID: 'searchByUsername',
-      de: 'Suche nach Benutzername',
-      en: ' Search by username'
+      ID: 'Invalid',
+      de: 'Ungültiges',
+      en: 'Invalid'
     }, {
-      ID: 'searchByUsername',
-      de: 'Suche nach Benutzername',
-      en: ' Search by username'
+      ID: 'Send',
+      de: 'Senden',
+      en: 'Send'
     }, {
-      ID: 'searchByUsername',
-      de: 'Suche nach Benutzername',
-      en: ' Search by username'
+      ID: 'OldPassword',
+      de: 'Per E-Mail erhaltene Passwort',
+      en: 'received password'
     }, {
-      ID: 'searchByUsername',
-      de: 'Suche nach Benutzername',
-      en: ' Search by username'
+      ID: 'New Password',
+      de: 'Neues Kennwort',
+      en: 'New Password'
     },
-
+    {
+      ID: 'New Password (Confirm)',
+      de: 'Neues Kennwort (Bestätigung)',
+      en: 'New Password (Confirm)'
+    },
+    {
+      ID: 'Change password',
+      de: 'Kennwort ändern',
+      en: 'Change password'
+    },
+    {
+      ID: 'enter your email',
+      de: 'geben sie ihre E-Mail Adresse ein',
+      en: 'enter your email'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    },
+    {
+      ID: 'test',
+      de: 'test',
+      en: 'test'
+    }
     // -----------------------------------------------------------------------------------
 
     //

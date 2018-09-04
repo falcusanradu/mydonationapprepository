@@ -3,6 +3,7 @@ import {BackendService} from '../../services/backend.service';
 import {User} from '../../models/user';
 import {Router} from '@angular/router';
 import {SessionValues} from '../../models/constants';
+import {Translate} from '../../services/translate.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -23,7 +24,7 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(private sessionValues: SessionValues,
               private backendService: BackendService,
-              private router: Router) {
+              private router: Router, private translate: Translate) {
   }
 
   ngOnInit() {
@@ -36,7 +37,6 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.emailToSend);
     let user: User = new User();
     user.email = this.emailToSend;
     this.sendRequest(`/resetPassword/`, user, 'email');
@@ -48,19 +48,18 @@ export class ResetPasswordComponent implements OnInit {
       user.email = this.emailToSend;
       user.username = this.username;
       user.password = this.oldPassword;
-      console.log(user)
       this.backendService.post(`/login/`, user).subscribe((response) => {
         if (response) {
           user.password = this.newPassword;
           this.backendService.put(`/updateUser`, user).subscribe(() =>
             this.router.navigate(['/LogIn']));
         } else {
-          this.modalMessage = 'wrong username or password!!';
+          this.modalMessage = this.translate.getTranslatedItem('WRONG_USERNAME_OR_PASSWORD');
           this.openModal();
         }
       });
-    }else {
-      this.modalMessage = 'invalid passsword confirmation!!';
+    } else {
+      this.modalMessage = this.translate.getTranslatedItem('OCNFIRMATION_INCORRECT');
       this.openModal();
     }
   }
@@ -75,8 +74,7 @@ export class ResetPasswordComponent implements OnInit {
   sendRequest(url: string, user: User, invalidation) {
     this.backendService.post(url, user).subscribe(r => {
       if (r === false) {
-        // alert('Invalid ' + invalidation + '!');
-        this.modalMessage = 'Invalid ' + invalidation + '!';
+        this.modalMessage = this.translate.getTranslatedItem('Invalid') + ' ' + invalidation + '!';
         this.openModal();
         if ('email' === invalidation) {
           this.emailSent = false;
