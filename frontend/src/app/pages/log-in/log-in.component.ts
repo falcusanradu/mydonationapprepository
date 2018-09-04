@@ -8,15 +8,6 @@ import {BackendService} from '../../services/backend.service';
 import {SessionValues} from '../../models/constants';
 import {Translate} from '../../services/translate.service';
 
-enum errorMsgEnum {
-  OCNFIRMATION_INCORRECT = 'confirmation password incorrect!',
-  // REGISTER_SUCCESS = 'register succes',
-  USERNAME_EXISTS = 'username exists',
-  EMAIL_EXISTS = 'email exists',
-  INVALID_USERNAME_OR_PASSWORD = 'Invalid username or password',
-  LOGIN_FAILED = 'login failed',
-  USERNAME_OR_PASSWORD_CANNOT_BE_NULL = 'username or password can\'t be null',
-};
 
 @Component({
   selector: 'app-log-in',
@@ -52,9 +43,9 @@ export class LogInComponent implements OnInit {
 
   register() {
     if (!this.registerUsername || !this.registerPassword) {
-      this.errorMessageRegister = errorMsgEnum.USERNAME_OR_PASSWORD_CANNOT_BE_NULL;
+      this.errorMessageRegister = this.translateService.getTranslatedItem('USERNAME_OR_PASSWORD_CANNOT_BE_NULL');
     } else if (this.registerPassword !== this.confirmPassword) {
-      this.errorMessageRegister = errorMsgEnum.OCNFIRMATION_INCORRECT;
+      this.errorMessageRegister = this.translateService.getTranslatedItem('OCNFIRMATION_INCORRECT');
     } else {
       this.userService.register(this.registerUsername, this.registerPassword, this.registerEmail).subscribe(response => this.registerSuccess(response));
     }
@@ -63,9 +54,9 @@ export class LogInComponent implements OnInit {
 
   registerSuccess(data: User) {
     if (data === null) {
-      this.errorMessageRegister = errorMsgEnum.USERNAME_EXISTS;
+      this.errorMessageRegister = this.translateService.getTranslatedItem('USERNAME_EXISTS');
     } else if (data.username === null && data.email === null) {
-      this.errorMessageRegister = errorMsgEnum.EMAIL_EXISTS;
+      this.errorMessageRegister = this.translateService.getTranslatedItem('EMAIL_EXISTS');
     } else {
       this.registerSuccessMsg = true;
       // this.errorMessageRegister = errorMsgEnum.REGISTER_SUCCESS;
@@ -82,25 +73,21 @@ export class LogInComponent implements OnInit {
   }
 
   loginSuccess(data: User) {
-    console.log('I\'m in loginSuccess()');
     this.loading = false;
     if (data != null) {
       // this.backendService.loggedUsername = this.loginUsername;
       sessionStorage.setItem(this.sessionValues.SESSION_KEY, JSON.stringify(data));
 
-      console.log('login succes!!!!!');
       this.router.navigate(['/home']);
     } else {
-      console.log('failed!!!!!');
-      this.errorMessageLogin = errorMsgEnum.INVALID_USERNAME_OR_PASSWORD;
+      this.errorMessageLogin = this.translateService.getTranslatedItem('INVALID_USERNAME_OR_PASSWORD');;
     }
   }
 
   loginError() {
     this.loading = false;
-    this.errorMessageLogin = errorMsgEnum.LOGIN_FAILED;
+    this.errorMessageLogin = this.translateService.getTranslatedItem('LOGIN_FAILED');
   }
-
 
 
 }

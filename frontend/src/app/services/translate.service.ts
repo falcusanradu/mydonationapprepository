@@ -80,6 +80,79 @@ export class Translate {
       de: 'Suche nach Benutzername',
       en: ' Search by username'
     },
+    {
+      ID: 'OCNFIRMATION_INCORRECT',
+      de: 'Bestätigungspasswort falsch!',
+      en: 'confirmation password incorrect!'
+    }, {
+      ID: 'USERNAME_EXISTS',
+      de: 'Benutzername existiert',
+      en: 'username exists'
+    }, {
+      ID: 'EMAIL_EXISTS',
+      de: 'E-Mail existiert',
+      en: 'email exists'
+    }, {
+      ID: 'INVALID_USERNAME_OR_PASSWORD',
+      de: 'ungültiger Benutzername oder Passwort\n',
+      en: 'Invalid username or password'
+    }, {
+      ID: 'LOGIN_FAILED',
+      de: 'Anmeldung fehlgeschlagen',
+      en: 'login failed'
+    }, {
+      ID: 'USERNAME_OR_PASSWORD_CANNOT_BE_NULL',
+      de: 'Benutzername oder Passwort dürfen nicht leer sein',
+      en: 'username or password can\'t be empty'
+    }, {
+      ID: 'Login',
+      de: 'Anmeldung',
+      en: 'Login'
+    }, {
+      ID: 'Username',
+      de: 'Benutzername',
+      en: 'Username'
+    }, {
+      ID: 'Password',
+      de: 'Kennwort',
+      en: 'Password'
+    }, {
+      ID: 'Register',
+      de: 'Registrierung',
+      en: 'Register'
+    }, {
+      ID: 'Email',
+      de: 'E-Mail',
+      en: 'Email'
+    }, {
+      ID: 'ConfirmPassword',
+      de: 'Bestätige das Passwort',
+      en: 'Confirm password'
+    }, {
+      ID: 'RegisterSuccess',
+      de: 'Registrierung erfolgreich!',
+      en: 'register success!'
+    }, {
+      ID: 'searchByUsername',
+      de: 'Suche nach Benutzername',
+      en: ' Search by username'
+    }, {
+      ID: 'searchByUsername',
+      de: 'Suche nach Benutzername',
+      en: ' Search by username'
+    }, {
+      ID: 'searchByUsername',
+      de: 'Suche nach Benutzername',
+      en: ' Search by username'
+    }, {
+      ID: 'searchByUsername',
+      de: 'Suche nach Benutzername',
+      en: ' Search by username'
+    }, {
+      ID: 'searchByUsername',
+      de: 'Suche nach Benutzername',
+      en: ' Search by username'
+    },
 
     // -----------------------------------------------------------------------------------
 
