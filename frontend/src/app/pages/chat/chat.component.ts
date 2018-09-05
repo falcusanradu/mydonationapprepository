@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {BackendService} from '../../services/backend.service';
 import {WebSocketService} from '../../services/webSocket';
 import {Notification} from '../../models/interfaces';
+import {Translate} from '../../services/translate.service';
 
 @Component({
   selector: 'app-chat',
@@ -21,7 +22,7 @@ export class ChatComponent implements OnInit, DoCheck {
   usernameTo = null;
 
   constructor(private sessionValue: SessionValues, private router: Router, private backendService: BackendService,
-              private webSocketService: WebSocketService) {
+              private webSocketService: WebSocketService, private translate: Translate) {
     const stompClient = this.webSocketService.connect();
 
     stompClient.connect({}, frame => {

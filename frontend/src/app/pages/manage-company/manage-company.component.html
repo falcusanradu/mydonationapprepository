@@ -1,59 +1,69 @@
 <div class="container">
   <br>
-  <div *ngIf="!isCompanyDisplayed()" class="alert-warning">you neeed to complete the fields before the company can be
-    seen by others
+  <div *ngIf="!isCompanyDisplayed()" class="alert-warning">
+    {{this.translate.getTranslatedItem('you need to complete the fields before the company can be seen by others')}}
   </div>
   <form>
     <div class="form-group row">
-      <label for="companyName" class="col-sm-2 col-form-label">Company Name</label>
+      <label for="companyName"
+             class="col-sm-2 col-form-label">{{this.translate.getTranslatedItem('CompanyName')}}</label>
       <div class="col-sm-10">
-        <input [disabled]="disabled" type="input" class="form-control" id="companyName"
-               placeholder="Enter company name here" name="companyNameInput" [(ngModel)]="name">
+        <input autocomplete="off" [disabled]="disabled" type="input" class="form-control" id="companyName"
+               [placeholder]="this.translate.getTranslatedItem('CompanyName')" name="companyNameInput"
+               [(ngModel)]="name">
       </div>
     </div>
     <div class="form-group row">
-      <label for="companyEmail" class="col-sm-2 col-form-label">Company Email</label>
+      <label for="companyEmail" class="col-sm-2 col-form-label">
+        {{this.translate.getTranslatedItem('Company Email')}}</label>
       <div class="col-sm-10">
-        <input [disabled]="disabled" type="email" class="form-control" id="companyEmail"
-               placeholder="Enter company email here" name="companyEmailInput" [(ngModel)]="email">
+        <input autocomplete="off" [disabled]="disabled" type="email" class="form-control" id="companyEmail"
+               [placeholder]="this.translate.getTranslatedItem('Company Email')" name="companyEmailInput"
+               [(ngModel)]="email">
       </div>
     </div>
     <div class="form-group row">
-      <label for="companyAddress" class="col-sm-2 col-form-label">Company Address</label>
+      <label for="companyAddress" class="col-sm-2 col-form-label">
+        {{this.translate.getTranslatedItem('Company Address')}}</label>
       <div class="col-sm-10">
-        <input [disabled]="disabled" type="email" class="form-control" id="companyAddress"
-               placeholder="Enter company address here" name="companyAddressInput"
+        <input autocomplete="off" [disabled]="disabled" type="email" class="form-control" id="companyAddress"
+               [placeholder]="this.translate.getTranslatedItem('Company Address')" name="companyAddressInput"
                [(ngModel)]="address">
       </div>
     </div>
     <div class="form-group row">
-      <label for="companyDescription" class="col-sm-2 col-form-label">Company Description</label>
+      <label for="companyDescription" class="col-sm-2 col-form-label">
+        {{this.translate.getTranslatedItem('Company Description')}}
+      </label>
       <div class="col-sm-10">
       <textarea [disabled]="disabled" id="companyDescription" class="form-control" name="paragraph_text" cols="50"
                 rows="10" name="companyDescriptionInput" [(ngModel)]="description"></textarea>
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Company Image</label>
+      <label class="col-sm-2 col-form-label">
+        {{this.translate.getTranslatedItem('Company Image')}}</label>
       <div class="col-sm-10">
         <img *ngIf="disabled && hasCompany()" [src]="trustImage(this.loggedUser.company.image)" alt="photo"
              height="70"/>
         <ng-container *ngIf="!disabled">
-          <input id="uploadInput" type="file" class="btn btn-default" (change)="onFileSelected($event)">
+          <input autocomplete="off" id="uploadInput" type="file" class="btn btn-default" (change)="onFileSelected($event)">
           <!--<button class="btn btn-default" (click)="uploadFile()">save</button>-->
         </ng-container>
       </div>
     </div>
     <fieldset class="form-group">
       <div class="row">
-        <legend class="col-form-label col-sm-2 pt-0">Category</legend>
+        <legend class="col-form-label col-sm-2 pt-0">
+          {{this.translate.getTranslatedItem('Category')}}
+        </legend>
         <div class="col-sm-10">
           <ng-container *ngFor="let companyCategory of companyCategory">
             <div class="form-check">
-              <input *ngIf="category !== companyCategory" [disabled]="disabled" class="form-check-input"
+              <input autocomplete="off" *ngIf="category !== companyCategory" [disabled]="disabled" class="form-check-input"
                      type="radio" name="gridRadios" [id]="companyCategory"
                      [value]="companyCategory" (change)="onSelectionChangeRadio(companyCategory)">
-              <input *ngIf="category === companyCategory" [disabled]="disabled" class="form-check-input"
+              <input autocomplete="off" *ngIf="category === companyCategory" [disabled]="disabled" class="form-check-input"
                      type="radio" name="gridRadios" [id]="companyCategory"
                      [value]="companyCategory" checked (change)="onSelectionChangeRadio(companyCategory)">
               <label class="form-check-label" [for]="companyCategory">
@@ -68,10 +78,18 @@
     <div *ngIf="error" class="alert-danger">{{errorMsg}}</div>
     <div class="form-group row">
       <div class="col-sm-10">
-        <button *ngIf="disabled" type="submit" class="btn btn-primary" (click)="edit()">Edit</button>
-        <button *ngIf="disabled" type="submit" class="btn btn-danger" (click)="deleteCompany()">Delete</button>
-        <button *ngIf="!disabled" type="submit" class="btn btn-primary" (click)="saveActions()">Save actions</button>
-        <button *ngIf="!disabled && hasCompany()" type="submit" class="btn btn-default" (click)="cancel()">Cancel</button>
+        <button *ngIf="disabled" type="submit" class="btn btn-primary" (click)="edit()">
+          {{this.translate.getTranslatedItem('Edit')}}
+        </button>
+        <button *ngIf="disabled" type="submit" class="btn btn-danger" (click)="deleteCompany()">
+          {{this.translate.getTranslatedItem('Delete')}}
+        </button>
+        <button *ngIf="!disabled" type="submit" class="btn btn-primary" (click)="saveActions()">
+          {{this.translate.getTranslatedItem('Save actions')}}
+        </button>
+        <button *ngIf="!disabled && hasCompany()" type="submit" class="btn btn-default" (click)="cancel()">
+          {{this.translate.getTranslatedItem('Cancel')}}
+        </button>
       </div>
     </div>
   </form>

@@ -169,9 +169,59 @@ export class Translate {
       en: 'enter your email'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Fields must not be empty',
+      de: 'Felder dürfen nicht leer sein',
+      en: 'Fields must not be empty'
+    },
+    {
+      ID: 'you need to complete the fields before the company can be seen by others',
+      de: 'Sie müssen die Felder ausfüllen, bevor das Unternehmen von anderen gesehen werden kann',
+      en: 'you need to complete the fields before the company can be seen by others'
+    },
+    {
+      ID: 'CompanyName',
+      de: 'Unternehmen Name',
+      en: 'Company Name'
+    },
+    {
+      ID: 'Company Email',
+      de: 'Unternehmen E-Mail',
+      en: 'Company Email'
+    },
+    {
+      ID: 'Company Address',
+      de: 'Unterhehmen Adresse',
+      en: 'Company Address'
+    },
+    {
+      ID: 'Company Description',
+      de: 'Unternehmen Beschreibung',
+      en: 'Company Description'
+    },
+    {
+      ID: 'Company Image',
+      de: 'Unternehmen Foto',
+      en: 'Company Image'
+    },
+    {
+      ID: 'Category',
+      de: 'Kategorie',
+      en: 'Category'
+    },
+    {
+      ID: 'Edit',
+      de: 'Editierung',
+      en: 'Edit'
+    },
+    {
+      ID: 'Delete',
+      de: 'Löschen',
+      en: 'Delete'
+    },
+    {
+      ID: 'Save actions',
+      de: 'Aktionen speichern',
+      en: 'Save actions'
     },
     {
       ID: 'test',
@@ -179,94 +229,69 @@ export class Translate {
       en: 'test'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Cancel',
+      de: 'Stornieren',
+      en: 'Cancel'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Fields must not be empty',
+      de: 'Felder dürfen nicht leer sein',
+      en: 'Fields must not be empty'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'date',
+      de: 'Datum',
+      en: 'Date'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'from',
+      de: 'Von',
+      en: 'From'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'message',
+      de: 'Nachricht',
+      en: 'Message'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Send notification',
+      de: 'Nachricht senden',
+      en: 'Send notification'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Message to',
+      de: 'Nachricht zu',
+      en: 'Message to'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'read',
+      de: 'gelesen',
+      en: 'read'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'type',
+      de: 'Typ',
+      en: 'Type'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'action',
+      de: 'Aktion',
+      en: 'Action'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Are you sure that you want to delete the user?',
+      de: 'Sind Sie sicher, dass Sie den Benutzer löschen möchten?',
+      en: 'Are you sure that you want to delete the user?'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Navigate through pages',
+      de: 'Navigieren Sie durch die Seiten',
+      en: 'Navigate through pages'
     },
     {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
-    },
-    {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
-    },
-    {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
-    },
-    {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
-    },
-    {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
-    },
-    {
-      ID: 'test',
-      de: 'test',
-      en: 'test'
+      ID: 'Languages',
+      de: 'Sprachen',
+      en: 'Languages'
     },
     {
       ID: 'test',

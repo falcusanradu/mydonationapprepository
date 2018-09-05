@@ -4,7 +4,7 @@
     <div class="col-md-4 col-md-offset-3">
       <form action="" class="search-form">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" name="search" id="search"
+          <input autocomplete="off" type="text" class="form-control" name="search" id="search"
                  [placeholder]="this.translateService.getTranslatedItem('searchByUsername')"
                  [(ngModel)]="searchInput">
         </div>
@@ -16,10 +16,10 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>username</th>
-      <th>email</th>
-      <th>type</th>
-      <th>action</th>
+      <th>{{this.translateService.getTranslatedItem('Username')}}</th>
+      <th>{{this.translateService.getTranslatedItem('Email')}}</th>
+      <th>{{this.translateService.getTranslatedItem('type')}}</th>
+      <th>{{this.translateService.getTranslatedItem('action')}}</th>
     </tr>
     </thead>
     <tbody>
@@ -40,7 +40,8 @@
         </div>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="openModal(user)">Delete</button>
+        <button class="btn btn-danger" (click)="openModal(user)">{{this.translateService.getTranslatedItem('Delete')}}
+        </button>
       </td>
     </tr>
     <pagination-controls (pageChange)="page =$event"></pagination-controls>
@@ -62,11 +63,15 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-body">
-            <p>Are you sure that you want to delete the user?</p>
+            <p>{{this.translateService.getTranslatedItem('Are you sure that you want to delete the user?')}}</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser()">Delete</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              {{this.translateService.getTranslatedItem('Cancel')}}
+            </button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser()">
+              {{this.translateService.getTranslatedItem('Delete')}}
+            </button>
           </div>
         </div>
 

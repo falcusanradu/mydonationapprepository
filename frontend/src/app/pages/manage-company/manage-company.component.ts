@@ -5,6 +5,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {DonateService} from '../manage donations/donate.service';
 import {SessionValues} from '../../models/constants';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {Translate} from '../../services/translate.service';
 
 @Component({
   selector: 'app-manage-company',
@@ -29,11 +31,11 @@ export class ManageCompanyComponent implements OnInit {
   disabled = true;
   loggedUser: User;
 
-  errorMsg = 'Fields must not be empty';
+  errorMsg = this.translate.getTranslatedItem('Fields must not be empty');
   error = false;
 
   constructor(private sessionValues: SessionValues, private backendService: BackendService, private sanitizer: DomSanitizer,
-              private donateService: DonateService, private router: Router) {
+              private donateService: DonateService, private router: Router,  private translate: Translate) {
   }
 
 

@@ -6,12 +6,12 @@
         <div class="form-group">
           <legend class="">{{this.translateService.getTranslatedItem('Login')}}</legend>
           <label for="loginUsername">{{this.translateService.getTranslatedItem('Username')}}</label>
-          <input class="form-control" id="loginUsername"
+          <input autocomplete="off" class="form-control" id="loginUsername"
                  [placeholder]="this.translateService.getTranslatedItem('Username')" name="username"
                  [(ngModel)]="loginUsername">
         </div>
         <div class="form-group">
-          <label for="loginPassword">{{this.translateService.getTranslatedItem('Username')}}</label>
+          <label autocomplete="off" for="loginPassword">{{this.translateService.getTranslatedItem('Username')}}</label>
           <input type="password" class="form-control" id="loginPassword" name="password"
                  [placeholder]="this.translateService.getTranslatedItem('Username')"
                  [(ngModel)]="LoginPassword">
@@ -43,7 +43,7 @@
             <label class="control-label"
                    for="registerUsername">{{this.translateService.getTranslatedItem('Username')}}</label>
             <div class="controls">
-              <input type="text" id="registerUsername" name="username"
+              <input autocomplete="off" type="text" id="registerUsername" name="username"
                      [placeholder]="this.translateService.getTranslatedItem('Username')" class="form-control"
                      [(ngModel)]="registerUsername">
             </div>
@@ -53,7 +53,7 @@
             <label class="control-label"
                    for="registerPassword">{{this.translateService.getTranslatedItem('Email')}}</label>
             <div class="controls">
-              <input type="email" id="registerEmail" name="email"
+              <input autocomplete="off" type="email" id="registerEmail" name="email"
                      [placeholder]="this.translateService.getTranslatedItem('Email')" class="form-control"
                      [(ngModel)]="registerEmail">
             </div>
@@ -62,7 +62,7 @@
           <label class="control-label"
                  for="registerEmail">{{this.translateService.getTranslatedItem('Password')}}</label>
           <div class="controls">
-            <input type="password" id="registerPassword" name="password"
+            <input autocomplete="off" type="password" id="registerPassword" name="password"
                    [placeholder]="this.translateService.getTranslatedItem('Password')" class="form-control"
                    [(ngModel)]="registerPassword">
           </div>
@@ -71,7 +71,7 @@
             <!-- Password -->
             <label class="control-label" for="password_confirm">{{this.translateService.getTranslatedItem('ConfirmPassword')}}</label>
             <div class="controls">
-              <input type="password" id="password_confirm" name="password_confirm"
+              <input autocomplete="off" type="password" id="password_confirm" name="password_confirm"
                      [placeholder]="this.translateService.getTranslatedItem('ConfirmPassword')"
                      pattern="[^ @]*@[^ @]*"
                      class="form-control" [(ngModel)]="confirmPassword">

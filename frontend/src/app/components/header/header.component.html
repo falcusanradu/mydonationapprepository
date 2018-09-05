@@ -6,7 +6,7 @@
       </a>
       <li *ngIf="isSession()">
         <div class="dropdown navbar-brand">
-          <span>Navigate through pages</span>
+          <span>{{this.translateService.getTranslatedItem('Navigate through pages')}}</span>
           <div class="dropdown-content">
             <a *ngIf="isSession()" class="nav-link" routerLink="home">Home</a>
             <!--<a class="nav-link" routerLink="app-donate-something">donate something</a>-->
@@ -21,7 +21,7 @@
       </li>
       <li>
         <div class="dropdown navbar-brand">
-          <span> Languages</span>
+          <span>{{this.translateService.getTranslatedItem('Languages')}} </span>
           <div class="dropdown-content">
             <a class="nav-link" id="germanyFlagAnchor" (click)="switchToGerman()">
               Deutsch
@@ -56,7 +56,8 @@
 <!--modal-->
 <div class="container">
   <!-- Trigger the modal with a button -->
-  <button hidden id="openModalBtnHeader" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalHeader">
+  <button hidden id="openModalBtnHeader" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+          data-target="#myModalHeader">
     Open Modal
   </button>
 

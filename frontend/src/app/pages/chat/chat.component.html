@@ -5,10 +5,10 @@
     <table class="table">
       <thead class="thead-default">
       <tr>
-        <th>read</th>
-        <th scope="col" id="date">date</th>
-        <th scope="col" id="from">from</th>
-        <th scope="col" id="msg">message</th>
+        <th>{{this.translate.getTranslatedItem('read')}}</th>
+        <th scope="col" id="date">{{this.translate.getTranslatedItem('date')}}</th>
+        <th scope="col" id="from">{{this.translate.getTranslatedItem('from')}}</th>
+        <th scope="col" id="msg">{{this.translate.getTranslatedItem('message')}}</th>
       </tr>
       </thead>
       <tbody>
@@ -31,7 +31,8 @@
   <!--right-->
   <div class="col-xs-12 col-sm-6">
     <form class="form-inline d-flex dropdown">
-      <input autocomplete="off" class="form-check-input" type="text" placeholder="Message to" id="menu1"
+      <input autocomplete="off" class="form-check-input" type="text"
+             [placeholder]="this.translate.getTranslatedItem('Message to')" id="menu1"
              data-toggle="dropdown"
              name="usernameToSend" [(ngModel)]="usernameToSend">
       <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -44,7 +45,9 @@
 
     <textarea id="sendMsgArea" class="form-control" name="paragraph_text" cols="50"
               rows="10" name="companyDescriptionInput" [(ngModel)]="message"></textarea>
-    <button class="btn btn-default" type="submit" (click)="checkUser()">Send notification</button>
+    <button class="btn btn-default" type="submit" (click)="checkUser()">
+      {{this.translate.getTranslatedItem('Send notification')}}
+    </button>
   </div>
 
 </div>
